@@ -34,7 +34,7 @@ class DocumentController extends Controller
         $data['documents'] = Tracking::where('prepared_by',$id)
             ->where(function($q) use ($keyword){
                 $q->where('route_no','like',"%$keyword%")
-                  ->orwhere('description','like',"%$keyword%")
+                    ->orwhere('description','like',"%$keyword%")
                     ->orWhere('purpose','like',"%$keyword%");
             })
             ->orderBy('id','desc')
@@ -168,13 +168,13 @@ class DocumentController extends Controller
                 if($document->code === $section)
                 {
                     Tracking_Details::where('id',$document->id)
-                            ->update([
-                                'code' => 'accept;'.$user->section,
-                                'date_in' => date('Y-m-d H:i:s'),
-                                'received_by' => $id,
-                                'status' => 0,
-                                'action' => $request->remarks[$i]
-                            ]);
+                        ->update([
+                            'code' => 'accept;'.$user->section,
+                            'date_in' => date('Y-m-d H:i:s'),
+                            'received_by' => $id,
+                            'status' => 0,
+                            'action' => $request->remarks[$i]
+                        ]);
                 }else{
                     $q = new Tracking_Details();
                     $q->route_no = $route_no;
@@ -204,7 +204,8 @@ class DocumentController extends Controller
                 $status['success'][] = 'Route No. "'. $route_no . '" <strong>ACCEPTED!</strong> ';
                 //RUSEL
                 $getSO = $this->getSO($route_no);
-                if(Auth::user()->section == 36 and $doc->doc_type == 'OFFICE_ORDER' and $getSO)
+                $so_no = $request->so_no[$i];
+                if(Auth::user()->section == 36 and $doc->doc_type == 'OFFICE_ORDER' and $getSO and $so_no)
                 {
                     $this->updateSO(1,$route_no);
                     $remarks = $request->remarks[$i];
@@ -223,7 +224,7 @@ class DocumentController extends Controller
                             $startday = $f_from[2];
                             $type = null;
                             while($j <= $interval->days) {
-                                
+
                                 if($calendar['so_time']){
                                     if($calendar['so_time'] == 'am'){
                                         $time = array('08:00:00','12:00:00');
@@ -246,9 +247,8 @@ class DocumentController extends Controller
                                         $event = 'IN';
                                     else
                                         $event = 'OUT';
-                                    $name = Users::where('id',$inclusive_name['user_id'])->first()->username;
-                                    //$remarks = sprintf('%04u',$this->getSO($route_no)['id']).'-HRMIS';
-                                    $this->insert_dtr_file($name,$datein,$time[$i],$event,$remarks,'1','003',$type);
+                                    $name = $inclusive_name['userid'];
+                                    $this->insert_dtr_file($name,$datein,$time[$i],$event,$so_no,'1','003',$type);
                                 endfor;
 
                                 $startday = $startday + 1;
@@ -333,10 +333,10 @@ class DocumentController extends Controller
         $id = $user->id;
 
         Tracking_Details::where('route_no',$route_no)
-                        ->where('received_by',$id)
-                        ->orderBy('id','desc')
-                        ->first()
-                        ->delete();
+            ->where('received_by',$id)
+            ->orderBy('id','desc')
+            ->first()
+            ->delete();
     }
     public function session(Request $request){
         Session::put('name','Lourence Rex');
@@ -447,8 +447,8 @@ class DocumentController extends Controller
             'fund_source_budget');
         for($i=0;$i<count($filter);$i++){
             if(!Tracking_Filter::where($filter[$i],1)
-                            ->where('doc_type',$doc_type)
-                            ->first()){
+                ->where('doc_type',$doc_type)
+                ->first()){
                 $filter[$i] = 'hide';
             }
         }
@@ -457,7 +457,7 @@ class DocumentController extends Controller
 
     public function show($route_no,$doc_type=null,$prr_type=null){
         $document = Tracking::where('route_no',$route_no)
-                        ->first();
+            ->first();
         Session::put('route_no', $route_no);
         Session::put('doc_type', $doc_type);
         Session::put('prr_type', $prr_type);
@@ -490,10 +490,10 @@ class DocumentController extends Controller
             'delivered_by',
             'action'
         )
-        ->where('code',$code)
-        ->where('status',0)
-        ->orderBy('tracking_details.date_in','desc')
-        ->get();
+            ->where('code',$code)
+            ->where('status',0)
+            ->orderBy('tracking_details.date_in','desc')
+            ->get();
 
         $data['outgoing'] = Tracking_Details::select(
             'date_in',
@@ -504,13 +504,13 @@ class DocumentController extends Controller
             'delivered_by',
             'action'
         )
-        ->where(function($q) use($code,$code2,$code3) {
-            $q->where('code', $code2)
-                ->orwhere('code', $code3);
-        })
-        ->where('status',0)
-        ->orderBy('tracking_details.date_in','desc')
-        ->get();
+            ->where(function($q) use($code,$code2,$code3) {
+                $q->where('code', $code2)
+                    ->orwhere('code', $code3);
+            })
+            ->where('status',0)
+            ->orderBy('tracking_details.date_in','desc')
+            ->get();
 
         $data['unconfirm'] = Tracking_Details::select(
             'tracking_details.date_in',
@@ -750,16 +750,16 @@ class DocumentController extends Controller
     public static function checkLastRecord($route_no)
     {
         $document = Tracking_Details::where('route_no',$route_no)
-                        ->orderBy('id','desc')
-                        ->first();
+            ->orderBy('id','desc')
+            ->first();
         return $document->id;
     }
 
     public static function getNextRecord($route_no,$id)
     {
         $document = DB::table('tracking_details')
-                ->where('id', ( DB::raw("(SELECT min(id) FROM tracking_details WHERE id > $id)")) )
-                ->get();
+            ->where('id', ( DB::raw("(SELECT min(id) FROM tracking_details WHERE id > $id)")) )
+            ->get();
         $new_array[] = json_decode(json_encode($document), true);
         return $new_array[0];
     }
@@ -771,12 +771,12 @@ class DocumentController extends Controller
             return false;
         }
         $documents = Tracking_Details::select(
-                'tracking_details.id',
-                'tracking_details.received_by',
-                'tracking_details.date_in',
-                'tracking_details.code',
-                'tracking_details.route_no'
-            )
+            'tracking_details.id',
+            'tracking_details.received_by',
+            'tracking_details.date_in',
+            'tracking_details.code',
+            'tracking_details.route_no'
+        )
             ->where('delivered_by',$id)
             ->leftJoin('tracking_master', 'tracking_details.route_no', '=', 'tracking_master.route_no')
             ->where('tracking_details.route_no',$route_no)
@@ -1013,9 +1013,9 @@ class DocumentController extends Controller
         $startTime = date('Y-m-d ').'00:00:00';
         $endTime = date('Y-m-d ').'23:59:59';
         $count = User::where('updated_at','>=',$startTime)
-                ->where('updated_at','<=',$endTime)
-                ->where('status',1)
-                ->count();
+            ->where('updated_at','<=',$endTime)
+            ->where('status',1)
+            ->count();
 
         return $count;
     }
