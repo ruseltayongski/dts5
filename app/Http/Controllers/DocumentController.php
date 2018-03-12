@@ -18,6 +18,7 @@ use App\Http\Controllers\ReleaseController as Rel;
 use App\Release;
 use PDO;
 use DateTime;
+use App\SoLogs;
 
 class DocumentController extends Controller
 {
@@ -127,14 +128,6 @@ class DocumentController extends Controller
         $db = null;
 
         return $row;
-    }
-    public function insert_dtr_file($userid,$datein,$time,$event,$remark,$edited,$holiday,$type)
-    {
-        $db=$this->connect();
-        $sql="INSERT INTO so_logs(userid,datein,time,event,remark,edited,holiday,created_at,updated_at,time_type) values(?,?,?,?,?,?,?,now(),now(),?)";
-        $pdo = $db->prepare($sql);
-        $pdo->execute(array($userid,$datein,$time,$event,$remark,$edited,$holiday,$type));
-        $db=null;
     }
     //END RUSEL
     public function saveDocument(Request $request){
@@ -248,7 +241,16 @@ class DocumentController extends Controller
                                     else
                                         $event = 'OUT';
                                     $name = $inclusive_name['userid'];
-                                    $this->insert_dtr_file($name,$datein,$time[$i],$event,$so_no,'1','003',$type);
+                                    $soLogs = new SoLogs();
+                                    $soLogs->userid = $name;
+                                    $soLogs->datein = $datein;
+                                    $soLogs->time = $time[$i];
+                                    $soLogs->event = $event;
+                                    $soLogs->remark = $so_no;
+                                    $soLogs->edited = 1;
+                                    $soLogs->holiday = '003';
+                                    $soLogs->time_type = $type;
+                                    $soLogs->save();
                                 endfor;
 
                                 $startday = $startday + 1;

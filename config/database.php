@@ -78,6 +78,17 @@ return [
             'schema' => 'public',
         ],
 
+        'dtr' => array(
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => 'dohdtr',
+            'username'  => 'root',
+            'password'  => '',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ),
+
     ],
 
     /*
