@@ -33,7 +33,7 @@ $pending = \App\Tracking_Details::select(
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('resources/img/favicon.png') }}">
     <meta http-equiv="cache-control" content="max-age=0" />
-    <title>Document Tracking System</title>
+    <title>Gwapo si Traya | Document Tracking System</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('resources/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('resources/assets/css/bootstrap-theme.min.css') }}" rel="stylesheet">
@@ -46,8 +46,7 @@ $pending = \App\Tracking_Details::select(
     <link href="{{ asset('resources/plugin/datepicker/datepicker3.css') }}" rel="stylesheet">
 
     <title>
-        {{--@yield('title','Home')--}}
-        Gwapo si Traya
+        @yield('title','Home')
     </title>
 
     <!--DATE RANGE-->
