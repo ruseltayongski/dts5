@@ -46,7 +46,8 @@ $pending = \App\Tracking_Details::select(
     <link href="{{ asset('resources/plugin/datepicker/datepicker3.css') }}" rel="stylesheet">
 
     <title>
-        @yield('title','Home')
+        {{--@yield('title','Home')--}}
+        Gwapo si Traya
     </title>
 
     <!--DATE RANGE-->
