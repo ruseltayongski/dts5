@@ -51,7 +51,14 @@
                     {{ $user->fname }}
                     {{ $user->lname }}
                     <br>
-                    <em>({{ Section::find($user->section)->description }})</em>
+                    <?php
+                        $tmp_section = '';
+                        if($tmp = Section::find($user->section))
+                        {
+                            $tmp_section = $tmp->description;
+                        }
+                    ?>
+                    <em>({{ $tmp_section }})</em>
                 </td>
                 <?php
                     $doc_type = '';
