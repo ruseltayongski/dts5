@@ -144,11 +144,6 @@
             $received_by = $user->fname.' '.$user->lname;
             $section = Section::find($user->section)->description;
         }
-        $data['date'][] = $doc->date_in;
-        $data['date_in'][] = date('M d, Y', strtotime($doc->date_in));
-        $data['time_in'][] = date('h:i A', strtotime($doc->date_in));
-        $data['remarks'][] = $doc->action;
-        $data['status'][] = $doc->status;
         ?>
         @if(($doc->received_by != $doc->delivered_by))
         <tr>
