@@ -53,7 +53,13 @@
                     <br>
                     <em>({{ Section::find($user->section)->description }})</em>
                 </td>
-                <td>{{ \App\Http\Controllers\DocumentController::docTypeName($doc->doc_type) }}</td>
+                <?php
+                    $doc_type = '';
+                    if($doc->doc_type){
+                        $doc_type = \App\Http\Controllers\DocumentController::docTypeName($doc->doc_type);
+                    }
+                ?>
+                <td>{{ $doc_type }}</td>
                 <td>
                     @if($doc->doc_type == 'PRR_S')
                         {!! nl2br($doc->purpose) !!}
