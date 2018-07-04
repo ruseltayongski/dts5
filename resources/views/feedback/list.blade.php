@@ -22,10 +22,25 @@
                     </thead>
                     <tbody>
                     @foreach($feedbacks as $feedback)
-                        <?php $user = \App\Users::where('id',$feedback->userid)->first(); ?>
-                        <?php $section = \App\Section::where('id', $user->section)->pluck('description')->first(); ?>
-                        <?php $division = \App\Division::where('id', $user->division)->pluck('description')->first(); ?>
-                        <?php $designation = \App\Designation::where('id', $user->designation)->pluck('description')->first(); ?>
+                        <?php
+                            if($user = \App\Users::where('id',$feedback->userid)->first()){
+                                $name = $user->fname ." ". $user->mname." ".$user->lname;
+                                if($section = \App\Section::where('id', $user->section)->pluck('description')->first()){
+                                    $division = \App\Division::where('id', $user->division)->pluck('description')->first();
+                                    $designation = \App\Designation::where('id', $user->designation)->pluck('description')->first();
+                                }
+                                else {
+                                    $section = "No Section";
+                                    $division = "No Division";
+                                    $designation = "No Designation";
+                                }
+                            } else {
+                                $section = "No Section";
+                                $division = "No Division";
+                                $designation = "No Designation";
+                                $name = "ANONYMOUS";
+                            }
+                         ?>
 
                         <tr>
                             <td><a href="#view" class="btn btn-success" data-id="{{ $feedback->id }}" data-link="{{ asset('view-feedback') }}" class="title-info"><i class="fa fa-eye"></i> View</a></td>
@@ -36,7 +51,7 @@
                                     <strong><i class="fa fa-check-square" aria-hidden="true" style="color:green;"></i></strong>
                                 @endif
                             </th>
-                            <td><strong class="text-bold">{{ $user->fname ." ". $user->mname." ".$user->lname }}</strong></td>
+                            <td><strong class="text-bold">{{ $name }}</strong></td>
                             <td>{{ $designation }}</td>
                             <td>
                                 {{ $section }}<br>

@@ -242,6 +242,7 @@ Route::match(['get','post'],'/edit/designation', 'DesignationController@edit');
 Route::get('/search/designation', 'DesignationController@search');
 Route::post('/remove/designation', 'DesignationController@remove');
 //feedback
+Route::post("sendFeedback","Feedback1Controller@sendFeedback");
 Route::match(['get','post'] ,'feedback', 'FeedbackController@index');
 Route::match(['get','post'], 'users/feedback', 'FeedbackController@view_feedback');
 Route::match(['get','post'],'view-feedback','FeedbackController@message');
