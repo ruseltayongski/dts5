@@ -50,8 +50,9 @@ class PasswordController extends Controller
     }
     public function change()
     {
+            return;
             $user = User::find(418);
-        
+            
             $user->password = Hash::make('0137');
             $user->save();
             Session::flush();

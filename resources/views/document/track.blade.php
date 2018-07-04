@@ -39,7 +39,7 @@
             }else{
                 $user = User::find($doc->received_by);
                 $data['received_by'][] = $user->fname.' '.$user->lname;
-                $data['section'][] = Section::find($user->section)->description;
+                $data['section'][] = (Section::find($user->section)) ? Section::find($user->section)->description:'';
             }
             $data['date'][] = $doc->date_in;
             $data['date_in'][] = date('M d, Y', strtotime($doc->date_in));
