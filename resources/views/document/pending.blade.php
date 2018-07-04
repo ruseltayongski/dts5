@@ -81,18 +81,21 @@ use App\Http\Controllers\ReleaseController as Rel;
                         </tr>
                         <tr>
                             <?php
-                                $user = User::find($row->delivered_by);
-                                $section = \App\Section::find($user->section);
-								
-								if($section)
-								{
-									$section = $section->description;
-								}else{
-									$section = 'none';
-								}
+
+                                if( User::find($row->delivered_by) ){
+                                    $user = User::find($row->delivered_by);
+                                    $name = $user->fname.' '.$user->lname.' '.$user->id;
+                                    if($section = \App\Section::find($user->section)) {
+                                        $section = $section->description;
+                                    }else{
+                                        $section = 'No Section';
+                                    }
+                                } else {
+                                    $name = "No Name".' '.$row->delivered_by;
+                                }
                             ?>
                             <td>Delivered By:</td>
-                            <td>{{ $user->fname }} {{ $user->lname }}<br /><small>({{ $section }})</small></td>
+                            <td>{{ $name }} <br /><small>({{ $section }})</small></td>
                         </tr>
                         <tr>
                             <td>Type:</td>
