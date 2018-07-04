@@ -284,41 +284,6 @@ $incoming = Tracking_Details::select(
         ->get();
 ?>
 
-<div class="modal fade" tabindex="-1" role="dialog" id="notification">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class=""><i class="fa fa-file-o"></i> Incoming Documents</h4>
-            </div>
-            <div class="modal-body">
-                <table class="table table-hover table-form table-striped">
-                    @foreach($incoming as $row)
-                    <?php $class='';?>
-                    @if($row->alert==2)
-                        <?php $class="warning"; ?>
-                    @endif
-                    <tr class="{{ $class }}">
-                        <td>
-                            <small style="font-size: 0.8em;font-weight: bold; color:blue;">Route No:</small><br />
-                            {{ $row->route_no }}<br />
-                            <small style="font-size: 0.8em;font-weight: bold; color:blue;">Delivered By:</small><br />
-                            <?php
-                                $user = App\User::find($row->delivered_by);
-                                $section = \App\Section::find($user->section)->description;
-                            ?>
-                            {{ $user->fname }} {{ $user->lname }}<br /><small style="font-size: 0.7;font-style: italic;">({{ $section }})</small>
-                        </td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 <div class="modal fade" tabindex="-1" role="dialog" id="pr_paperSize" style="z-index:999991;">
     <div class="modal-dialog modal-sm" role="document">

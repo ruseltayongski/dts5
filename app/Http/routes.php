@@ -258,7 +258,7 @@ Route::get('modal',function(){
     return view('users.modal');
 });
 
-Route::get('res', 'PasswordController@change');
+//Route::get('res', 'PasswordController@change');
 
-Route::get('/migrate','SystemController@migrate');
+//Route::get('/migrate','SystemController@migrate');
 

@@ -60,7 +60,7 @@ $online = Doc::countOnlineUsers();
                             @else
 
                                 <?php
-                                $x = \App\Tracking_Details::where('received_by',0)
+                                /*$x = \App\Tracking_Details::where('received_by',0)
                                         ->where('id','<',$pend->id)
                                         ->where('route_no',$pend->route_no)
                                         ->first();
@@ -68,7 +68,8 @@ $online = Doc::countOnlineUsers();
                                 $temp1   = explode(';',$string);
                                 $temp2   = array_slice($temp1, 1, 1);
                                 $section_id = implode(',', $temp2);
-                                $x_section = \App\Section::find($section_id)->description;
+                                $x_section = \App\Section::find($section_id)->description;*/
+                                $x_section = 'no section';
                                 ?>
                                 <font class="text-bold text-danger">
                                     {{ $x_section }}<br />

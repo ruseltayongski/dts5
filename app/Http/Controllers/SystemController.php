@@ -35,7 +35,7 @@ class SystemController extends Controller
 
         return true;
     }
-
+    
     static function logDefault($act,$desc="")
     {
         $user = Users::find(Auth::user()->id);
@@ -51,6 +51,7 @@ class SystemController extends Controller
 
     public function migrate()
     {
+        return;
         Schema::table('tracking_details', function (Blueprint $table) {
             $table->string('code')->after('route_no');
             $table->integer('alert')->after('code');
