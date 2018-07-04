@@ -119,14 +119,39 @@
         <th width="15%">SIGNATURE</th>
     </tr>
     @foreach($tracking as $doc)
-        @if(($doc->received_by!=0)&&($doc->received_by != $doc->delivered_by))
+        <?php
+            $received_by = '';
+            $section = '';
+        if($doc->received_by==0){
+            $string = $doc->code;
+            $temp   = explode(';',$string);
+            $section_id = $temp[1];
+            $action = $temp[0];
+
+            $received_by = Section::find($section_id)->description;
+
+            $user = User::find($doc->delivered_by);
+            $tmp = $user->fname.' '.$user->lname;
+
+            if($action=='temp')
+            {
+                $section = 'Unconfirmed';
+            }else if($action==='return'){
+                $section = 'Returned';
+            }
+        }else{
+            $user = User::find($doc->received_by);
+            $received_by = $user->fname.' '.$user->lname;
+            $section = Section::find($user->section)->description;
+        }
+        ?>
+        @if(($doc->received_by != $doc->delivered_by))
         <tr>
             <td>{{ date('M d, Y', strtotime($doc->date_in)) }}<br>{{ date('h:i A', strtotime($doc->date_in)) }}</td>
             <td>
-                <?php $user = User::find($doc->received_by); ?>
-                {{ $user->fname.' '.$user->mname.' '.$user->lname }}
+                {{ $received_by }}
                 <br>
-                <em>({{ Section::find($user->section)->description }})</em>
+                <em>({{ $section }})</em>
             </td>
             <td>{{ $doc->action }}</td>
             <td></td>

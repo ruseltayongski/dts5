@@ -51,9 +51,22 @@
                     {{ $user->fname }}
                     {{ $user->lname }}
                     <br>
-                    <em>({{ Section::find($user->section)->description }})</em>
+                    <?php
+                        $tmp_section = '';
+                        if($tmp = Section::find($user->section))
+                        {
+                            $tmp_section = $tmp->description;
+                        }
+                    ?>
+                    <em>({{ $tmp_section }})</em>
                 </td>
-                <td>{{ \App\Http\Controllers\DocumentController::docTypeName($doc->doc_type) }}</td>
+                <?php
+                    $doc_type = '';
+                    if($doc->doc_type){
+                        $doc_type = \App\Http\Controllers\DocumentController::docTypeName($doc->doc_type);
+                    }
+                ?>
+                <td>{{ $doc_type }}</td>
                 <td>
                     @if($doc->doc_type == 'PRR_S')
                         {!! nl2br($doc->purpose) !!}

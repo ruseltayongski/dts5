@@ -113,7 +113,9 @@ class ReleaseController extends Controller
         $initialDate =  $start_date;    //start date and time in YMD format
         $finalDate = $end_date;    //end date and time in YMD format
         $holidays = array(
-            '2017-10-16','2017-10-15'
+            '2017-10-16','2017-10-15',
+            '2018-05-01',
+            '2018-05-14'
         );   //holidays as array
         $noofholiday  = sizeof($holidays);     //no of total holidays
 
