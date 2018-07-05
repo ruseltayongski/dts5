@@ -395,5 +395,37 @@ $incoming = Tracking_Details::select(
 @section('js')
 
 @show
+
+<div class="modal fade" tabindex="-1" role="dialog" id="notificationModal123" style="margin-top: 30px;z-index: 99999 ">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                <h3 style="font-weight: bold" class="text-success">REMINDER</h3>
+
+                <table class="table table-hover">
+                    <tr>
+                        <td>
+                            <div class="alert alert-success" style="font-size: 1.3em;">
+                                <p>There will be a maintenance today<font class="text-danger text-bold">July 5,2018 @ 5:00 PM</font>.
+                                </p>
+
+                                <p class="text-bold">- Fixed Bugs and Error</p>
+                                <p class="text-bold">- Reinstall Webservice to improve database performance</p>
+                            </div>
+                        </td></tr>
+                </table>
+                <div class="alert alert-success text-center hide">
+                    For further assistance, please contact <i class="fa fa-phone-square"></i> 418-4822 or visit ICT Unit.<br />
+                    Thank you!
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+    $('#notificationModal123').modal('show');
+</script>
 </body>
 </html>
