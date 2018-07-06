@@ -84,7 +84,7 @@ use App\Http\Controllers\ReleaseController as Rel;
 
                                 if( User::find($row->delivered_by) ){
                                     $user = User::find($row->delivered_by);
-                                    $name = $user->fname.' '.$user->lname.' '.$user->id;
+                                    $name = $user->fname.' '.$user->lname;
                                     if($section = \App\Section::find($user->section)) {
                                         $section = $section->description;
                                     }else{
@@ -172,21 +172,27 @@ use App\Http\Controllers\ReleaseController as Rel;
                         @if($status!='return')
                         <tr>
                             <?php
-                                $user = User::find($row->received_by);
-                                $name = $user->fname.' '.$user->lname;
+                                if( $user = User::find($row->received_by) ){
+                                    $receiveName = $user->fname.' '.$user->lname;
+                                } else {
+                                    $receiveName = "No Name";
+                                }
                             ?>
                             <td>Received By:</td>
-                            <td>{{ $name }}</td>
+                            <td>{{ $receiveName }}</td>
                         </tr>
                         <tr>
                             <?php
-                            $user = User::find($row->delivered_by);
+                            if( $user = User::find($row->delivered_by) ){
+                                $deliveredName = $user->fname.' '.$user->lname;
+                            } else {
+                                $deliveredName = "No Name";
+                            }
+
                             ?>
                             <td>Delivered By:</td>
                             <td>
-                                @if($user)
-                                    {{ $user->fname }} {{ $user->lname }}
-                                @endif
+                                {{ $deliveredName }}
                             </td>
                         </tr>
                         @else
