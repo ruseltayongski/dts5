@@ -86,7 +86,7 @@
                         please send us feedback and suggestion. Thank you!
                     </blockquote>
                 </div>
-                <textarea class="form-control" name="feedback"></textarea><br>
+                <textarea class="form-control" name="feedback" required></textarea><br>
                 <button class="btn btn-success" type="submit">Send Feedback</button>
             </div>
         </form>
