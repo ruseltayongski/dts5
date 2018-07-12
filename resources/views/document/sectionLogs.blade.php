@@ -146,19 +146,25 @@ $code = Session::get('doc_type_code');
                                     <em>({{ Section::find($user->section)->description }})</em>
                                 @else
                                     <?php
-                                        $x = App\Tracking_Details::where('received_by',0)
+                                        if($x = App\Tracking_Details::where('received_by',0)
                                                 ->where('id',$out->id)
                                                 ->where('route_no',$out->route_no)
-                                                ->first();
-                                        $string = $x->code;
-                                        $temp1   = explode(';',$string);
-                                        $temp2   = array_slice($temp1, 1, 1);
-                                        $section_id = implode(',', $temp2);
-                                        $x_section=null;
-                                        if($section_id)
-                                        {
-                                            $x_section = Section::find($section_id)->description;
+                                                ->first()){
+
+                                            $string = $x->code;
+                                            $temp1   = explode(';',$string);
+                                            $temp2   = array_slice($temp1, 1, 1);
+                                            $section_id = implode(',', $temp2);
+                                            $x_section=null;
+                                            if($section_id)
+                                            {
+                                                $x_section = Section::find($section_id)->description;
+                                            }
+                                        } else {
+                                            $x_section = "No section";
                                         }
+                                        
+
                                         ?>
                                         <font class="text-bold text-danger">
                                             {{ $x_section }}<br />

@@ -65,44 +65,73 @@
                     @endif
                     <td>{{ date('M d, Y',strtotime($doc->date_in)) }}<br>{{ date('h:i:s A',strtotime($doc->date_in)) }}</td>
                     <td>
-                        <?php $user = App\Users::find($doc->delivered_by);?>
+                        <?php 
+                            if( $user = App\Users::find($doc->delivered_by) ) {
+                                $delivered_firstname = $user->fname;
+                                $delivered_lastname = $user->lname;
+                                if( $section = App\Section::find($user->section)->description ){
+                                    $delivered_section = $section->description;
+                                } else {
+                                    $delivered_section = "No Section";
+                                }
+                                
+                            } else {
+                                $delivered_firstname = "No Fname";
+                                $delivered_lastname = "No Lname";
+                                $delivered_section = "No Section";
+                            }
+                        ?>
                         @if($user)
                             <strong>
-                            {{ $user->fname }}
-                            {{ $user->lname }}
+                            {{ $delivered_firstname }}
+                            {{ $delivered_lastname }}
                             </strong>
                             <br>
-                            <em>({{ App\Section::find($user->section)->description }})</em>
+                            <em>({{ $delivered_section }})</em>
                         @endif
                     </td>
                     @if($out)
                         <td>{{ date('M d, Y',strtotime($out->date_in)) }}<br>{{ date('h:i:s A',strtotime($out->date_in)) }}</td>
                         <td>
-                            <?php $user = App\Users::find($out->received_by);?>
+                            <?php 
+                                if( $user = App\Users::find($out->received_by) ) {
+                                    $received_firstname = $user->fname;
+                                    $received_lastname = $user->lname;
+                                    $received_section = App\Section::find($user->section)->description;
+                                } else {
+                                    $received_firstname = "No Fname";
+                                    $received_lastname = "No Lname";
+                                    $received_section = "No Section";
+                                }
+                            ?>
                             @if($user)
                                 <strong>
-                                {{ $user->fname }}
-                                {{ $user->lname }}
+                                {{ $received_firstname }}
+                                {{ $received_lastname }}
                                 </strong>
                                 <br>
-                                <em>({{ App\Section::find($user->section)->description }})</em>
+                                <em>({{ $received_section }})</em>
                             @else
                                 <?php
-                                $x = App\Tracking_Details::where('received_by',0)
+                                if($x = App\Tracking_Details::where('received_by',0)
                                         ->where('id',$out->id)
                                         ->where('route_no',$out->route_no)
-                                        ->first();
-                                $string = $x->code;
+                                        ->first()){
 
-
-                                $temp1   = explode(';',$string);
-                                $temp2   = array_slice($temp1, 1, 1);
-                                $section_id = implode(',', $temp2);
-                                $x_section=null;
-                                if($section_id)
-                                {
-                                    $x_section = App\Section::find($section_id)->description;
+                                    $string = $x->code;
+                                    $temp1   = explode(';',$string);
+                                    $temp2   = array_slice($temp1, 1, 1);
+                                    $section_id = implode(',', $temp2);
+                                    $x_section=null;
+                                    if($section_id)
+                                    {
+                                        $x_section = App\Section::find($section_id)->description;
+                                    }
+                                } else {
+                                    $x_section = "No section";
                                 }
+                                
+                                
                                 ?>
                                 <font class="text-bold text-danger">
                                     {{ $x_section }}<br />

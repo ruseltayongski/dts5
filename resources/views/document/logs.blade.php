@@ -159,15 +159,19 @@ $code = Session::get('doc_type_code');
                             @else
 
                                 <?php
-                                    $x = \App\Tracking_Details::where('received_by',0)
+                                    if($x = \App\Tracking_Details::where('received_by',0)
                                             ->where('id','<',$doc->tracking_id)
                                             ->where('route_no',$doc->route_no)
-                                            ->first();
-                                    $string = $x->code;
-                                    $temp1   = explode(';',$string);
-                                    $temp2   = array_slice($temp1, 1, 1);
-                                    $section_id = implode(',', $temp2);
-                                    $x_section = Section::find($section_id)->description;
+                                            ->first()){
+                                        $string = $x->code;
+                                        $temp1   = explode(';',$string);
+                                        $temp2   = array_slice($temp1, 1, 1);
+                                        $section_id = implode(',', $temp2);
+                                        $x_section = Section::find($section_id)->description;
+                                    } else {
+                                        $x_section = "No Section";
+                                    }
+                                    
                                 ?>
                                 <font class="text-bold text-danger">
                                     {{ $x_section }}<br />
