@@ -64,11 +64,21 @@ if($type=='section'){
             </td>
             <td>{{ date('M d, Y',strtotime($doc->date_in)) }}<br>{{ date('h:i:s A',strtotime($doc->date_in)) }}</td>
             <td>
-                <?php $user = Users::find($doc->delivered_by);?>
-                {{ $user->fname }}
-                {{ $user->lname }}
+                <?php 
+                    if($user = Users::find($doc->delivered_by)){
+                        $del_fname = $user->fname;
+                        $del_lname = $user->lname;
+                        $del_section = Section::find($user->section)->description;
+                    } else {
+                        $del_fname = "No Firstname";
+                        $del_lname = "No Lastname";
+                        $del_section = "No Section";
+                    }
+                ?>
+                {{ $del_fname }}
+                {{ $del_lname }}
                 <br>
-                <em>({{ Section::find($user->section)->description }})</em>
+                <em>({{ $del_section }})</em>
             </td>
             <?php
             $out = Doc::deliveredDocument($doc->route_no,$doc->received_by,$doc->doc_type);
@@ -76,11 +86,21 @@ if($type=='section'){
             @if($out)
                 <td>{{ date('M d, Y',strtotime($out->date_in)) }}<br>{{ date('h:i:s A',strtotime($out->date_in)) }}</td>
                 <td>
-                    <?php $user = Users::find($out->received_by);?>
-                    {{ $user->fname }}
-                    {{ $user->lname }}
+                    <?php 
+                        if($user = Users::find($out->received_by)){
+                            $rec_fname = $user->fname;
+                            $rec_lname = $user->lname;
+                            $rec_section = Section::find($user->section)->description;
+                        } else {
+                            $rec_fname = "No Firstname";
+                            $rec_lname = "No Lastname";
+                            $rec_section = "No Section";
+                        }
+                    ?>
+                    {{ $rec_fname }}
+                    {{ $rec_lname }}
                     <br>
-                    <em>({{ Section::find($user->section)->description }})</em>
+                    <em>({{ $rec_section }})</em>
                 </td>
             @else
                 <?php $rel = Release::where('route_no', $doc->route_no)->first(); ?>

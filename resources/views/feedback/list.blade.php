@@ -18,6 +18,7 @@
                         <th>Designation</th>
                         <th>Section / Division</th>
                         <th>Action</th>
+                        <th>Date Created</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -66,6 +67,9 @@
                                         echo "No action";
                                     }
                                 ?>
+                            </td>
+                            <td>
+                                {{ $feedback->created_at }}
                             </td>
                         </tr>
                     @endforeach
