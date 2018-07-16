@@ -205,15 +205,20 @@ $user = User::find($tracking->prepared_by);
                                         <label class="col-sm-2 control-label">Requested By:</label>
                                         <div class="col-sm-10">
                                             <?php
-                                                if($tracking->requested_by){
-                                                    $requested_by = \App\Users::find($tracking->requested_by)->fname.' '.App\Users::find($tracking->requested_by)->mname.' '.App\Users::find($tracking->requested_by)->lname;
+                                                if( $requested_by = \App\Users::find($tracking->requested_by) ){
+                                                    $requested_byName = $requested_by->fname.' '.$requested_by->mname.' '.$requested_by->lname;
                                                     $requested_designation = \App\Designation::find(Users::find($tracking->requested_by)->designation)->description;
                                                 } else {
-                                                    $requested_by = '';
+                                                    $requested_byName = '';
                                                     $requested_designation = '';
                                                 }
                                             ?>
-                                            <input id="section_head" class="form-control" value="{{ $requested_by }}" readonly>
+                                            <select class="chosen-select-static form-control" onchange="get_designation($(this),'section')" name="requested_by" required>
+                                                <option value="{{ Users::find($tracking->requested_by)->id }}">{{ $requested_byName }}</option>
+                                                @foreach($section_head as $row)
+                                                    <option value="{{ $row['id'] }}">{{ $row['fname'].' '.$row['mname'].' '.$row['lname'] }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <hr>

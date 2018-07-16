@@ -262,7 +262,8 @@ class PurchaseRequestController extends Controller
         Tracking::where('route_no',$route_no)->update([
             "prepared_date" => $prepared_date,
             "purpose" => $request->get('purpose'),
-            "source_fund" => $request->get('charge_to')
+            "source_fund" => $request->get('charge_to'),
+            "requested_by" => $request->get('requested_by')
         ]);
 
         System::logDefault('Updated',$route_no);
