@@ -65,16 +65,16 @@
                     @endif
                     <td>{{ date('M d, Y',strtotime($doc->date_in)) }}<br>{{ date('h:i:s A',strtotime($doc->date_in)) }}</td>
                     <td>
-                        <?php 
+                        <?php
                             if( $user = App\Users::find($doc->delivered_by) ) {
                                 $delivered_firstname = $user->fname;
                                 $delivered_lastname = $user->lname;
-                                if( $section = App\Section::find($user->section)->description ){
+                                if( $section = App\Section::find($user->section) ){
                                     $delivered_section = $section->description;
                                 } else {
                                     $delivered_section = "No Section";
                                 }
-                                
+
                             } else {
                                 $delivered_firstname = "No Fname";
                                 $delivered_lastname = "No Lname";
@@ -93,7 +93,7 @@
                     @if($out)
                         <td>{{ date('M d, Y',strtotime($out->date_in)) }}<br>{{ date('h:i:s A',strtotime($out->date_in)) }}</td>
                         <td>
-                            <?php 
+                            <?php
                                 if( $user = App\Users::find($out->received_by) ) {
                                     $received_firstname = $user->fname;
                                     $received_lastname = $user->lname;
@@ -130,8 +130,8 @@
                                 } else {
                                     $x_section = "No section";
                                 }
-                                
-                                
+
+
                                 ?>
                                 <font class="text-bold text-danger">
                                     {{ $x_section }}<br />

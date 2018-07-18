@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b8cbfcd3-2119-4b6b-8308-a1f0848cbc80" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PurchaseRequestController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PurchaseRequestController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_page.blade.php" afterPath="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_page.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/report/sectionLogs.blade.php" afterPath="$PROJECT_DIR$/resources/views/report/sectionLogs.blade.php" />
     </list>
     <ignored path="dts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,38 +22,40 @@
     <favorites_list name="dts" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="prr_supply_page.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_page.blade.php">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="sectionLogs.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/report/sectionLogs.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="210" column="56" lean-forward="true" selection-start-line="210" selection-start-column="56" selection-end-line="210" selection-end-column="56" />
+            <state relative-caret-position="270">
+              <caret line="71" column="83" lean-forward="false" selection-start-line="71" selection-start-column="83" selection-end-line="71" selection-end-column="83" />
               <folding>
-                <marker date="1531721880095" expanded="true" signature="14291:14310" ph="..." />
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PurchaseRequestController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PurchaseRequestController.php">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="566">
-              <caret line="264" column="30" lean-forward="false" selection-start-line="264" selection-start-column="30" selection-end-line="264" selection-end-column="55" />
+            <state relative-caret-position="311">
+              <caret line="94" column="66" lean-forward="false" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prr_supply_form.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_form.blade.php">
+      <file leaf-file-name="PrintLogsController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PrintLogsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="172" column="32" lean-forward="false" selection-start-line="172" selection-start-column="32" selection-end-line="177" selection-end-column="41" />
-              <folding>
-                <marker date="1519105914700" expanded="true" signature="9275:9473" ph="..." />
-                <marker date="1519105914700" expanded="true" signature="12494:12698" ph="..." />
-              </folding>
+            <state relative-caret-position="695">
+              <caret line="114" column="12" lean-forward="true" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,6 +81,8 @@
       <find>prr_supply_update</find>
       <find>requested_by</find>
       <find>$requested_by</find>
+      <find>report/logs/section</find>
+      <find>sectionLogs</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -127,6 +130,8 @@
         <option value="$PROJECT_DIR$/resources/views/document/logs.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PurchaseRequestController.php" />
         <option value="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_page.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/report/sectionLogs.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PrintLogsController.php" />
       </list>
     </option>
   </component>
@@ -162,6 +167,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -238,6 +244,13 @@
               <item name="dts" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="report" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dts" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="users" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -251,17 +264,23 @@
               <item name="storage" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="framework" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dts" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="storage" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="framework" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pis" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
@@ -345,20 +364,22 @@
       <workItem from="1531191145941" duration="4358000" />
       <workItem from="1531269751948" duration="1022000" />
       <workItem from="1531355842860" duration="3430000" />
-      <workItem from="1531719195972" duration="2895000" />
+      <workItem from="1531719195972" duration="5676000" />
+      <workItem from="1531808466205" duration="262000" />
+      <workItem from="1531897608394" duration="3220000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58064000" />
+    <option name="totallyTimeSpent" value="64327000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18443497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18869936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -398,29 +419,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/storage/framework/views/4705e6b95e79d4714b56ddfe00c5485de441f25a.php" />
-    <entry file="file://$PROJECT_DIR$/storage/framework/views/829bb35786d8eaf579549c2daaeb847c09e446a2.php" />
-    <entry file="file://$PROJECT_DIR$/resources/plugin/Lobibox/Lobibox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="1287" column="99" lean-forward="false" selection-start-line="1287" selection-start-column="99" selection-end-line="1287" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/form/prCashAdvance.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="84" column="129" lean-forward="false" selection-start-line="84" selection-start-column="129" selection-end-line="84" selection-end-column="129" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storage/framework/views/b3e49948b9292749acc11e85a0bcc9d7dc1e7d37.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/modal/release_modal.blade.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -503,7 +501,6 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FeedbackController.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Feedback1Controller.php" />
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/feedback/list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -546,13 +543,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/document/track.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="43" column="77" lean-forward="false" selection-start-line="43" selection-start-column="77" selection-end-line="43" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/document/logs.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -560,14 +550,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_form.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/document/track.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="172" column="32" lean-forward="false" selection-start-line="172" selection-start-column="32" selection-end-line="177" selection-end-column="41" />
-          <folding>
-            <marker date="1519105914700" expanded="true" signature="9275:9473" ph="..." />
-            <marker date="1519105914700" expanded="true" signature="12494:12698" ph="..." />
-          </folding>
+        <state relative-caret-position="680">
+          <caret line="43" column="77" lean-forward="false" selection-start-line="43" selection-start-column="77" selection-end-line="43" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/document/sectionLogs.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/document/filter.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/report/documents.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -579,13 +586,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="172" column="32" lean-forward="false" selection-start-line="172" selection-start-column="32" selection-end-line="177" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_page.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="210" column="56" lean-forward="true" selection-start-line="210" selection-start-column="56" selection-end-line="210" selection-end-column="56" />
+        <state relative-caret-position="668">
+          <caret line="216" column="49" lean-forward="false" selection-start-line="216" selection-start-column="49" selection-end-line="216" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="94" column="66" lean-forward="false" selection-start-line="94" selection-start-column="55" selection-end-line="94" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/report/sectionLogs.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="71" column="83" lean-forward="false" selection-start-line="71" selection-start-column="83" selection-end-line="71" selection-end-column="83" />
           <folding>
-            <marker date="1531721880095" expanded="true" signature="14291:14310" ph="..." />
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PrintLogsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="695">
+          <caret line="114" column="12" lean-forward="true" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
