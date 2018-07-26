@@ -23,7 +23,7 @@ class PrintLogsController extends Controller
     }
     
     function printTrack(){
-        return $display = view("pdf.track");
+        $display = view("pdf.track");
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($display);
         return $pdf->stream();
