@@ -140,9 +140,18 @@
                 $section = 'Returned';
             }
         }else{
-            $user = User::find($doc->received_by);
-            $received_by = $user->fname.' '.$user->lname;
-            $section = Section::find($user->section)->description;
+            if($user = User::find($doc->received_by)){
+                $received_by = $user->fname.' '.$user->lname;
+                if($section = Section::find($user->section)){
+                    $sectionName = $section->description;
+                } else {
+                    $sectionName = "No Section";
+                }
+            } else {
+                $received_by = "No Name";
+            }
+
+            
         }
         ?>
         @if(($doc->received_by != $doc->delivered_by))
@@ -151,7 +160,7 @@
             <td>
                 {{ $received_by }}
                 <br>
-                <em>({{ $section }})</em>
+                <em>({{ $sectionName }})</em>
             </td>
             <td>{{ $doc->action }}</td>
             <td></td>
