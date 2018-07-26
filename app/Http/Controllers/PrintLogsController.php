@@ -100,7 +100,7 @@ class PrintLogsController extends Controller
 
         }else{
             $data = DB::table('tracking_details')
-                ->select('tracking_details.id as tracking_id','tracking_master.route_no','tracking_master.description','tracking_details.date_in','tracking_details.received_by','tracking_master.doc_type','tracking_details.delivered_by')
+                ->select('tracking_details.id as tracking_id','tracking_master.route_no','tracking_master.description','tracking_details.date_in','tracking_details.received_by','tracking_master.doc_type','tracking_details.delivered_by','tracking_details.action')
                 ->leftJoin('tracking_master', 'tracking_details.route_no', '=', 'tracking_master.route_no')
                 ->leftJoin('users', 'tracking_details.received_by', '=', 'users.id')
                 ->leftJoin('section', 'users.section', '=', 'section.id')
@@ -112,6 +112,7 @@ class PrintLogsController extends Controller
                 ->where('date_in','>=',$startdate)
                 ->where('date_in','<=',$enddate)
                 ->orderBy('date_in','desc');
+            //$documents = $data->skip(2000)->take(1000)->get();
             $documents = $data->get();
         }
 

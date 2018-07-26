@@ -28,6 +28,7 @@
                 <th width="14%">Received From</th>
                 <th width="14%">Released Date</th>
                 <th width="14%">Released To</th>
+                <th width="14%">Action</th>
                 <th width="9%">Duration</th>
             </tr>
             </thead>
@@ -143,6 +144,9 @@
                         <td></td>
                         <td></td>
                     @endif
+                    <td class="text-cuccess">
+                        {{ $doc->action }}
+                    </td>
                     <td class="text-success">
                         <strong>{{ $duration }}</strong>
                     </td>
