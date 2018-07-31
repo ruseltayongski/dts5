@@ -495,7 +495,7 @@ class DocumentController extends Controller
             ->where('code',$code)
             ->where('status',0)
             ->orderBy('tracking_details.date_in','desc')
-            ->get();
+            ->paginate(10);
 
         $data['outgoing'] = Tracking_Details::select(
             'date_in',
@@ -512,7 +512,7 @@ class DocumentController extends Controller
             })
             ->where('status',0)
             ->orderBy('tracking_details.date_in','desc')
-            ->get();
+            ->paginate(10);
 
         $data['unconfirm'] = Tracking_Details::select(
             'tracking_details.date_in',
@@ -528,7 +528,7 @@ class DocumentController extends Controller
             ->where('users.section',$user->section)
             ->where('tracking_details.status',0)
             ->orderBy('tracking_details.date_in','desc')
-            ->get();
+            ->paginate(10);
 
         return view('document.pending',['data'=> $data]);
     }

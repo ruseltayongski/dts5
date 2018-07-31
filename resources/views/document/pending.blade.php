@@ -127,6 +127,9 @@ use App\Http\Controllers\ReleaseController as Rel;
                 
                 @endforeach
             </ul>
+            <div style="padding: 3%">
+                {{ $data['incoming']->links() }}
+            </div>
             @else
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-warning">
@@ -134,7 +137,7 @@ use App\Http\Controllers\ReleaseController as Rel;
                             <i class="fa fa-check"></i> No incoming documents...
                         </div>
                     </li>
-                <ul>
+                </ul>
             @endif
         </div>
     </div>
@@ -225,6 +228,9 @@ use App\Http\Controllers\ReleaseController as Rel;
                 </li>
                 @endforeach
             </ul>
+            <div style="padding: 3%">
+                {{ $data['outgoing']->links() }}
+            </div>
             @else
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-warning">
@@ -232,7 +238,7 @@ use App\Http\Controllers\ReleaseController as Rel;
                             <i class="fa fa-check"></i> No outgoing or returned documents...
                         </div>
                     </li>
-                    <ul>
+                </ul>
             @endif
         </div>
     </div>
@@ -308,6 +314,9 @@ use App\Http\Controllers\ReleaseController as Rel;
                 </li>
                 @endforeach
             </ul>
+            <div style="padding: 3%">
+                {{ $data['unconfirm']->links() }}
+            </div>
             @else
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-warning">
@@ -315,7 +324,7 @@ use App\Http\Controllers\ReleaseController as Rel;
                             <i class="fa fa-check"></i> No unconfirmed documents...
                         </div>
                     </li>
-                <ul>
+                </ul>
             @endif
         </div>
     </div>
