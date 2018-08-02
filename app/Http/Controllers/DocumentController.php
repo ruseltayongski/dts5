@@ -477,6 +477,25 @@ class DocumentController extends Controller
 
     public function allPendingDocuments(Request $request)
     {
+        $incomingPage = 1;
+        $outgoingPage = 1;
+        $unconfirmPage = 1;
+
+        if($request->page){
+            switch (explode('type=',$request->page)[1]){
+                case 'incoming':
+                    $incomingPage =  explode('?',$request->page)[0];
+                    break;
+                case 'outgoing':
+                    $outgoingPage = explode('?',$request->page)[0];
+                    break;
+                case 'unconfirm':
+                    $unconfirmPage = explode('?',$request->page)[0];
+                    break;
+            }
+        }
+
+
         $user = Auth::user();
 
         $code = 'temp;'.$user->section;
@@ -502,7 +521,7 @@ class DocumentController extends Controller
                 $q->where('route_no','like',"%$keywordIncoming%");
             })
             ->orderBy('tracking_details.date_in','desc')
-            ->paginate(10);
+            ->paginate(10, ['*'], 'page', $incomingPage);
 
         $data['outgoing'] = Tracking_Details::select(
             'date_in',
@@ -522,7 +541,7 @@ class DocumentController extends Controller
             })
             ->where('status',0)
             ->orderBy('tracking_details.date_in','desc')
-            ->paginate(10);
+            ->paginate(10, ['*'], 'page', $outgoingPage);
 
         $data['unconfirm'] = Tracking_Details::select(
             'tracking_details.date_in',
@@ -541,7 +560,7 @@ class DocumentController extends Controller
                 $q->where('route_no','like',"%$keywordUnconfirmed%");
             })
             ->orderBy('tracking_details.date_in','desc')
-            ->paginate(10);
+            ->paginate(10, ['*'], 'page', $unconfirmPage);
 
         return view('document.pending',[
             'data'=> $data,

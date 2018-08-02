@@ -269,7 +269,7 @@ $incoming = Tracking_Details::select(
         ->orderBy('tracking_details.date_in','desc')
         ->get();
 ?>
-@if(count($incoming) > 0))
+@if(count($incoming) > 0)
 <script>
     $('#notification').modal('show');
 </script>

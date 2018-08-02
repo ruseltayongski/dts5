@@ -133,7 +133,7 @@ use App\Http\Controllers\ReleaseController as Rel;
                 
                 @endforeach
             </ul>
-            <div style="padding: 3%">
+            <div style="padding: 3%" class="incomingPaginate">
                 {{ $data['incoming']->links() }}
             </div>
             @else
@@ -238,7 +238,7 @@ use App\Http\Controllers\ReleaseController as Rel;
                 </li>
                 @endforeach
             </ul>
-            <div style="padding: 3%">
+            <div style="padding: 3%" class="outgoingPaginate">
                 {{ $data['outgoing']->links() }}
             </div>
             @else
@@ -328,7 +328,7 @@ use App\Http\Controllers\ReleaseController as Rel;
                 </li>
                 @endforeach
             </ul>
-            <div style="padding: 3%">
+            <div style="padding: 3%" class="unconfirmPaginate">
                 {{ $data['unconfirm']->links() }}
             </div>
             @else
@@ -349,4 +349,18 @@ use App\Http\Controllers\ReleaseController as Rel;
     <script src="<?php echo asset('resources/plugin/dataTable/js/jquery.dataTables.min.js');?>"></script>
     <script src="<?php echo asset('resources/plugin/dataTable/js/dataTables.bootstrap.min.js');?>"></script>
     @include('js.release_js')
+    <script>
+        $(".incomingPaginate").children().children().each(function(index){
+            var _href = $($(this).children().get(0)).attr('href');
+            $($(this).children().get(0)).attr('href',_href+'?type=incoming');
+        });
+        $(".outgoingPaginate").children().children().each(function(index){
+            var _href = $($(this).children().get(0)).attr('href');
+            $($(this).children().get(0)).attr('href',_href+'?type=outgoing');
+        });
+        $(".unconfirmPaginate").children().children().each(function(index){
+            var _href = $($(this).children().get(0)).attr('href');
+            $($(this).children().get(0)).attr('href',_href+'?type=unconfirm');
+        });
+    </script>
 @endsection
