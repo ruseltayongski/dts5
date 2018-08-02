@@ -65,11 +65,15 @@ use App\Http\Controllers\ReleaseController as Rel;
                     @endif
                 </h3>
             </div>
-            @if(count($data['incoming']))
             <div class="panel-body">
-                <input type="text" id="incomingInput" class="form-control" onkeyup="incomingFunction()" placeholder="Search for route # or keyword..">
+                <form method="POST" class="form-inline" action="{{ asset('document/pending') }}">
+                    {{ csrf_field() }}
+                    <input type="text" class="form-control" style="width: 70%" placeholder="Quick Search Route #" name="incomingInput" value="{{ $incomingInput }}">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
+                    <!-- <input type="text" name="incomingInput" id="incomingInput" class="form-control" onkeyup="incomingFunction()" placeholder="Search for route # or keyword.."> -->
+                </form>
             </div>
-
+            @if(count($data['incoming']))
             <ul class="list-group" id="incomingUL">
                 @foreach($data['incoming'] as $row)
                 
@@ -77,7 +81,9 @@ use App\Http\Controllers\ReleaseController as Rel;
                     <table class="table-jim">
                         <tr>
                             <td>Route No.:</td>
-                            <td><a data-route="{{ $row->route_no }}" data-link="{{ asset('/document/info/'.$row->route_no.'/'.$row->doc_type) }}" href="#document_info" data-toggle="modal">{{ $row->route_no }}</a></td>
+                            <td>
+                                <a data-route="{{ $row->route_no }}" data-link="{{ asset('/document/info/'.$row->route_no.'/'.$row->doc_type) }}" href="#document_info" data-toggle="modal">{{ $row->route_no }}</a>
+                            </td>
                         </tr>
                         <tr>
                             <?php
@@ -150,11 +156,15 @@ use App\Http\Controllers\ReleaseController as Rel;
                     @endif
                 </h3>
             </div>
-            @if(count($data['outgoing']))
             <div class="panel-body">
-                <input type="text" id="outgoingInput" class="form-control" onkeyup="outgoingFunction()" placeholder="Search for route # or keyword..">
+                <form method="POST" class="form-inline" action="{{ asset('document/pending') }}">
+                    {{ csrf_field() }}
+                    <input type="text" class="form-control" style="width: 70%" placeholder="Quick Search Route #" name="outgoingInput" value="{{ $outgoingInput }}">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
+                </form>
+                <!-- <input type="text" id="outgoingInput" class="form-control" onkeyup="outgoingFunction()" placeholder="Search for route # or keyword.."> -->
             </div>
-
+            @if(count($data['outgoing']))
             <ul class="list-group" id="outgoingUL">
                 @foreach($data['outgoing'] as $row)
                 <?php
@@ -251,11 +261,15 @@ use App\Http\Controllers\ReleaseController as Rel;
                     @endif
                 </h3>
             </div>
-            @if(count($data['unconfirm']))
             <div class="panel-body">
-                <input type="text" id="uncofirmInput" class="form-control" onkeyup="uncofirmFunction()" placeholder="Search for route # or keyword..">
+                <form method="POST" class="form-inline" action="{{ asset('document/pending') }}">
+                    {{ csrf_field() }}
+                    <input type="text" class="form-control" style="width: 70%" placeholder="Quick Search Route #" name="unconfirmedInput" value="{{ $unconfirmedInput }}">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
+                </form>
+                <!--<input type="text" id="uncofirmInput" class="form-control" onkeyup="uncofirmFunction()" placeholder="Search for route # or keyword.."> -->
             </div>
-
+            @if(count($data['unconfirm']))
             <ul class="list-group" id="uncofirmUL">
                 @foreach($data['unconfirm'] as $row)
 

@@ -475,13 +475,17 @@ class DocumentController extends Controller
         return view('document.track',['document' => $document]);
     }
 
-    public function allPendingDocuments()
+    public function allPendingDocuments(Request $request)
     {
         $user = Auth::user();
 
         $code = 'temp;'.$user->section;
         $code2 = 'accept;'.$user->section;
         $code3 = 'return;'.$user->section;
+
+        $keywordIncoming = $request->incomingInput;
+        $keywordOutgoing = $request->outgoingInput;
+        $keywordUnconfirmed = $request->unconfirmedInput;
 
         $data['incoming'] = Tracking_Details::select(
             'date_in',
@@ -494,6 +498,9 @@ class DocumentController extends Controller
         )
             ->where('code',$code)
             ->where('status',0)
+            ->where(function($q) use ($keywordIncoming){
+                $q->where('route_no','like',"%$keywordIncoming%");
+            })
             ->orderBy('tracking_details.date_in','desc')
             ->paginate(10);
 
@@ -509,6 +516,9 @@ class DocumentController extends Controller
             ->where(function($q) use($code,$code2,$code3) {
                 $q->where('code', $code2)
                     ->orwhere('code', $code3);
+            })
+            ->where(function($q) use ($keywordOutgoing){
+                $q->where('route_no','like',"%$keywordOutgoing%");
             })
             ->where('status',0)
             ->orderBy('tracking_details.date_in','desc')
@@ -527,10 +537,18 @@ class DocumentController extends Controller
             ->where('tracking_details.code','like',"%temp%")
             ->where('users.section',$user->section)
             ->where('tracking_details.status',0)
+            ->where(function($q) use ($keywordUnconfirmed){
+                $q->where('route_no','like',"%$keywordUnconfirmed%");
+            })
             ->orderBy('tracking_details.date_in','desc')
             ->paginate(10);
 
-        return view('document.pending',['data'=> $data]);
+        return view('document.pending',[
+            'data'=> $data,
+            'incomingInput' => $keywordIncoming,
+            'outgoingInput' => $keywordOutgoing,
+            'unconfirmedInput' => $keywordUnconfirmed
+        ]);
     }
 
     public static function pendingDocuments()

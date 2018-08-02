@@ -31,7 +31,7 @@ Route::get('document/create/{type}','DocumentController@formDocument');
 Route::post('document/create','DocumentController@createDocument');
 Route::get('document/viewPending','DocumentController@countPendingDocuments');
 
-Route::get('document/pending','DocumentController@allPendingDocuments');
+Route::match(['GET','POST'],'document/pending','DocumentController@allPendingDocuments');
 Route::post('document/pending/return','DocumentController@returnDocument');
 Route::post('document/pending/accept','DocumentController@acceptDocument');
 
