@@ -27,7 +27,6 @@ use App\Http\Controllers\ReleaseController as Rel;
             font-size: 16px; /* Increase font-size */
             padding: 12px 20px 12px 40px; /* Add some padding */
             border: 1px solid #ddd; /* Add a grey border */
-            margin-bottom: 12px; /* Add some space below the input */
         }
         .table-jim tr td:first-child {
             width:30%;
@@ -68,7 +67,7 @@ use App\Http\Controllers\ReleaseController as Rel;
             <div class="panel-body">
                 <form method="POST" class="form-inline" action="{{ asset('document/pending') }}">
                     {{ csrf_field() }}
-                    <input type="text" class="form-control" style="width: 70%" placeholder="Quick Search Route #" name="incomingInput" value="{{ $incomingInput }}">
+                    <input type="text" class="form-control" style="width: 70%" id="incomingInput" placeholder="Quick Search Route #" name="incomingInput" value="{{ $incomingInput }}">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
                     <!-- <input type="text" name="incomingInput" id="incomingInput" class="form-control" onkeyup="incomingFunction()" placeholder="Search for route # or keyword.."> -->
                 </form>
@@ -159,7 +158,7 @@ use App\Http\Controllers\ReleaseController as Rel;
             <div class="panel-body">
                 <form method="POST" class="form-inline" action="{{ asset('document/pending') }}">
                     {{ csrf_field() }}
-                    <input type="text" class="form-control" style="width: 70%" placeholder="Quick Search Route #" name="outgoingInput" value="{{ $outgoingInput }}">
+                    <input type="text" class="form-control" style="width: 70%" id="outgoingInput" placeholder="Quick Search Route #" name="outgoingInput" value="{{ $outgoingInput }}">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
                 </form>
                 <!-- <input type="text" id="outgoingInput" class="form-control" onkeyup="outgoingFunction()" placeholder="Search for route # or keyword.."> -->
@@ -264,7 +263,7 @@ use App\Http\Controllers\ReleaseController as Rel;
             <div class="panel-body">
                 <form method="POST" class="form-inline" action="{{ asset('document/pending') }}">
                     {{ csrf_field() }}
-                    <input type="text" class="form-control" style="width: 70%" placeholder="Quick Search Route #" name="unconfirmedInput" value="{{ $unconfirmedInput }}">
+                    <input type="text" id="uncofirmInput" class="form-control" style="width: 70%" placeholder="Quick Search Route #" name="unconfirmedInput" value="{{ $unconfirmedInput }}">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Search</button>
                 </form>
                 <!--<input type="text" id="uncofirmInput" class="form-control" onkeyup="uncofirmFunction()" placeholder="Search for route # or keyword.."> -->
