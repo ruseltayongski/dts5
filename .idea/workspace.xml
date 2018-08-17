@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b8cbfcd3-2119-4b6b-8308-a1f0848cbc80" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/document/pending.blade.php" afterPath="$PROJECT_DIR$/resources/views/document/pending.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/js/release_js.blade.php" afterPath="$PROJECT_DIR$/resources/views/js/release_js.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" />
     </list>
     <ignored path="dts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,14 +22,27 @@
     <favorites_list name="dts" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="pending.blade.php" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="pending.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/document/pending.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="265" column="57" lean-forward="false" selection-start-line="265" selection-start-column="57" selection-end-line="265" selection-end-column="57" />
+            <state relative-caret-position="137">
+              <caret line="69" column="78" lean-forward="false" selection-start-line="69" selection-start-column="78" selection-end-line="69" selection-end-column="78" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DocumentController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="549">
+              <caret line="230" column="90" lean-forward="false" selection-start-line="230" selection-start-column="90" selection-end-line="230" selection-end-column="90" />
               <folding>
-                <element signature="e#2429#2447#0#HTML" expanded="true" />
+                <marker date="1534468551455" expanded="true" signature="2676:2721" ph="select * fro... office_order" />
+                <marker date="1534468551455" expanded="true" signature="2989:3051" ph="update offic... " />
+                <marker date="1534468551455" expanded="true" signature="3273:3320" ph="select * fro... inclusive_name" />
+                <marker date="1534468551455" expanded="true" signature="3574:3615" ph="select * fro... calendar" />
               </folding>
             </state>
           </provider>
@@ -39,8 +51,8 @@
       <file leaf-file-name="release_js.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/js/release_js.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="252" column="54" lean-forward="false" selection-start-line="252" selection-start-column="41" selection-end-line="252" selection-end-column="54" />
+            <state relative-caret-position="4318">
+              <caret line="254" column="20" lean-forward="false" selection-start-line="254" selection-start-column="20" selection-end-line="254" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -69,7 +81,6 @@
       <find>incomingFunction+</find>
       <find>$data['incoming']</find>
       <find>incomingFunction()</find>
-      <find>incomingFunction</find>
       <find>incomingUL</find>
       <find>MATCH</find>
       <find>PENDING</find>
@@ -80,6 +91,7 @@
       <find>incomingInput</find>
       <find>outgoing</find>
       <find>unconf</find>
+      <find>incomingFunction</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -127,9 +139,9 @@
         <option value="$PROJECT_DIR$/config/database.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" />
         <option value="$PROJECT_DIR$/resources/views/js/release_js.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/document/pending.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" />
       </list>
     </option>
   </component>
@@ -144,10 +156,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="197" />
-    <option name="y" value="272" />
-    <option name="width" value="1139" />
-    <option name="height" value="657" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -165,7 +177,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -285,7 +297,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -382,18 +394,20 @@
       <workItem from="1533112731658" duration="2731000" />
       <workItem from="1533171814612" duration="11978000" />
       <workItem from="1533278381961" duration="227000" />
-      <workItem from="1533864242341" duration="612000" />
+      <workItem from="1533864242341" duration="2316000" />
+      <workItem from="1534320613806" duration="1760000" />
+      <workItem from="1534468485140" duration="66000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91735000" />
+    <option name="totallyTimeSpent" value="95265000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2153518" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2196162" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -596,7 +610,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="58" column="30" lean-forward="false" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -668,19 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="495" column="9" lean-forward="false" selection-start-line="495" selection-start-column="9" selection-end-line="495" selection-end-column="9" />
-          <folding>
-            <marker date="1533188103824" expanded="true" signature="2676:2721" ph="select * fro... office_order" />
-            <marker date="1533188103824" expanded="true" signature="2989:3051" ph="update offic... " />
-            <marker date="1533188103824" expanded="true" signature="3273:3320" ph="select * fro... inclusive_name" />
-            <marker date="1533188103824" expanded="true" signature="3574:3615" ph="select * fro... calendar" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/document/track.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -690,18 +690,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/js/release_js.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="252" column="54" lean-forward="false" selection-start-line="252" selection-start-column="41" selection-end-line="252" selection-end-column="54" />
+        <state relative-caret-position="4318">
+          <caret line="254" column="20" lean-forward="false" selection-start-line="254" selection-start-column="20" selection-end-line="254" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/document/pending.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="265" column="57" lean-forward="false" selection-start-line="265" selection-start-column="57" selection-end-line="265" selection-end-column="57" />
+        <state relative-caret-position="137">
+          <caret line="69" column="78" lean-forward="false" selection-start-line="69" selection-start-column="78" selection-end-line="69" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="549">
+          <caret line="230" column="90" lean-forward="false" selection-start-line="230" selection-start-column="90" selection-end-line="230" selection-end-column="90" />
           <folding>
-            <element signature="e#2429#2447#0#HTML" expanded="true" />
+            <marker date="1534468551455" expanded="true" signature="2676:2721" ph="select * fro... office_order" />
+            <marker date="1534468551455" expanded="true" signature="2989:3051" ph="update offic... " />
+            <marker date="1534468551455" expanded="true" signature="3273:3320" ph="select * fro... inclusive_name" />
+            <marker date="1534468551455" expanded="true" signature="3574:3615" ph="select * fro... calendar" />
           </folding>
         </state>
       </provider>

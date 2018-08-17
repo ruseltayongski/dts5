@@ -224,11 +224,11 @@ class DocumentController extends Controller
                                         $type = 'AM';
                                     }
                                     elseif($calendar['so_time'] == 'pm'){
-                                        $time = array('13:00:00','18:00:00');
+                                        $time = array('13:00:00','17:00:00');
                                         $type = 'PM';
                                     }
                                     else{
-                                        $time = array('08:00:00','12:00:00','13:00:00','18:00:00');
+                                        $time = array('08:00:00','12:00:00','13:00:00','17:00:00');
                                         $type = 'WH';
                                     }
                                 }
