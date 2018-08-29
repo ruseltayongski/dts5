@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Dtr_calendar;
 use App\Tracking_Details;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -182,6 +183,7 @@ class ReleaseController extends Controller
         $now = new DateTime();
         $initialDate =  $start_date;    //start date and time in YMD format
         $finalDate = $end_date;    //end date and time in YMD format
+        //$holidays = Dtr_calendar::get(['start']);
         $holidays = array(
             '2017-10-17','2017-10-16','2018-08-21'
         );   //holidays as array
@@ -203,7 +205,7 @@ class ReleaseController extends Controller
                 for($k=0;$k<$noofholiday;$k++)   //excluding holidays
                 {
                     $tmp = $i->format('Y-m-d');
-                    if($tmp == $holidays[$k])
+                    if($tmp == $holidays[$k]->start)
                     {
                         $holiday = true;
                         break;

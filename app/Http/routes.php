@@ -263,3 +263,7 @@ Route::get('modal',function(){
 
 //Route::get('/migrate','SystemController@migrate');
 
+Route::get('temporary',function(){
+   return \App\Dtr_calendar::get(['start'])[0]->start;
+});
+

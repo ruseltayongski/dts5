@@ -230,9 +230,9 @@ use App\Designation;
                             <?php
                                 $division_name = Users::find($tracking->division_head)->fname.' '.Users::find($tracking->division_head)->mname.' '.Users::find($tracking->division_head)->lname;
                                 switch($tracking->division_head){
-                                    case 36:
+                                    /*case 36:
                                         echo $division_name.', CPA,MBA,CEO VI';
-                                    break;
+                                    break;*/
                                     case 72:
                                         echo substr($division_name,4).', MD, MPH';
                                     break;
