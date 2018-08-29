@@ -183,10 +183,12 @@ class ReleaseController extends Controller
         $now = new DateTime();
         $initialDate =  $start_date;    //start date and time in YMD format
         $finalDate = $end_date;    //end date and time in YMD format
-        //$holidays = Dtr_calendar::get(['start']);
-        $holidays = array(
+        $calendar_start = date('Y-m-d',strtotime($initialDate));
+        $calendar_end = date('Y-m-d',strtotime($finalDate));
+        $holidays = Dtr_calendar::where('start','>=',$calendar_start)->where('end','<=',$calendar_end)->get(['start']);
+        /*$holidays = array(
             '2017-10-17','2017-10-16','2018-08-21'
-        );   //holidays as array
+        );*/   //holidays as array
         $noofholiday  = sizeof($holidays);     //no of total holidays
         //create all required date time objects
         $firstdate = $now::createFromFormat('Y-m-d H:i:s',$initialDate);
