@@ -203,7 +203,7 @@ class DocumentController extends Controller
                     $this->updateSO(1,$route_no);
                     $remarks = $request->remarks[$i];
                     foreach($this->calendar($route_no) as $calendar):
-                        $dtr_enddate  = date('Y-m-d',(strtotime ( '-1 day' , strtotime ($calendar['end']))));
+                        $dtr_enddate  = date('Y-m-d',(strtotime ($calendar['end'])));
                         $f = new DateTime($calendar['start'].' '. '00:00:00');
                         $t = new DateTime($dtr_enddate.' '. '00:00:00');
 
