@@ -14,7 +14,7 @@
     </div>
 </div>
 @include('sidebar')
-
+@include('modal.announcement')
 <?php
     use Illuminate\Support\Facades\Session;
 ?>

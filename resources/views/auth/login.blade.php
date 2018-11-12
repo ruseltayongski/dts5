@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{ asset('resources/assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('resources/assets/css/AdminLTE.min.css') }}">
     <link rel="icon" href="{{ asset('resources/img/favicon.png') }}">
+    <script src="{{ asset('resources/assets/js/jquery.min.js') }}"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="{{ asset('resources/assets/js/bootstrap.min.js') }}"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -91,14 +94,11 @@
             </div>
         </form>
     @endif
-
-
+    @include('modal.announcement')
     </div><!-- /.login-box -->
 
     <!-- jQuery 2.1.4 -->
-    <script src="{{ asset('resources/assets/js/jquery.min.js') }}"></script>
-    <!-- Bootstrap 3.3.5 -->
-    <script src="{{ asset('resources/assets/js/bootstrap.min.js') }}"></script>
+    
     <!-- iCheck -->
   </body>
 </html>
