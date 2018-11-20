@@ -122,9 +122,12 @@ use App\Http\Controllers\ReleaseController as Rel;
                                 <?php
                                     $diff = Rel::hourDiff($row->date_in);
                                 ?>
+                                <!--
                                 @if($diff>=0.5)
                                     <a href="#" class="btn btn-warning btn-sm btn-return" data-id="{{ $row->id }}">Return</a>
                                 @endif
+                                -->
+                                <a href="#" class="btn btn-warning btn-sm btn-return" data-id="{{ $row->id }}">Return</a>
                             </td>
                         </tr>
                     </table>

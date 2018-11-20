@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Section;
+use App\Tracking_Releasev2;
 use Illuminate\Http\Request;
 use App\Tracking;
 use App\User;
@@ -149,9 +150,9 @@ class DocumentController extends Controller
                     ->orderBy('id','desc')
                     ->first();
                 if($document):
-                    Tracking_Details::where('route_no',$route_no)
+                    /*Tracking_Details::where('route_no',$route_no)
                         ->where('received_by',$document->received_by)
-                        ->update(['status'=> 1]);
+                        ->update(['status'=> 1]);*/
                     $received_by = $document->received_by;
                 else:
                     $received_by = $doc->prepared_by;
@@ -603,22 +604,136 @@ class DocumentController extends Controller
 
     public function returnDocument(Request $req)
     {
+        $release_to_datein = date('Y-m-d H:i:s');
         $id = $req->id;
         $remarks = $req->remarks;
-        $info = Tracking_Details::find($id);
-        $delivered_by = $info->delivered_by;
-        $section_id = User::find($delivered_by)->section;
+        $info = Tracking_Details::where('id','=',$id)->orderBy('id','desc');
 
         $from = Section::find(Auth::user()->section)->description;
-        $remarks = 'From: '.$from.'<br><br>Message: '.$remarks;
-        Tracking_Details::where('id',$id)
-            ->update(array(
+        $remarks = 'From: '.$from. '<br><br>Message: <strong style="display: inline-block;color: #a6201d">' .$remarks.'</strong>';
+
+        //RELEASED TO
+        $release = Tracking_Releasev2::where("route_no","=",$info->first()->route_no)
+            ->where("released_section_to","=",Auth::user()->section);
+        $minute = DocumentController::checkMinutes($release->first()->released_date);
+        if($release->first()){
+            if($minute <= 30 && $release->first()->status == "waiting"){
+                $release->update([
+                    "status" => "accept"
+                ]);
+            } else {
+                $release->update([
+                    "status" => "report"
+                ]);
+            }
+        }
+
+        $released_section_to = Users::select('users.section')->leftJoin('section','section.id','=','users.section')->where('users.id','=',$info->first()->delivered_by)->first()->section;
+
+        $info->update(array(
+            'code' => '',
+            'date_in' => $release_to_datein,
+            'action' => 'accepted',
+            'received_by' => Auth::user()->id,
+            'alert' => 0
+        ));
+
+        $q = new Tracking_Details();
+        $q->route_no = $info->first()->route_no;
+        $q->date_in = $release_to_datein;
+        $q->action = $req->remarks;
+        $q->delivered_by = Auth::user()->id;
+        $q->code= 'temp;' . $released_section_to;
+        $q->save();
+
+        $tracking_release = new Tracking_Releasev2();
+        $tracking_release->released_by = Auth::user()->id;
+        $tracking_release->released_section_to = $released_section_to;
+        $tracking_release->released_date = $release_to_datein;
+        $tracking_release->remarks = $remarks;
+        $tracking_release->document_id = $info->first()->id;
+        $tracking_release->route_no = $info->first()->route_no;
+        $tracking_release->status = "return";
+        $tracking_release->save();
+
+        /*$info->update(array(
                 'code' => 'return;'.$section_id,
-                'date_in' => date('Y-m-d H:i:s'),
+                'date_in' => $release_to_datein,
                 'action' => $remarks,
 //                'received_by' => $info->delivered_by,
                 'alert' => 0
-            ));
+            ));*/
+
+
+
+    }
+
+    static function checkMinutes($start_date)
+    {
+       /* $start_date = "2018-11-16 11:24:33";
+        $end_date = "2018-11-16 14:43:00";*/
+       $global_end_date = date("Y-m-d H:i:s");
+        $end_date = $global_end_date;
+
+        $start_checker = date("Y-m-d",strtotime($start_date));
+        $end_checker = date("Y-m-d",strtotime($end_date));
+        $fhour_checker = date("H",strtotime($start_date));
+        $lhour_checker = date("H",strtotime($end_date));
+        $minutesTemp = 0;
+
+
+        if($start_checker != $end_checker) return 100;
+
+        if($fhour_checker <= 7 && $lhour_checker >= 8){
+            $fhour_checker = 8;
+            $start_date = $start_checker.' '.'08:00:00';
+        }
+        elseif($fhour_checker == 11 && $lhour_checker >= 12){
+            $start_date = new DateTime($start_date);
+            $end_date = $start_date->diff(new DateTime($start_checker." 12:00:00"));
+
+            $minutes = $end_date->days * 24 * 60;
+            $minutes += $end_date->h * 60;
+            $minutes += $end_date->i;
+
+            $start_date = $start_checker.' '.'13:00:00';
+            $minutesTemp = $minutes;
+            $end_date = $global_end_date;
+        }
+        elseif($fhour_checker == 12 && $lhour_checker >= 13){
+            $fhour_checker = 13;
+            $start_date = $start_checker.' '.'13:00:00';
+        }
+        elseif($fhour_checker >= 17 && $lhour_checker >= 17){
+            $start_date = $start_checker.' '.'17:00:00';
+            $end_date = $end_checker.' '.'17:00:00';
+        }
+        elseif($lhour_checker >= 17){
+            $end_date = $end_checker.' '.'17:00:00';
+        }
+
+        if(
+            ($fhour_checker >= 8 && $fhour_checker < 12)
+            || ($fhour_checker >= 13)
+
+            && ($lhour_checker >= 8 && $lhour_checker < 12)
+            || ($lhour_checker >= 13)
+        )
+        {
+            $start_date = new DateTime($start_date);
+            $end_date = $start_date->diff(new DateTime($end_date));
+
+            $minutes = $end_date->days * 24 * 60;
+            $minutes += $end_date->h * 60;
+            $minutes += $end_date->i;
+
+            if($minutesTemp){
+                $minutes += $minutesTemp;
+            }
+            return $minutes;
+        }
+        return 100;
+
     }
 
     public function acceptDocument(Request $req)
@@ -626,8 +741,28 @@ class DocumentController extends Controller
         $id = $req->id;
         $remarks = $req->remarks;
 
-        Tracking_Details::where('id',$id)
-            ->update(array(
+        $tracking_details = Tracking_Details::where('id',$id)->orderBy('id', 'DESC');
+
+        //RELEASED TO
+        $release = Tracking_Releasev2::where("route_no","=",$tracking_details->first()->route_no)
+                    ->where("released_section_to","=",Auth::user()->section)
+                    ->where('status','=','waiting');
+
+        if($release->first()){
+            $minute = DocumentController::checkMinutes($release->first()->released_date);
+            if($minute <= 30 && $release->first()->status == "waiting"){
+                $release->update([
+                    "status" => "accept"
+                ]);
+            }
+            elseif($minute > 30 && $release->first()->status == "waiting") {
+                $release->update([
+                    "status" => "report"
+                ]);
+            }
+        }
+
+        $tracking_details->update(array(
                 'code' => 'accept;' . Auth::user()->section,
                 'date_in' => date('Y-m-d H:i:s'),
                 'action' => $remarks,

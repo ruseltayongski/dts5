@@ -28,6 +28,7 @@
                     _token: _token
                 },
                 success: function(data){
+                    console.log(data);
                     countIncoming += 1;
                     var count = incomingFunction();
                     $('.badgeIncoming').html(count-countIncoming);
@@ -62,6 +63,7 @@
                     _token: _token
                 },
                 success: function(data){
+                    console.log(data);
                     countIncoming += 1;
                     var count = incomingFunction();
                     $('.badgeIncoming').html(count-countIncoming);

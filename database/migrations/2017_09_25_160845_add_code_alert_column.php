@@ -12,11 +12,11 @@ class AddCodeAlertColumn extends Migration
      */
     public function up()
     {
-        Schema::table('tracking_details', function (Blueprint $table) {
+        /*Schema::table('tracking_details', function (Blueprint $table) {
             //
             $table->string('code')->after('route_no');
             $table->integer('alert')->after('code');
-        });
+        });*/
     }
 
     /**

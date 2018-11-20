@@ -26,7 +26,7 @@
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="trackDoc">
-    <div class="modal-dialog modal-md" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -37,8 +37,8 @@
                     <tr>
                         <form action="{{ asset('document/track') }}" id="trackForm" onsubmit="return trackDocument(event);">
                             {{ csrf_field() }}
-                            <td class="col-sm-4"><label>Route Number</label></td>
-                            <td class="col-sm-7"><input type="text" placeholder="Enter route number..." id="track_route_no2" class="form-control"></td>
+                            <td class="col-sm-2"><label>Route Number</label></td>
+                            <td class="col-sm-9"><input type="text" placeholder="Enter route number..." id="track_route_no2" class="form-control"></td>
                             <td class="col-sm-1"><button type="submit" class="btn btn-default"><i class="fa fa-search"></i> Track</button> </td>
                         </form>
                     </tr>
