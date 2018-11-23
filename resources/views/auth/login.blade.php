@@ -32,11 +32,10 @@
     @endif
     <div class="login-box">
       <div class="login-logo">
-        <img src="{{ asset('resources/img/logo.png') }}" />
-        <br />
-        <a href="#"><b>DOHRO7</b> DTS VERSION 4.2</a>
+          <img src="{{ asset('resources/img/logo.png') }}" />
+          <br />
+          <a href="#"><b>DOHRO7</b> <div style="font-style: italic">DTS VERSION 5.0</div></a>
       </div><!-- /.login-logo -->
-        
       <form role="form" method="POST" action="{{ url('/login') }}">
           {{ csrf_field() }}
           <div class="login-box-body">

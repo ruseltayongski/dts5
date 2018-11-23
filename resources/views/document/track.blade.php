@@ -71,7 +71,8 @@ use App\Http\Controllers\DocumentController as document;
                         $data['released_alert'][]  = "alert alert-success";
                     }
                     elseif($released->status == 'return') {
-                        $data['released_status'][] = "<small style='color:#7626a6'><i class='fa fa-reply-all'></i> (Returned)</small>";
+                        //$data['released_status'][] = "<small style='color:#7626a6'><i class='fa fa-reply-all'></i> (Returned)</small>";
+                        $data['released_status'][] = "<small class='text-warning'><i class='fa fa-refresh'></i> (Waiting to accept)</small>";
                         $data['released_alert'][]  = "";
                     }
                     else {
