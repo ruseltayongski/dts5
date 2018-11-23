@@ -197,6 +197,9 @@ class DocumentController extends Controller
                 }
                 $status['success'][] = 'Route No. "'. $route_no . '" <strong>ACCEPTED!</strong> ';
                 //RUSEL
+                //RELEASED TO
+                $this->releasedStatusChecker($route_no,Auth::user()->section);
+
                 $getSO = $this->getSO($route_no);
                 $so_no = $request->so_no[$i];
                 if(Auth::user()->section == 36 and $doc->doc_type == 'OFFICE_ORDER' and $getSO and $so_no)
@@ -613,20 +616,7 @@ class DocumentController extends Controller
         $remarks = 'From: '.$from. '<br><br>Message: <strong style="display: inline-block;color: #a6201d">' .$remarks.'</strong>';
 
         //RELEASED TO
-        $release = Tracking_Releasev2::where("route_no","=",$info->first()->route_no)
-            ->where("released_section_to","=",Auth::user()->section);
-        $minute = DocumentController::checkMinutes($release->first()->released_date);
-        if($release->first()){
-            if($minute <= 30 && $release->first()->status == "waiting"){
-                $release->update([
-                    "status" => "accept"
-                ]);
-            } else {
-                $release->update([
-                    "status" => "report"
-                ]);
-            }
-        }
+        $this->releasedStatusChecker($info->first()->route_no,Auth::user()->section);
 
         $released_section_to = Users::select('users.section')->leftJoin('section','section.id','=','users.section')->where('users.id','=',$info->first()->delivered_by)->first()->section;
 
@@ -736,6 +726,30 @@ class DocumentController extends Controller
 
     }
 
+    public function releasedStatusChecker($route_no,$section){
+        $release = Tracking_Releasev2::where("route_no","=",$route_no)
+            ->where("released_section_to","=",$section)
+            ->where(function ($query) {
+                $query->where('status','=','waiting')
+                    ->orWhere('status','=','return');
+            })
+            ->orderBy('id', 'DESC');
+
+        if($release->first()){
+            $minute = DocumentController::checkMinutes($release->first()->released_date);
+            if($minute <= 30 && ($release->first()->status == "waiting" || $release->first()->status == "return" )){
+                $release->update([
+                    "status" => "accept"
+                ]);
+            }
+            elseif($minute > 30 && $release->first()->status == "waiting" || $release->first()->status == "return" ) {
+                $release->update([
+                    "status" => "report"
+                ]);
+            }
+        }
+    }
+
     public function acceptDocument(Request $req)
     {
         $id = $req->id;
@@ -744,23 +758,7 @@ class DocumentController extends Controller
         $tracking_details = Tracking_Details::where('id',$id)->orderBy('id', 'DESC');
 
         //RELEASED TO
-        $release = Tracking_Releasev2::where("route_no","=",$tracking_details->first()->route_no)
-                    ->where("released_section_to","=",Auth::user()->section)
-                    ->where('status','=','waiting');
-
-        if($release->first()){
-            $minute = DocumentController::checkMinutes($release->first()->released_date);
-            if($minute <= 30 && $release->first()->status == "waiting"){
-                $release->update([
-                    "status" => "accept"
-                ]);
-            }
-            elseif($minute > 30 && $release->first()->status == "waiting") {
-                $release->update([
-                    "status" => "report"
-                ]);
-            }
-        }
+        $this->releasedStatusChecker($tracking_details->first()->route_no,Auth::user()->section);
 
         $tracking_details->update(array(
                 'code' => 'accept;' . Auth::user()->section,

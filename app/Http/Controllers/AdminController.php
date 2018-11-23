@@ -16,6 +16,7 @@ use App\Tracking;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Tracking_Releasev2;
 
 class AdminController extends Controller
 {
@@ -133,11 +134,23 @@ class AdminController extends Controller
     }
 
     function report(){
-        $year = '2017';
+        $year = date('Y');
         $start = $year.'-01-01 00:00:00';
         $end = $year.'-12-31 23:59:59';
         $divison = Division::orderBy('description','asc')->get();
         return view('report.documents',['division'=>$divison]);
+    }
+
+    public function reportedDocuments($year){
+        $reportedDocument = \DB::connection('mysql')->select("call reportedDocument($year)");
+        foreach($reportedDocument as $row){
+            $data[$row->section.'-'.$row->month] = $row->reported;
+        }
+
+        return view('report.reportedDocuments',[
+            "year" => $year,
+            "reportedDocument" => $data
+        ]);
     }
 
     static function countAccepted($section){

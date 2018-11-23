@@ -12,11 +12,13 @@ use App\Http\Controllers\DocumentController as document;
             font-size: 8pt;
         }
     </style>
+    <!--
     <div class="alert alert-warning">
         <div class="text-warning">
             <i class="fa fa-warning"></i> Documents that not accepted within 30 minutes will be reported
         </div>
     </div>
+    -->
     <table class="table table-hover table-striped">
         <thead>
         <tr>
@@ -35,32 +37,6 @@ use App\Http\Controllers\DocumentController as document;
         ?>
         @foreach($document as $doc)
             <?php
-            /*if($doc->received_by==0){
-                $string = $doc->code;
-                $temp   = explode(';',$string);
-                $section_id = $temp[1];
-                $action = $temp[0];
-
-                $data['received_by'][] = Section::find($section_id)->description;
-
-                $user = User::find($doc->delivered_by);
-                $tmp = $user->fname.' '.$user->lname;
-
-                if($action=='temp')
-                {
-                    $data['section'][] = 'Unconfirmed';
-                }else if($action==='return'){
-                    $data['section'][] = 'Returned';
-                }
-            }else{
-                if($user = User::find($doc->received_by)){
-                    $data['received_by'][] = $user->fname.' '.$user->lname;
-                    $data['section'][] = (Section::find($user->section)) ? Section::find($user->section)->description:'';
-                } else {
-                    $data['received_by'][] = "No Name".' '.$doc->received_by;
-                    $data['section'][] = "No Section";
-                }
-            }*/
             if($doc->received_by!=0){
                 if($user = User::find($doc->received_by)){
                     $data['received_by'][] = $user->fname.' '.$user->lname;
@@ -164,8 +140,14 @@ use App\Http\Controllers\DocumentController as document;
                                 }
                             }
                         } else {
-                            $start_date = $data['released_date_time'][$i-1];
-                            $end_date = $data['date'][$i];
+                            if(empty($data['released_date_time'][$i])){
+                                $start_date = $data['released_date_time'][$i-1];
+                                $end_date = $date;
+                            }
+                            else {
+                                $start_date = $data['released_date_time'][$i-1];
+                                $end_date = $data['released_date_time'][$i];
+                            }
                         }
                     }
                     ?>

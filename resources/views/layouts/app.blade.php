@@ -155,6 +155,14 @@ $pending = \App\Tracking_Details::select(
                         @if(Auth::user()->user_priv==1)
                         <li class="divider"></li>
                         <li><a href="{{ URL::to('report') }}"><i class="fa fa-bar-chart"></i>&nbsp;&nbsp; Print Report</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" data-toggle="dropdown"><i class="fa fa-file"></i>&nbsp;&nbsp; Reported Documents</a>
+                            <ul class="dropdown-menu">
+                                @for($year=2018;$year<=date('Y');$year++)
+                                <li><a href="{{ url('reportedDocuments').'/'.$year }}"><i class="fa fa-sticky-note"></i> {{ $year }}</a></li>
+                                @endfor
+                            </ul>
+                        </li>
                         @endif
                     </ul>
                 </li>

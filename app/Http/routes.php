@@ -92,6 +92,7 @@ Route::get('pdf/logs/{doc_type}', 'PrintLogsController@printLogs');
 
 //PRINT REPORT
 Route::get('report','AdminController@report');
+Route::get('reportedDocuments/{year}','AdminController@reportedDocuments');
 Route::get('report/logs/section', 'PrintLogsController@sectionLogs');
 
 //ONLINE
