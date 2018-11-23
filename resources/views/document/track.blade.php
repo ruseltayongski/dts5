@@ -133,8 +133,14 @@ use App\Http\Controllers\DocumentController as document;
                     else{
                         if(empty($data['released_date_time'][$i-1])){
                             if(isset($data['date'][$i+1])){
-                                $start_date = $data['date'][$i];
-                                $end_date = $data['date'][$i+1];
+                                if(empty($data['released_date_time'][$i])){
+                                    $start_date = $data['date'][$i];
+                                    $end_date = $data['date'][$i+1];
+                                }
+                                else {
+                                    $start_date = $data['date'][$i];
+                                    $end_date = $data['released_date_time'][$i];
+                                }
                             }
                             else {
                                 if(empty($data['released_date_time'][$i])){
