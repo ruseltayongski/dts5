@@ -115,8 +115,14 @@ use App\Http\Controllers\DocumentController as document;
                     $date = date('Y-m-d H:i:s');
                     if($i == 0){
                         if(empty($data['released_date_time'][$i])){
-                            $start_date = $data['date'][$i];
-                            $end_date = $date;
+                            if(isset($data['date'][$i+1])){
+                                $start_date = $data['date'][$i];
+                                $end_date = $data['date'][$i+1];
+                            }
+                            else{
+                                $start_date = $data['date'][$i];
+                                $end_date = $date;
+                            }
                         }
                         else {
                             $start_date = $data['date'][$i];
@@ -151,7 +157,7 @@ use App\Http\Controllers\DocumentController as document;
                         }
                     }
                     ?>
-                    @if($data['status'][$i]==1)
+                    @if($data['status'][$i]==1 && $i == count($data['received_by'])-1)
                         Cycle End
                     @else
                         {{ Rel::duration($start_date,$end_date) }}

@@ -142,6 +142,7 @@ class AdminController extends Controller
     }
 
     public function reportedDocuments($year){
+        $data = [];
         $reportedDocument = \DB::connection('mysql')->select("call reportedDocument($year)");
         foreach($reportedDocument as $row){
             $data[$row->section.'-'.$row->month] = $row->reported;
