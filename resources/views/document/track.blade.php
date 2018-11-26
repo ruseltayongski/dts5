@@ -164,6 +164,7 @@ use App\Http\Controllers\DocumentController as document;
                     @if($data['status'][$i]==1 && $i == count($data['received_by'])-1)
                         Cycle End
                     @else
+                        <!-- {{ Rel::duration("2018-11-26 09:15:02","2018-11-26 10:05:02") }} -->
                         {{ Rel::duration($start_date,$end_date) }}
                     @endif
                 </td>
@@ -178,7 +179,7 @@ use App\Http\Controllers\DocumentController as document;
                     <br>
                     {{ $data['released_time'][$i] }}
                 </td>
-                <td class="trackFontSize {{ $released_info }}">{!! nl2br($data['released_remarks'][$i]) !!}</td>
+                <td class="trackFontSize {{ $released_info }}">{!! nl2br($data['released_remarks'][$i]).'|'.Rel::duration("2018-11-26 09:15:02","2018-11-26 11:05:02") !!}</td>
             </tr>
         @endfor
         </tbody>
