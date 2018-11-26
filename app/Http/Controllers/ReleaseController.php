@@ -198,7 +198,7 @@ class ReleaseController extends Controller
         $finalDate = $end_date;    //end date and time in YMD format
         $calendar_start = date('Y-m-d',strtotime($initialDate));
         $calendar_end = date('Y-m-d',strtotime($finalDate));
-        $holidays = Dtr_calendar::where('start','>=',$calendar_start)->where('end','<=',$calendar_end)->get(['start']);
+        $holidays = Dtr_calendar::where('start','>=',$calendar_start)->where('end','<=',$calendar_end)->where('status','=',1)->get(['start']);
         /*$holidays = array(
             '2017-10-17','2017-10-16','2018-08-21'
         );*/   //holidays as array

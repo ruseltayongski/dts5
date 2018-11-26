@@ -14,7 +14,6 @@
     </div>
 </div>
 @include('sidebar')
-@include('modal.announcement')
 <?php
     use Illuminate\Support\Facades\Session;
 ?>
@@ -52,10 +51,6 @@
 
 @section('js')
 <script src="{{ asset('resources/plugin/Chart.js/Chart.min.js') }}"></script>
-<script>
-    //$('.loading').show();
-    //$('#notificationModal').modal('show');
-</script>
 <script>
     <?php echo 'var url = "'.asset('home/chart').'";';?>
     var jim = [];
