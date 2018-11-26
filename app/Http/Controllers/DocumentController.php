@@ -473,7 +473,7 @@ class DocumentController extends Controller
     public function track($route_no)
     {
         $document = Tracking_Details::where('route_no',$route_no)
-            ->orderBy('id','asc')
+            ->orderBy('date_in','asc')
             ->get();
         Session::put('route_no', $route_no);
         return view('document.track',['document' => $document]);

@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b8cbfcd3-2119-4b6b-8308-a1f0848cbc80" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/document/track.blade.php" afterPath="$PROJECT_DIR$/resources/views/document/track.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" />
     </list>
     <ignored path="dts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,25 +23,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DocumentController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DocumentController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="772" column="33" lean-forward="false" selection-start-line="772" selection-start-column="33" selection-end-line="772" selection-end-column="33" />
+            <state relative-caret-position="311">
+              <caret line="738" column="50" lean-forward="false" selection-start-line="738" selection-start-column="42" selection-end-line="738" selection-end-column="50" />
               <folding>
-                <marker date="1543194912196" expanded="true" signature="2704:2749" ph="select * fro... office_order" />
-                <marker date="1543194912196" expanded="true" signature="3017:3079" ph="update offic... " />
-                <marker date="1543194912196" expanded="true" signature="3301:3348" ph="select * fro... inclusive_name" />
-                <marker date="1543194912196" expanded="true" signature="3602:3643" ph="select * fro... calendar" />
+                <marker date="1543199475737" expanded="true" signature="2704:2749" ph="select * fro... office_order" />
+                <marker date="1543199475737" expanded="true" signature="3017:3079" ph="update offic... " />
+                <marker date="1543199475737" expanded="true" signature="3301:3348" ph="select * fro... inclusive_name" />
+                <marker date="1543199475737" expanded="true" signature="3602:3643" ph="select * fro... calendar" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="track.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="track.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/document/track.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
+            <state relative-caret-position="2975">
               <caret line="180" column="104" lean-forward="true" selection-start-line="180" selection-start-column="104" selection-end-line="180" selection-end-column="104" />
               <folding>
                 <marker date="1543197586864" expanded="true" signature="3155:3169" ph="..." />
@@ -127,10 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>incomingfunction</find>
-      <find>$data['date']</find>
-      <find>$next</find>
-      <find>function duration</find>
       <find>$date</find>
       <find>checkMinutes</find>
       <find>accept</find>
@@ -152,11 +148,15 @@
       <find>$thHeadColor</find>
       <find>count of repor</find>
       <find>reported</find>
-      <find>track</find>
       <find>id=&quot;track</find>
       <find>cyc;e</find>
       <find>duration</find>
       <find>acceptDocument</find>
+      <find>track</find>
+      <find>documentTra</find>
+      <find>checkMi</find>
+      <find>check</find>
+      <find>checkMIn</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -214,8 +214,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/resources/views/modal.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" />
         <option value="$PROJECT_DIR$/resources/views/document/track.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" />
       </list>
     </option>
   </component>
@@ -481,12 +481,12 @@
       <workItem from="1542617430488" duration="33477000" />
       <workItem from="1542760210489" duration="15779000" />
       <workItem from="1542864198980" duration="20030000" />
-      <workItem from="1543192463356" duration="4034000" />
+      <workItem from="1543192463356" duration="5200000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="241088000" />
+    <option name="totallyTimeSpent" value="242254000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -899,26 +899,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="772" column="33" lean-forward="false" selection-start-line="772" selection-start-column="33" selection-end-line="772" selection-end-column="33" />
-          <folding>
-            <marker date="1543194912196" expanded="true" signature="2704:2749" ph="select * fro... office_order" />
-            <marker date="1543194912196" expanded="true" signature="3017:3079" ph="update offic... " />
-            <marker date="1543194912196" expanded="true" signature="3301:3348" ph="select * fro... inclusive_name" />
-            <marker date="1543194912196" expanded="true" signature="3602:3643" ph="select * fro... calendar" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/document/track.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
+        <state relative-caret-position="2975">
           <caret line="180" column="104" lean-forward="true" selection-start-line="180" selection-start-column="104" selection-end-line="180" selection-end-column="104" />
           <folding>
             <marker date="1543197586864" expanded="true" signature="3155:3169" ph="..." />
             <marker date="1543197586864" expanded="true" signature="3450:3463" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="738" column="50" lean-forward="false" selection-start-line="738" selection-start-column="42" selection-end-line="738" selection-end-column="50" />
+          <folding>
+            <marker date="1543199475737" expanded="true" signature="2704:2749" ph="select * fro... office_order" />
+            <marker date="1543199475737" expanded="true" signature="3017:3079" ph="update offic... " />
+            <marker date="1543199475737" expanded="true" signature="3301:3348" ph="select * fro... inclusive_name" />
+            <marker date="1543199475737" expanded="true" signature="3602:3643" ph="select * fro... calendar" />
           </folding>
         </state>
       </provider>
