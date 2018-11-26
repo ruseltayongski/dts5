@@ -31,7 +31,7 @@ use App\Http\Controllers\DocumentController as document;
         </thead>
         <tbody>
         <?php
-            $data = array();
+        $data = array();
         ?>
         @foreach($document as $doc)
             <?php
@@ -43,13 +43,11 @@ use App\Http\Controllers\DocumentController as document;
                     $data['received_by'][] = "No Name".' '.$doc->received_by;
                     $data['section'][] = "No Section";
                 }
-
                 $data['date'][] = $doc->date_in;
                 $data['date_in'][] = date('M d, Y', strtotime($doc->date_in));
                 $data['time_in'][] = date('h:i A', strtotime($doc->date_in));
                 $data['remarks'][] = $doc->action;
                 $data['status'][] = $doc->status;
-
                 $released = Tracking_Releasev2::where("document_id","=",$doc->id)->first();
                 if($released){
                     if($released_section_to = Section::find($released->released_section_to)){
