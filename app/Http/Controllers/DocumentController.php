@@ -754,6 +754,7 @@ class DocumentController extends Controller
     {
         $id = $req->id;
         $remarks = $req->remarks;
+        $date_in = date('Y-m-d H:i:s');
 
         $tracking_details = Tracking_Details::where('id',$id)->orderBy('id', 'DESC');
 
@@ -762,14 +763,14 @@ class DocumentController extends Controller
 
         $tracking_details->update(array(
                 'code' => 'accept;' . Auth::user()->section,
-                'date_in' => date('Y-m-d H:i:s'),
+                'date_in' => $date_in,
                 'action' => $remarks,
                 'received_by' => Auth::user()->id,
                 'alert' => 0
             ));
         $data = array(
             'code' => 'accept;' . Auth::user()->section,
-            'date_in' => date('Y-m-d H:i:s'),
+            'date_in' => $date_in,
             'action' => $remarks,
             'received_by' => Auth::user()->id
         );
