@@ -12,13 +12,11 @@ use App\Http\Controllers\DocumentController as document;
             font-size: 8pt;
         }
     </style>
-    <!--
     <div class="alert alert-warning">
         <div class="text-warning">
             <i class="fa fa-warning"></i> Documents that not accepted within 30 minutes will be reported
         </div>
     </div>
-    -->
     <table class="table table-hover table-striped">
         <thead>
         <tr>
@@ -71,8 +69,7 @@ use App\Http\Controllers\DocumentController as document;
                         $data['released_alert'][]  = "alert alert-success";
                     }
                     elseif($released->status == 'return') {
-                        //$data['released_status'][] = "<small style='color:#7626a6'><i class='fa fa-reply-all'></i> (Returned)</small>";
-                        $data['released_status'][] = "<small class='text-warning'><i class='fa fa-refresh'></i> (Waiting to accept)</small>";
+                        $data['released_status'][] = "<small style='color:#7626a6'><i class='fa fa-reply-all'></i> (Returned)</small>";
                         $data['released_alert'][]  = "";
                     }
                     else {

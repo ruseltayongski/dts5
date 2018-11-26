@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b8cbfcd3-2119-4b6b-8308-a1f0848cbc80" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/document/track.blade.php" afterPath="$PROJECT_DIR$/resources/views/document/track.blade.php" />
     </list>
     <ignored path="dts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,7 +23,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DocumentController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DocumentController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="549">
@@ -38,14 +38,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="track.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="track.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/document/track.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="147" column="54" lean-forward="true" selection-start-line="147" selection-start-column="54" selection-end-line="147" selection-end-column="54" />
+            <state relative-caret-position="627">
+              <caret line="180" column="104" lean-forward="true" selection-start-line="180" selection-start-column="104" selection-end-line="180" selection-end-column="104" />
               <folding>
-                <marker date="1542962057464" expanded="true" signature="3172:3186" ph="..." />
-                <marker date="1542962057464" expanded="true" signature="3469:3482" ph="..." />
+                <marker date="1543197586864" expanded="true" signature="3155:3169" ph="..." />
+                <marker date="1543197586864" expanded="true" signature="3450:3463" ph="..." />
               </folding>
             </state>
           </provider>
@@ -214,8 +214,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/resources/views/modal.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/document/track.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DocumentController.php" />
+        <option value="$PROJECT_DIR$/resources/views/document/track.blade.php" />
       </list>
     </option>
   </component>
@@ -481,12 +481,12 @@
       <workItem from="1542617430488" duration="33477000" />
       <workItem from="1542760210489" duration="15779000" />
       <workItem from="1542864198980" duration="20030000" />
-      <workItem from="1543192463356" duration="2113000" />
+      <workItem from="1543192463356" duration="4034000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="239167000" />
+    <option name="totallyTimeSpent" value="241088000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -853,6 +853,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-561">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -898,17 +899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/document/track.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="147" column="54" lean-forward="true" selection-start-line="147" selection-start-column="54" selection-end-line="147" selection-end-column="54" />
-          <folding>
-            <marker date="1542962057464" expanded="true" signature="3172:3186" ph="..." />
-            <marker date="1542962057464" expanded="true" signature="3469:3482" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="549">
@@ -918,6 +908,17 @@
             <marker date="1543194912196" expanded="true" signature="3017:3079" ph="update offic... " />
             <marker date="1543194912196" expanded="true" signature="3301:3348" ph="select * fro... inclusive_name" />
             <marker date="1543194912196" expanded="true" signature="3602:3643" ph="select * fro... calendar" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/document/track.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="180" column="104" lean-forward="true" selection-start-line="180" selection-start-column="104" selection-end-line="180" selection-end-column="104" />
+          <folding>
+            <marker date="1543197586864" expanded="true" signature="3155:3169" ph="..." />
+            <marker date="1543197586864" expanded="true" signature="3450:3463" ph="..." />
           </folding>
         </state>
       </provider>
