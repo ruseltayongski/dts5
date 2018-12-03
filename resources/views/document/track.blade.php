@@ -148,13 +148,24 @@ use App\Http\Controllers\DocumentController as document;
                                 }
                             }
                         } else {
-                            if(empty($data['released_date_time'][$i])){
-                                $start_date = $data['released_date_time'][$i-1];
-                                $end_date = $date;
+                            if(isset($data['date'][$i+1])){
+                                if(empty($data['released_date_time'][$i])){
+                                    $start_date = $data['released_date_time'][$i-1];
+                                    $end_date = $data['date'][$i+1];
+                                } else {
+                                    $start_date = $data['released_date_time'][$i-1];
+                                    $end_date = $data['released_date_time'][$i];
+                                }
                             }
-                            else {
-                                $start_date = $data['released_date_time'][$i-1];
-                                $end_date = $data['released_date_time'][$i];
+                            else{
+                                if(empty($data['released_date_time'][$i])){
+                                    $start_date = $data['released_date_time'][$i-1];
+                                    $end_date = $date;
+                                }
+                                else {
+                                    $start_date = $data['released_date_time'][$i-1];
+                                    $end_date = $data['released_date_time'][$i];
+                                }
                             }
                         }
                     }
