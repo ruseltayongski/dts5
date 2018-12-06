@@ -922,8 +922,10 @@ class DocumentController extends Controller
 
     public function removeOutgoing($id)
     {
-        Tracking_Details::where('id',$id)
-            ->update(['code'=> '']);
+        $details = Tracking_Details::where('id',$id);
+        System::logDefault('Remove Outgoing',$details->first()->route_no);
+
+        $details->update(['code'=> '']);
     }
 
     public static function checkLastRecord($route_no)
