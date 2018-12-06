@@ -47,9 +47,17 @@
                 <td><a class="title-info" data-route="{{ $doc->route_no }}" data-link="{{ asset('/document/info/'.$doc->route_no.'/'.$doc->doc_type) }}" href="#document_info" data-toggle="modal">{{ $doc->route_no }}</a></td>
                 <td>{{ date('M d, Y',strtotime($doc->prepared_date)) }}<br>{{ date('h:i:s A',strtotime($doc->prepared_date)) }}</td>
                 <td>
-                    <?php $user = Users::find($doc->prepared_by);?>
-                    {{ $user->fname }}
-                    {{ $user->lname }}
+                    <?php
+                        if($user = Users::find($doc->prepared_by)){
+                            $firstname = $user->fname;
+                            $lastname = $user->lname;
+                        } else{
+                            $firstname = "No Firstname";
+                            $lastname = "No Lastname";
+                        }
+                    ?>
+                    {{ $firstname }}
+                    {{ $lastname }}
                     <br>
                     <?php
                         $tmp_section = '';

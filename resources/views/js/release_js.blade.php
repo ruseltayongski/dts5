@@ -159,6 +159,35 @@
             });
         });
 
+        $('.btn-remote-outgoing').click(function(e){
+            e.preventDefault();
+            var id = $(this).closest('.list-group-item').data('id');
+            $('#removeOutgoing').data('id',id).modal('show');
+        });
+
+        $('.confirmRemoveOutgoing').click(function(){
+            var id = $('#removeOutgoing').data('id');
+            $('[data-id=' + id + ']').addClass('hide');
+            $('.loading').show();
+            var url = "<?php echo url('document/removeOutgoing');?>";
+            $.ajax({
+                url: url+'/'+id,
+                type: 'GET',
+                success: function(data){
+                    countOutgoing += 1;
+                    var count = outgoingFunction();
+                    $('.badgeOutgoing').html(count-countOutgoing);
+                    Lobibox.notify('info', {
+                        msg: 'Outgoing document was removed!'
+                    });
+                    $('.loading').hide();
+                    if(count-countOutgoing == 0){
+                        location.reload();
+                    }
+                }
+            });
+        });
+
         $('.btn-end').click(function(e){
             e.preventDefault();
             var id = $(this).closest('.list-group-item').data('id');
@@ -184,6 +213,8 @@
                 }
             });
         });
+
+
     } );
 
 
