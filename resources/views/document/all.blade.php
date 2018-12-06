@@ -51,22 +51,20 @@
                         if($user = Users::find($doc->prepared_by)){
                             $firstname = $user->fname;
                             $lastname = $user->lname;
+                            if($tmp = Section::find($user->section))
+                                $section = $tmp->description;
+                            else 
+                                $section = 'No Section';
                         } else{
                             $firstname = "No Firstname";
                             $lastname = "No Lastname";
+                            $section = 'No Section';
                         }
                     ?>
                     {{ $firstname }}
                     {{ $lastname }}
                     <br>
-                    <?php
-                        $tmp_section = '';
-                        if($tmp = Section::find($user->section))
-                        {
-                            $tmp_section = $tmp->description;
-                        }
-                    ?>
-                    <em>({{ $tmp_section }})</em>
+                    <em>({{ $section }})</em>
                 </td>
                 <?php
                     $doc_type = '';
