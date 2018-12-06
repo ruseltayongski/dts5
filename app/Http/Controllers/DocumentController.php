@@ -920,6 +920,11 @@ class DocumentController extends Controller
             ->update(['status'=> 1]);
     }
 
+    public function removeOutgoing($id)
+    {
+        return 'remove outgoing';
+    }
+
     public static function checkLastRecord($route_no)
     {
         $document = Tracking_Details::where('route_no',$route_no)

@@ -229,11 +229,11 @@ use App\Http\Controllers\ReleaseController as Rel;
                             <td>{{ Rel::duration($row->date_in) }}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>
+                            <td colspan="2">
                                 <a href="#track" data-link="{{ asset('document/track/'.$row->route_no) }}" data-route="{{ $row->route_no }}" data-toggle="modal" class="btn btn-sm btn-info">Track</a>
                                 <button data-toggle="modal" data-target="#releaseTo" data-id="{{ $row->id }}" data-route_no="{{ $row->route_no }}" onclick="putRoute($(this))" type="button" class="btn btn-success btn-sm">Release</button>
                                 <button type="button" data-link="{{ asset('document/removepending/'.$row->id) }}" data-id="{{ $row->id }}" class="btn btn-sm btn-warning btn-end">Cycle End</button>
+                                <button type="button" data-link="{{ asset('document/removeOutgoing/'.$row->id) }}" data-id="{{ $row->id }}" class="btn btn-sm btn-danger btn-remote-outgoing">Remove</button>
                             </td>
                         </tr>
                     </table>
