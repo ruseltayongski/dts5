@@ -12,6 +12,7 @@ use App\Section;
 use DateTime;
 use App\Tracking_Report;
 use App\Tracking_Releasev2;
+use App\Http\Controllers\SystemController as System;
 
 class ReleaseController extends Controller
 {
@@ -86,33 +87,33 @@ class ReleaseController extends Controller
 
     public function addReport($id,$cancel=null,$status=null)
     {
-        if($cancel)
-        {
-            $info = Tracking_Details::find($id);
-            $route_no = $info->route_no;
-            $info->delete();
+        $info = Tracking_Details::find($id);
+        $route_no = $info->route_no;
 
-            $id = Tracking_Details::where('route_no',$route_no)
-                    ->orderBy('id','desc')
-                    ->first()
-                    ->id;
-            Tracking_Details::where('id',$id)
-                ->update(
-                    array(
-                        'code' => 'accept;'.Auth::user()->section,
-                        'status' => 0
-                    )
-                );
+        $info->delete();
 
-            $status='reportCancelled';
-            return redirect()->back()->with('status',$status);
-        }
-
+        $id = Tracking_Details::where('route_no',$route_no)
+                ->orderBy('id','desc')
+                ->first()
+                ->id;
         Tracking_Details::where('id',$id)
-            ->update(['status'=> 1]);
-        $status='reportAdded';
-        return redirect()->back()->with('status',$status);
+            ->update(
+                array(
+                    'code' => 'accept;'.Auth::user()->section,
+                    'status' => 0
+                )
+            );
+
+        //rusel
+        $temp = \DB::connection('mysql')->select("SELECT id FROM `tracking_details` WHERE route_no = '$route_no' ORDER BY id DESC LIMIT 1");
+        Tracking_Releasev2::where('document_id','=',$temp[0]->id)->delete();
+        System::logDefault('Cancel Released',$route_no);
+        //end rusel
+
+        $status='reportCancelled';
+        return $status;
     }
+
     static function getSections($id){
         $sections = Section::where('division',$id)->orderBy('description','asc')->get();
         return $sections;

@@ -119,15 +119,10 @@ use App\Http\Controllers\ReleaseController as Rel;
                             <td>
                                 <a href="#track" data-link="{{ asset('document/track/'.$row->route_no) }}" data-route="{{ $row->route_no }}" data-toggle="modal" class="btn btn-sm btn-info">Track</a>
                                 <a href="#" class="btn btn-sm btn-success btn-accept">Accept</a>
-                                <?php
-                                    $diff = Rel::hourDiff($row->date_in);
-                                ?>
-                                <!--
-                                @if($diff>=0.5)
-                                    <a href="#" class="btn btn-warning btn-sm btn-return" data-id="{{ $row->id }}">Return</a>
-                                @endif
-                                -->
                                 <a href="#" class="btn btn-warning btn-sm btn-return" data-id="{{ $row->id }}">Return</a>
+                                <!--
+                                <button type="button" data-link="{{ asset('document/removeIncoming/'.$row->id) }}" data-id="{{ $row->id }}" class="btn btn-sm btn-danger btn-remote-incoming">Remove</button>
+                                -->
                             </td>
                         </tr>
                     </table>
@@ -313,6 +308,7 @@ use App\Http\Controllers\ReleaseController as Rel;
                             <td>
                                 <a href="#track" data-link="{{ asset('document/track/'.$row->route_no) }}" data-route="{{ $row->route_no }}" data-toggle="modal" class="btn btn-sm btn-info">Track</a>
                                 <button type="button" class="btn btn-sm btn-default btn-cancel">Cancel</button>
+                                <!--
                                 @if(($row->alert == 0)&&(Rel::hourDiff($row->date_in)>=4))
                                 <button type="button" class="btn btn-sm btn-warning btn-alert">Alert</button>
                                 @endif
@@ -324,6 +320,7 @@ use App\Http\Controllers\ReleaseController as Rel;
                                 @if(($row->alert == 2)&&(Rel::hourDiff($row->date_in)>=12))
                                 <button type="button" class="btn btn-sm btn-danger btn-report">Report</button>
                                 @endif
+                                -->
                             </td>
                         </tr>
                     </table>

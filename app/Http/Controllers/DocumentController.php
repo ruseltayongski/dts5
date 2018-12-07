@@ -653,9 +653,6 @@ class DocumentController extends Controller
 //                'received_by' => $info->delivered_by,
                 'alert' => 0
             ));*/
-
-
-
     }
 
     static function checkMinutes($start_date)
@@ -926,6 +923,14 @@ class DocumentController extends Controller
         System::logDefault('Remove Outgoing',$details->first()->route_no);
 
         $details->update(['code'=> '']);
+    }
+
+    public function removeIncoming($id)
+    {
+        /*$details = Tracking_Details::where('id',$id);
+        System::logDefault('Remove Incoming',$details->first()->route_no);
+
+        $details->update(['code'=> '']);*/
     }
 
     public static function checkLastRecord($route_no)

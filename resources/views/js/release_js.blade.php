@@ -75,12 +75,6 @@
             });
         });
 
-        $('.btn-cancel').click(function(e){
-            e.preventDefault();
-            var id = $(this).closest('.list-group-item').data('id');
-            console.log(id);
-            $('#cancelModal').data('id',id).modal('show');
-        });
 
         $('.btn-alert').click(function(){
             var id = $(this).closest('.list-group-item').data('id');
@@ -139,6 +133,12 @@
 
         });
 
+        $('.btn-cancel').click(function(e){
+            e.preventDefault();
+            var id = $(this).closest('.list-group-item').data('id');
+            $('#cancelModal').data('id',id).modal('show');
+        });
+
         $('.confirmCancel').click(function(){
             var id = $('#cancelModal').data('id');
             $('[data-id=' + id + ']').addClass('hide');
@@ -147,7 +147,8 @@
             $.ajax({
                 url: url+'/'+id+'/cancel',
                 type: 'GET',
-                success: function(){
+                success: function(data){
+                    console.log(data);
                     countUnconfirm += 1;
                     var count = uncofirmFunction();
                     $('.badgeUnconfirm').html(count-countUnconfirm);
@@ -155,6 +156,35 @@
                         msg: 'Cancelled successfully!'
                     });
                     $('.loading').hide();
+                }
+            });
+        });
+
+        $('.btn-remote-incoming').click(function(e){
+            e.preventDefault();
+            var id = $(this).closest('.list-group-item').data('id');
+            $('#removeIncoming').data('id',id).modal('show');
+        });
+
+        $('.confirmRemoveIncoming').click(function(){
+            var id = $('#removeIncoming').data('id');
+            $('[data-id=' + id + ']').addClass('hide');
+            $('.loading').show();
+            var url = "<?php echo url('document/removeIncoming');?>";
+            $.ajax({
+                url: url+'/'+id,
+                type: 'GET',
+                success: function(data){
+                    countIncoming += 1;
+                    var count = incomingFunction();
+                    $('.badgeIncoming').html(count-countIncoming);
+                    Lobibox.notify('info', {
+                        msg: 'Incoming document was removed!'
+                    });
+                    $('.loading').hide();
+                    if(count-countIncoming == 0){
+                        location.reload();
+                    }
                 }
             });
         });

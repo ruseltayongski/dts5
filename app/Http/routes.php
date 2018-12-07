@@ -24,6 +24,7 @@ Route::get('document/info/{route}', 'DocumentController@show');
 Route::get('document/info/{route}/{doc_type}', 'DocumentController@show');
 Route::get('document/removepending/{id}','DocumentController@removePending');
 Route::get('document/removeOutgoing/{id}','DocumentController@removeOutgoing');
+Route::get('document/removeIncoming/{id}','DocumentController@removeIncoming');
 Route::get('document/track/{route_no}','DocumentController@track');
 Route::get('document/list','AdminController@allDocuments');
 Route::post('document/list','AdminController@searchDocuments');
