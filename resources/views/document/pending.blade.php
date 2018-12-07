@@ -115,14 +115,11 @@ use App\Http\Controllers\ReleaseController as Rel;
                             <td>{!! $row->action !!}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>
+                            <td colspan="2">
                                 <a href="#track" data-link="{{ asset('document/track/'.$row->route_no) }}" data-route="{{ $row->route_no }}" data-toggle="modal" class="btn btn-sm btn-info">Track</a>
                                 <a href="#" class="btn btn-sm btn-success btn-accept">Accept</a>
                                 <a href="#" class="btn btn-warning btn-sm btn-return" data-id="{{ $row->id }}">Return</a>
-                                <!--
                                 <button type="button" data-link="{{ asset('document/removeIncoming/'.$row->id) }}" data-id="{{ $row->id }}" class="btn btn-sm btn-danger btn-remote-incoming">Remove</button>
-                                -->
                             </td>
                         </tr>
                     </table>

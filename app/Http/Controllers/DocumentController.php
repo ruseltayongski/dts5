@@ -150,9 +150,9 @@ class DocumentController extends Controller
                     ->orderBy('id','desc')
                     ->first();
                 if($document):
-                    /*Tracking_Details::where('route_no',$route_no)
+                    Tracking_Details::where('route_no',$route_no)
                         ->where('received_by',$document->received_by)
-                        ->update(['status'=> 1]);*/
+                        ->update(['status'=> 1]);
                     $received_by = $document->received_by;
                 else:
                     $received_by = $doc->prepared_by;
@@ -927,10 +927,10 @@ class DocumentController extends Controller
 
     public function removeIncoming($id)
     {
-        /*$details = Tracking_Details::where('id',$id);
+        $details = Tracking_Details::where('id',$id);
         System::logDefault('Remove Incoming',$details->first()->route_no);
 
-        $details->update(['code'=> '']);*/
+        $details->update(['code'=> '']);
     }
 
     public static function checkLastRecord($route_no)
