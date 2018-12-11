@@ -76,7 +76,7 @@ use App\Http\Controllers\ReleaseController as Rel;
             <ul class="list-group" id="incomingUL">
                 @foreach($data['incoming'] as $row)
                 
-                <li class="list-group-item" data-id="{{ $row->id }}">
+                <li class="list-group-item" data-id="{{ $row->id }}" data-route="{{ $row->route_no }}">
                     <table class="table-jim">
                         <tr>
                             <td>Route No.:</td>

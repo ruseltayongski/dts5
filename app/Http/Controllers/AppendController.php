@@ -10,7 +10,7 @@ use App\Tracking_Details;
 
 class AppendController extends Controller
 {
-    public function appendPendingDocument($id,$route_no){
+    public function appendOutgoingDocument($id,$route_no){
         $user = Auth::user();
         $code1 = 'accept;'.$user->section;
         $code2 = 'return;'.$user->section;
@@ -30,7 +30,7 @@ class AppendController extends Controller
             })
         ->first();
 
-        return view('append.appendPendingDocument',[
+        return view('append.appendOutgoingDocument',[
             "data" => $data
         ]);
 

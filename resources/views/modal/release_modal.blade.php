@@ -61,7 +61,7 @@
             <div class="modal-body">
                 <h4 class="text-success"><i class="fa fa-book"></i> Remarks</h4>
                 <hr />
-                <textarea name="remarks" class="form-control" id="accept_remarks" rows="7" style="resize: vertical;" placeholder="Please enter your remark(s) of return..."></textarea>
+                <textarea name="remarks" class="form-control" id="accept_remarks" rows="7" style="resize: vertical;" placeholder="Please enter your remark(s) of accept..."></textarea>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

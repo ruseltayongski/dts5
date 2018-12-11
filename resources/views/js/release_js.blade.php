@@ -46,12 +46,14 @@
         $('.btn-accept').on('click',function(e){
             e.preventDefault();
             var id = $(this).closest('.list-group-item').data('id');
+            var route_no = $(this).closest('.list-group-item').data('route');
             $('#accept_remarks').val(null);
-            $('#acceptModal').data('id',id).modal('show');
+            $('#acceptModal').data('id',id).data('route',route_no).modal('show');
         });
 
         $('.confirmAccept').click(function(){
             var id = $('#acceptModal').data('id');
+            var route_no = $('#acceptModal').data('route');
             var remarks = $('#accept_remarks').val();
             var _token = "{{ csrf_token() }}";
             $('[data-id=' + id + ']').addClass('hide');
@@ -77,6 +79,8 @@
                     if(count-countIncoming == 0){
                         location.reload();
                     }
+                    appendOutgoing(id,route_no);
+
                 }
             });
         });
@@ -148,10 +152,10 @@
 
         $('.confirmCancel').click(function(){
             var id = $('#cancelModal').data('id');
-            var route_no = $('#cancelModal').data('route');
             $('[data-id=' + id + ']').addClass('hide');
             $('.loading').show();
             var url = "<?php echo url('document/report');?>";
+            var route_no = $('#cancelModal').data('route');
             $.ajax({
                 url: url+'/'+id+'/cancel',
                 type: 'GET',
@@ -166,20 +170,22 @@
                     if(count-countUnconfirm == 0){
                         location.reload();
                     }
-
-                    var url = "<?php echo url('append/appendPendingDocument');?>";
-                    $.ajax({
-                        url: url+'/'+id+'/'+route_no,
-                        type: 'GET',
-                        success: function(data){
-                            $('.loading').hide();
-                            $('#outgoingUL').prepend(data);
-                        }
-                    });
-
+                    appendOutgoing(id,route_no);
                 }
             });
         });
+
+        function appendOutgoing(id,route_no){
+            var url = "<?php echo url('append/appendOutgoingDocument');?>";
+            $.ajax({
+                url: url+'/'+id+'/'+route_no,
+                type: 'GET',
+                success: function(data){
+                    $('.loading').hide();
+                    $('#outgoingUL').prepend(data);
+                }
+            });
+        }
 
         $('.btn-remote-incoming').click(function(e){
             e.preventDefault();
