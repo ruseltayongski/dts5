@@ -144,7 +144,7 @@ use App\Http\Controllers\ReleaseController as Rel;
     <div class="col-sm-4 wrapper">
         <div class="panel panel-jim panel-outgoing">
             <div class="panel-heading">
-                <h3 class="panel-title">Outgoing / Returned Documents
+                <h3 class="panel-title">Outgoing Documents
                     @if(count($data['outgoing']))
                         <span class="badge badgeOutgoing">{{ count($data['outgoing']) }}</span>
                     @endif
@@ -161,22 +161,12 @@ use App\Http\Controllers\ReleaseController as Rel;
             @if(count($data['outgoing']))
             <ul class="list-group" id="outgoingUL">
                 @foreach($data['outgoing'] as $row)
-                <?php
-                    $code = $row->code;
-                    $string = explode(';',$code);
-                    $status = $string[0];
-                    $class = '';
-                    if($status==='return'){
-                        $class ='list-group-item-danger';
-                    }
-                ?>
-                <li class="list-group-item {{ $class }}" data-id="{{ $row->id }}">
+                <li class="list-group-item" data-id="{{ $row->id }}">
                     <table class="table-jim">
                         <tr>
                             <td>Route No.:</td>
                             <td><a data-route="{{ $row->route_no }}" data-link="{{ asset('/document/info/'.$row->route_no.'/'.$row->doc_type) }}" href="#document_info" data-toggle="modal">{{ $row->route_no }}</a></td>
                         </tr>
-                        @if($status!='return')
                         <tr>
                             <?php
                                 if( $user = User::find($row->received_by) ){
@@ -202,16 +192,6 @@ use App\Http\Controllers\ReleaseController as Rel;
                                 {{ $deliveredName }}
                             </td>
                         </tr>
-                        @else
-                            <tr>
-                                <td>Status:</td>
-                                <td>Returned</td>
-                            </tr>
-                            <tr>
-                                <td>Remarks:</td>
-                                <td>{!! $row->action !!}</td>
-                            </tr>
-                        @endif
                         <tr>
                             <td>Type:</td>
                             <td>{{ Doc::getDocType($row->route_no) }}</td>
@@ -249,7 +229,7 @@ use App\Http\Controllers\ReleaseController as Rel;
     <div class="col-sm-4 wrapper">
         <div class="panel panel-jim panel-unconfirmed">
             <div class="panel-heading">
-                <h3 class="panel-title">Unconfirmed Documents
+                <h3 class="panel-title">Released / Returned Documents to
                     @if(count($data['unconfirm']))
                         <span class="badge badgeUnconfirm">{{ count($data['unconfirm']) }}</span>
                     @endif
@@ -267,7 +247,7 @@ use App\Http\Controllers\ReleaseController as Rel;
             <ul class="list-group" id="uncofirmUL">
                 @foreach($data['unconfirm'] as $row)
 
-                <li class="list-group-item" data-id="{{ $row->id }}">
+                <li class="list-group-item" data-id="{{ $row->id }}" data-route="{{ $row->route_no }}">
                     <table class="table-jim">
                         <tr>
                             <td>Route No.:</td>
@@ -305,19 +285,6 @@ use App\Http\Controllers\ReleaseController as Rel;
                             <td>
                                 <a href="#track" data-link="{{ asset('document/track/'.$row->route_no) }}" data-route="{{ $row->route_no }}" data-toggle="modal" class="btn btn-sm btn-info">Track</a>
                                 <button type="button" class="btn btn-sm btn-default btn-cancel">Cancel</button>
-                                <!--
-                                @if(($row->alert == 0)&&(Rel::hourDiff($row->date_in)>=4))
-                                <button type="button" class="btn btn-sm btn-warning btn-alert">Alert</button>
-                                @endif
-
-                                @if(($row->alert == 1)&&(Rel::hourDiff($row->date_in)>=8))
-                                <button type="button" class="btn btn-sm btn-warning btn-alert2">Warning</button>
-                                @endif
-
-                                @if(($row->alert == 2)&&(Rel::hourDiff($row->date_in)>=12))
-                                <button type="button" class="btn btn-sm btn-danger btn-report">Report</button>
-                                @endif
-                                -->
                             </td>
                         </tr>
                     </table>

@@ -91,7 +91,6 @@ class ReleaseController extends Controller
         $route_no = $info->route_no;
 
         $info->delete();
-
         $id = Tracking_Details::where('route_no',$route_no)
                 ->orderBy('id','desc')
                 ->first()
@@ -106,6 +105,7 @@ class ReleaseController extends Controller
 
         //rusel
         $temp = \DB::connection('mysql')->select("SELECT id FROM `tracking_details` WHERE route_no = '$route_no' ORDER BY id DESC LIMIT 1");
+        //return $temp[0]->id.'|'.$id;
         Tracking_Releasev2::where('document_id','=',$temp[0]->id)->delete();
         System::logDefault('Cancel Released',$route_no);
         //end rusel

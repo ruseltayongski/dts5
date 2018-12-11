@@ -557,11 +557,11 @@ class DocumentController extends Controller
             'tracking_details.alert'
         )
             ->leftJoin('users','tracking_details.delivered_by','=','users.id')
-            ->where('tracking_details.code','like',"%temp%")
-            ->where('users.section',$user->section)
-            ->where('tracking_details.status',0)
-            ->where(function($q) use ($keywordUnconfirmed){
-                $q->where('route_no','like',"%$keywordUnconfirmed%");
+                ->where('tracking_details.code','like',"%temp%")
+                ->where('users.section',$user->section)
+                ->where('tracking_details.status',0)
+                ->where(function($q) use ($keywordUnconfirmed){
+                    $q->where('route_no','like',"%$keywordUnconfirmed%");
             })
             ->orderBy('tracking_details.date_in','desc')
             ->paginate(10, ['*'], 'page', $unconfirmPage);
@@ -615,26 +615,30 @@ class DocumentController extends Controller
         $from = Section::find(Auth::user()->section)->description;
         $remarks = 'From: '.$from. '<br><br>Message: <strong style="display: inline-block;color: #a6201d">' .$remarks.'</strong>';
 
-        //RELEASED TO
+        //checker
         $this->releasedStatusChecker($info->first()->route_no,Auth::user()->section);
-
         $released_section_to = Users::select('users.section')->leftJoin('section','section.id','=','users.section')->where('users.id','=',$info->first()->delivered_by)->first()->section;
 
+        //accepted document
         $info->update(array(
             'code' => '',
             'date_in' => $release_to_datein,
-            'action' => 'accepted',
             'received_by' => Auth::user()->id,
+            'delivered_by' => $released_section_to,
+            'action' => $req->remarks,
             'alert' => 0
         ));
 
+
+        //RELEASED/RETURNED TO
         $q = new Tracking_Details();
         $q->route_no = $info->first()->route_no;
         $q->date_in = $release_to_datein;
-        $q->action = $req->remarks;
+        $q->action = 'Returned';
         $q->delivered_by = Auth::user()->id;
         $q->code= 'temp;' . $released_section_to;
         $q->save();
+
 
         $tracking_release = new Tracking_Releasev2();
         $tracking_release->released_by = Auth::user()->id;
@@ -646,13 +650,6 @@ class DocumentController extends Controller
         $tracking_release->status = "return";
         $tracking_release->save();
 
-        /*$info->update(array(
-                'code' => 'return;'.$section_id,
-                'date_in' => $release_to_datein,
-                'action' => $remarks,
-//                'received_by' => $info->delivered_by,
-                'alert' => 0
-            ));*/
     }
 
     static function checkMinutes($start_date)

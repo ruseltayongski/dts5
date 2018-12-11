@@ -36,6 +36,9 @@
                         msg: 'Returned successfully!'
                     });
                     $('.loading').hide();
+                    if(count-countIncoming == 0){
+                        location.reload();
+                    }
                 }
             });
         });
@@ -71,6 +74,9 @@
                         msg: 'Accepted successfully!'
                     });
                     $('.loading').hide();
+                    if(count-countIncoming == 0){
+                        location.reload();
+                    }
                 }
             });
         });
@@ -136,11 +142,13 @@
         $('.btn-cancel').click(function(e){
             e.preventDefault();
             var id = $(this).closest('.list-group-item').data('id');
-            $('#cancelModal').data('id',id).modal('show');
+            var route_no = $(this).closest('.list-group-item').data('route');
+            $('#cancelModal').data('id',id).data('route',route_no).modal('show');
         });
 
         $('.confirmCancel').click(function(){
             var id = $('#cancelModal').data('id');
+            var route_no = $('#cancelModal').data('route');
             $('[data-id=' + id + ']').addClass('hide');
             $('.loading').show();
             var url = "<?php echo url('document/report');?>";
@@ -155,7 +163,20 @@
                     Lobibox.notify('success', {
                         msg: 'Cancelled successfully!'
                     });
-                    $('.loading').hide();
+                    if(count-countUnconfirm == 0){
+                        location.reload();
+                    }
+
+                    var url = "<?php echo url('append/appendPendingDocument');?>";
+                    $.ajax({
+                        url: url+'/'+id+'/'+route_no,
+                        type: 'GET',
+                        success: function(data){
+                            $('.loading').hide();
+                            $('#outgoingUL').prepend(data);
+                        }
+                    });
+
                 }
             });
         });

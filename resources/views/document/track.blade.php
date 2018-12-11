@@ -36,6 +36,7 @@ use App\Http\Controllers\DocumentController as document;
         @foreach($document as $doc)
             <?php
             if($doc->received_by!=0){
+                $data['id'][] = $doc->id;
                 if($user = User::find($doc->received_by)){
                     $data['received_by'][] = $user->fname.' '.$user->lname;
                     $data['section'][] = (Section::find($user->section)) ? Section::find($user->section)->description:'';

@@ -272,3 +272,4 @@ Route::get('temporary',function(){
 
 //TEST CONTROLLER
 Route::get('test', 'TestController@test');
+Route::get('append/appendPendingDocument/{id}/{route_no}', 'AppendController@appendPendingDocument');
