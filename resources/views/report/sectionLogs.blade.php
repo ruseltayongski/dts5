@@ -18,11 +18,9 @@
         <table class="table table-bordered table-hover" style="background: #fff;">
             <thead>
             <tr style="background:#1c2d3f">
-                @if(Session::get('doc_type') == 'Purchase Request - Regular Purchase - Supply')
                 <th width="10%">Route # / Remarks</th>
+                @if(Session::get('doc_type') == 'Purchase Request - Regular Purchase - Supply')
                 <th width="35%">Item Description</th>
-                @else
-                <th width="35%">Route # / Remarks</th>
                 @endif
                 <th width="14%">Received Date</th>
                 <th width="14%">Received From</th>

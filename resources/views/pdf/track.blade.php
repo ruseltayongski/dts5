@@ -48,7 +48,7 @@
 
 </style>
 <body>
-<div style="position: absolute; left: 50%;">
+<div style="position: absolute; left: 53%;">
     <div class="barcode">
         <?php echo DNS1D::getBarcodeHTML(Session::get('route_no'),"C39E",1,43) ?>
         <font class="route_no">{{ $route_no }}</font>
@@ -58,17 +58,18 @@
     <tr>
         <?php $image_path = '/img/doh.png'; ?>
         <td width="20%"><center><img src="{{ public_path() . $image_path }}" width="100"></center></td>
-        <td width="60%">
+        <td width="60%" style="font-size: 11pt;">
             <center>
                 <strong>Republic of the Philippines</strong><br>
-                Department of Health - Regional Office 7<br>
-                <h3 style="margin:0;">DOCUMENT TRACKING SYSTEM<br>(DTS)</h3>
+                DEPARTMENT OF HEALTH<br>
+                <strong>CENTRAL VISAYAS CENTER for HEALTH DEVELOPMENT</strong><br>
+                DOCUMENT TRACKING SYSTEM (DTS)
             </center>
         </td>
         <!--
             {{--<td width="20%"><?php echo DNS2D::getBarcodeHTML(Session::get('route_no'), "QRCODE",5,5); ?></td>--}}
         -->
-        <?php $image_path = '/img/ro7.png'; ?>
+        <?php $image_path = '/img/f1.jpg'; ?>
         <td width="20%"><center><img src="{{ public_path() . $image_path }}" width="100"></center></td>
     </tr>
 

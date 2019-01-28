@@ -96,6 +96,9 @@ Route::get('pdf/logs/{doc_type}', 'PrintLogsController@printLogs');
 Route::get('report','AdminController@report');
 Route::get('reportedDocuments/{year}','AdminController@reportedDocuments');
 Route::get('report/logs/section', 'PrintLogsController@sectionLogs');
+//rusel
+Route::get('sectionTracking/{sectionId}/{year}/{month}', 'PrintLogsController@sectionTracking');
+//
 
 //ONLINE
 Route::get('online','OnlineController@online');

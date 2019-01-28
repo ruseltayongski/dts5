@@ -118,4 +118,15 @@ class PrintLogsController extends Controller
 
         return view('report.sectionLogs',['documents' => $documents]);
     }
+
+    public function sectionTracking($sectionId,$year,$month){
+        $sectionTracking = \DB::connection('mysql')->select("call sectionTracking($sectionId,$year,$month)");
+
+        return view('report.sectionTracking',[
+            "data" => $sectionTracking,
+            "sectionId" => $sectionId,
+            "year" => $year
+        ]);
+    }
+
 }

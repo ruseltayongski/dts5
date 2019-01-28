@@ -15,12 +15,6 @@
     <script src="{{ asset('resources/assets/js/jquery.min.js') }}"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="{{ asset('resources/assets/js/bootstrap.min.js') }}"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body class="hold-transition login-page">
     @if(Session::has('ok'))
@@ -32,9 +26,9 @@
     @endif
     <div class="login-box">
       <div class="login-logo">
-          <img src="{{ asset('resources/img/logo.png') }}" />
+          <img src="{{ asset('public/img/doh.png') }}" style="width: 30%" />
           <br />
-          <a href="#"><b>DOHRO7</b> <div style="font-style: italic">DTS VERSION 5.0</div></a>
+          <a href="#" style="font-weight:bolder;"><label style="font-size: 17pt;">DOH-CVCHD DTS 5.0</label></a>
       </div><!-- /.login-logo -->
       <form role="form" method="POST" action="{{ url('/login') }}">
           {{ csrf_field() }}
@@ -93,7 +87,7 @@
             </div>
         </form>
     @endif
-    @include('modal.announcement')
+    {{--@include('modal.announcement')--}}
     </div><!-- /.login-box -->
 
     <!-- jQuery 2.1.4 -->
