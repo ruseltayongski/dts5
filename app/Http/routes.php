@@ -106,11 +106,13 @@ Route::get('online','OnlineController@online');
 //LOGOUT
 Route::get('logout',function(){
     $user = Auth::user();
-    echo $id = $user->id;
-    \App\Http\Controllers\SystemController::logDefault('Logged Out');
-    Auth::logout();
-    User::where('id',$id)
-        ->update(['status' => 0]);
+    if(isset($user)){
+        $id = $user->id;
+        \App\Http\Controllers\SystemController::logDefault('Logged Out');
+        Auth::logout();
+        User::where('id',$id)
+            ->update(['status' => 0]);
+    }
     \Illuminate\Support\Facades\Session::flush();
     return redirect('login');
 });

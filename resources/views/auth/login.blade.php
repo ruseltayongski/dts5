@@ -33,7 +33,12 @@
       <form role="form" method="POST" action="{{ url('/login') }}">
           {{ csrf_field() }}
           <div class="login-box-body">
-            <p class="login-box-msg">Sign in to start your session</p>        
+                <!--
+                <div class="alert alert-success">For new user: your account is<br>
+                    Username: (ID NUMBER)<br>
+                    Password: 123
+                </div>
+                -->
               <div class="form-group has-feedback {{ $errors->has('username') ? ' has-error' : '' }}">
                 <input id="username" type="text" placeholder="Login ID" class="form-control" name="username" value="{{ old('username') }}">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>

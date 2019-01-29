@@ -226,7 +226,7 @@ $pending = \App\Tracking_Details::select(
             @endif
             </a>
         </p>
-        <p>All Rights Reserved 2017 | Version 3.3</p>
+        <p>All Rights Reserved 2017 | Version 5.0</p>
 
     </div>
 </footer>
