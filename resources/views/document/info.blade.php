@@ -209,17 +209,17 @@ $filter = Doc::isIncluded($document->doc_type);
         <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#deletePR"><i class="fa fa-trash"></i> Remove</button>
         @endif
     @elseif(Session::get('doc_type') == 'PRR_M')
-            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
-            <a href="{{ asset('prr_meal_page') }}" class="btn btn-warning"><i class="fa fa-barcode"></i> View Document</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+        <a href="{{ asset('prr_meal_page') }}" class="btn btn-warning"><i class="fa fa-barcode"></i> View Document</a>
     @else
         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
         @if(!$status)
-        <button type="submit" class="btn btn-info" name="submit" value="update"><i class="fa fa-upload"></i> Update</button>
-        @if($routed < 2)
-        <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#deleteDocument"><i class="fa fa-trash"></i> Remove</button>
+            <button type="submit" class="btn btn-info" name="submit" value="update"><i class="fa fa-upload"></i> Update</button>
+            @if($routed < 2)
+                <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#deleteDocument"><i class="fa fa-trash"></i> Remove</button>
+            @endif
         @endif
-        @endif
-        <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal" data-target="#paperSize"><i class="fa fa-barcode"></i> Barcode v1</button>
+        <button type="button" class="btn btn-success selectPaperSize" data-dismiss="modal" data-toggle="modal" data-target="#paperSize"><i class="fa fa-barcode"></i> Barcode v1</button>
         <a target="_blank" href="{{ asset('pdf/track') }}" class="btn btn-success"><i class="fa fa-barcode"></i> Barcode v2</a>
     @endif
 </div>
@@ -227,4 +227,9 @@ $filter = Doc::isIncluded($document->doc_type);
 
 <script>
     $('.daterange').daterangepicker();
+    function paperSizeAndOrientation(url){
+        var paperOrientaion = $('input[name=paperOrientation]:checked').val();
+        window.open(url+"/"+paperOrientaion, '_blank');
+        event.preventDefault();
+    }
 </script>

@@ -43,19 +43,19 @@ $pending = \App\Tracking_Details::select(
     <!-- Custom styles for this template -->
     <link href="{{ asset('resources/assets/css/style.css') }}" rel="stylesheet">
     <!-- bootstrap datepicker -->
-    <link href="{{ asset('resources/plugin/datepicker/datepicker3.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/plugin_old/datepicker/datepicker3.css') }}" rel="stylesheet">
 
     <title>
         @yield('title','Home')
     </title>
 
     <!--DATE RANGE-->
-    <link href="{{ asset('resources/plugin/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/plugin_old/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet">
     <!--CHOOSEN SELECT -->
-    <link href="{{ asset('resources/plugin/chosen/chosen.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/plugin_old/chosen/chosen.css') }}" rel="stylesheet">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link href="{{ asset('resources/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('resources/plugin//Lobibox/lobibox.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/plugin_old/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('resources/plugin_old//Lobibox/lobibox.css') }}" rel="stylesheet">
     @yield('css')
     <style>
         body {
@@ -231,9 +231,8 @@ $pending = \App\Tracking_Details::select(
     </div>
 </footer>
 @include('modal')
-
-        <!-- Bootstrap core JavaScript
-    ================================================== -->
+<!-- Bootstrap core JavaScript
+================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{ asset('resources/assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('resources/assets/js/jquery-validate.js') }}"></script>
@@ -242,23 +241,23 @@ $pending = \App\Tracking_Details::select(
 <script src="{{ asset('resources/assets/js/ie10-viewport-bug-workaround.js') }}"></script>
 <script>var loadingState = '<center><img src="{{ asset('resources/img/spin.gif') }}" width="150" style="padding:20px;"></center>'; </script>
 <!-- bootstrap datepicker -->
-<script src="{{ asset('resources/plugin/datepicker/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('resources/plugin_old/datepicker/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('resources/assets/js/script.js') }}?v=1"></script>
 <script src="{{ asset('resources/assets/js/form-justification.js') }}"></script>
-<script src="{{ asset('resources/plugin/daterangepicker/moment.min.js') }}"></script>
+<script src="{{ asset('resources/plugin_old/daterangepicker/moment.min.js') }}"></script>
 <!-- DATE RANGE SELECT -->
-<script src="{{ asset('resources/plugin/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('resources/plugin_old/daterangepicker/daterangepicker.js') }}"></script>
 <!-- NUMERAL JS -->
 <script src="{{ asset('resources/assets/js/Numeral-js/src/numeral.js') }}"></script>
 <!-- SELECT CHOOSEN -->
-<script src="{{ asset('resources/plugin/chosen/chosen.jquery.js') }}"></script>
+<script src="{{ asset('resources/plugin_old/chosen/chosen.jquery.js') }}"></script>
 <!-- CKEDITOR -->
-<script src="{{ asset('resources/plugin/ckeditor/ckeditor.js') }}"></script>
-<script src="{{ asset('resources/plugin/ckeditor/adapters/jquery.js') }}"></script>
+<script src="{{ asset('resources/plugin_old/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('resources/plugin_old/ckeditor/adapters/jquery.js') }}"></script>
 <!-- Bootstrap WYSIHTML5 -->
-<script src="{{ asset('resources/plugin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
-<script src="{{ asset('resources/plugin/Lobibox/Lobibox.js') }}"></script>
-@yield('plugin')
+<script src="{{ asset('resources/plugin_old/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
+<script src="{{ asset('resources/plugin_old/Lobibox/Lobibox.js') }}"></script>
+@yield('plugin_old')
 <?php
 use App\Tracking_Details;
 $incoming = Tracking_Details::select(

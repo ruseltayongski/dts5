@@ -22,7 +22,7 @@
             margin-bottom: 5px;
         }
     </style>
-    <h2 class="page-header">Documents</h2>    
+    <h2 class="page-header">Documents</h2>
     <form class="form-inline" method="POST" action="{{ asset('document') }}" onsubmit="return searchDocument();" id="searchForm">
         {{ csrf_field() }}
         <div class="form-group">
@@ -91,16 +91,7 @@
                     </li>
                     <li><a href="#general_form" data-backdrop="static" data-toggle="modal" data-type="PO">Purchase Order</a></li>
                     <li><a href="#general_form" data-backdrop="static" data-toggle="modal" data-type="PRC">Purchase Request - Cash Advance Purchase</a></li>
-                    <!-- <li class="dropdown-submenu">
-                        <a href="#document_form" data-backdrop="static" data-toggle="modal" data-link="{{ asset('prr_supply_form') }}">Purchase Request - Regular Purchase</a>
-                        <a href="#" data-toogle="dropdown">Purchase Request - Regular Purchase</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#document_form" data-backdrop="static" data-toggle="modal" data-link="{{ asset('prr_supply_form') }}">Supplies</a></li>
-                            <li><a href="#document_form" data-backdrop="static" data-toggle="modal" data-link="{{ asset('prr_meal_form') }}"> Meal</a></li>
-                        </ul>
-                    </li> -->
-                    <li><a href="#document_form" data-backdrop="static" data-toggle="modal" data-link="{{ asset('prr_supply_form') }}">Purchase Request - Regular Purchase</a></li>
-                    <li class="hide"><a href="#">Reports</a></li>
+                    <li><a href="#prr_supply_modal" data-backdrop="static" data-toggle="modal" data-link="{{ asset('prr_supply_form') }}">Purchase Request - Regular Purchase</a></li>
                 </ul>
             </div>
         </div>
@@ -109,42 +100,6 @@
     <div class="page-divider"></div>
     @if(count($documents))
     <div class="table-responsive">
-        @if(Session::get('updated'))
-            <div class="alert alert-info">
-                <i class="fa fa-check"></i> Successfully Updated!
-            </div>
-            <?php Session::forget('updated'); ?>
-        @endif
-        @if(Session::get('added'))
-            <div class="alert alert-success">
-                <i class="fa fa-check"></i> Successfully Added!
-            </div>
-            <?php Session::forget('added'); ?>
-        @endif
-        @if(Session::get('deleted'))
-            <div class="alert alert-warning">
-                <i class="fa fa-check"></i> Successfully Deleted!
-            </div>
-            <?php Session::forget('deleted'); ?>
-        @endif
-        @if(Session::get('deletedPR'))
-            <div class="alert alert-danger">
-                <i class="fa fa-check"></i> Successfully Deleted!
-            </div>
-            <?php Session::forget('deletedPR'); ?>
-        @endif
-
-        @if (session('status'))
-            <?php
-            $status = session('status');
-            ?>
-            @if($status=='releaseAdded')
-                <div class="alert alert-success">
-                    <i class="fa fa-check"></i> Successfully released!
-                </div>
-            @endif
-            <hr />
-        @endif
         <table class="table table-list table-hover table-striped">
             <thead>
                 <tr>
@@ -176,7 +131,11 @@
                         @endif
                     </td>
                     <td>
-                        <a class="title-info" data-route="{{ $doc->route_no }}" data-link="{{ asset('/document/info/'.$doc->route_no.'/'.$doc->doc_type) }}" href="#document_info" data-toggle="modal">{{ $doc->route_no }}</a>
+                        @if($doc->doc_type == 'PRR_S')
+                            <a class="title-info" data-route="{{ $doc->route_no }}" data-backdrop="static" data-link="{{ asset('prr_supply_info').'/'.$doc->route_no }}" href="#prr_supply_modal" data-toggle="modal">{{ $doc->route_no }}</a>
+                        @else
+                            <a class="title-info" data-route="{{ $doc->route_no }}" data-backdrop="static" data-link="{{ asset('/document/info/'.$doc->route_no.'/'.$doc->doc_type) }}" href="#document_form" data-toggle="modal">{{ $doc->route_no }}</a>
+                        @endif
                     </td>
                     <td>{{ date('M d, Y',strtotime($doc->prepared_date)) }}<br>{{ date('h:i:s A',strtotime($doc->prepared_date)) }}</td>
                     <td>{{ \App\Http\Controllers\DocumentController::docTypeName($doc->doc_type) }}</td>
@@ -187,7 +146,7 @@
                             {!! nl2br($doc->description) !!}
                         @endif
                     </td>
-                </tr>  
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -199,13 +158,68 @@
         </div>
     @endif
 </div>
+
 @include('modal.release_modal')
+@include('modal.prr_supply_modal')
+
 @endsection
-@section('plugin')
+@section('plugin_old')
+
 @include('js.release_js')
-<script src="{{ asset('resources/plugin/daterangepicker/moment.min.js') }}"></script>
-<script src="{{ asset('resources/plugin/daterangepicker/daterangepicker.js') }}"></script>
 <script>
+    @if(Session::get('updated'))
+        Lobibox.notify('success', {
+            msg: 'Successfully Updated!'
+        });
+        <?php Session::forget('updated'); ?>
+    @endif
+    @if(Session::get('added'))
+        Lobibox.notify('success', {
+            msg: 'Successfully Added!'
+        });
+        <?php Session::forget('added'); ?>
+    @endif
+    @if(Session::get('deleted'))
+        Lobibox.notify('warning', {
+            msg: 'Successfully Deleted!'
+        });
+        <?php Session::forget('deleted'); ?>
+    @endif
+    @if(Session::get('deletedPR'))
+        Lobibox.notify('warning', {
+            msg: 'Successfully PR Deleted!'
+        });
+        <?php Session::forget('deletedPR'); ?>
+    @endif
+        @if (session('status'))
+            <?php
+                $status = session('status');
+            ?>
+            @if($status=='releaseAdded')
+            Lobibox.notify('success', {
+                msg: 'Successfully Released!'
+            });
+        @endif
+    @endif
+
+    $("a[href='#prr_supply_modal']").on('click',function(){
+        var route_no = $(this).data('route');
+        $('.modal-title').html(route_no);
+        $('.modal_content').html(loadingState);
+        var url = $(this).data('link');
+        setTimeout(function(){
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function(data) {
+                    $('.modal_content').html(data);
+                    var datePicker = $('body').find('.datepicker');
+                    $('input').attr('autocomplete', 'off');
+                }
+            });
+        },1000);
+    });
+
     $('a[href="#general_form"]').on('click',function(){
         var title = $(this).html();
         var type = $(this).data('type');
@@ -225,99 +239,8 @@
             return true;
         },2000);
     }
-
-    function putAmount(amount){
-        $('.amount').html(amount.val());
-        if(amount.valueOf()==null){
-            $('.amount').html('0');
-        }
-    }
-
-    function preparedBy(input)
-    {
-        var name = input.val();
-        $('input[name="fullNameC"]').val(name);
-        $('input[name="fullNameD"]').val(name);
-        $('input[name="fullNameE"]').val(name);
-        $('input[name="fullNameH"]').val(name);
-        console.log(name);
-    }
-
-    function position(input)
-    {
-        var name = input.val();
-        $('input[name="positionC"]').val(name);
-        $('input[name="positionD"]').val(name);
-        console.log(name);
-    }
-
-    function pad (str, max) {
-        str = str.toString();
-        return str.length < max ? pad("0" + str, max) : str;
-    }
-
-    function append()
-    {
-        var hr='';
-        var mn = '';
-
-        for(i=0;i<=12;i++){
-            var tmp = pad(i,2);
-            hr += '<option>'+tmp+'</option>';
-        }
-        for(i=0;i<60;i++){
-            var tmp = pad(i,2);
-            mn += '<option>'+tmp+'</option>';
-        }
-        $('#append').append('<tr>' +
-                '<td><input type="date" name="date[]" class="form-control"></td>' +
-                '<td colspan="2"><input type="text" name="visited[]" class="form-control"></td>' +
-                '<td><select name="hourA[]" class="form-control append">' +
-                 hr +
-                '</select>'+
-                '<select name="minA[]" class="form-control">' +
-                mn +
-                '</select>'+
-                '<select name="ampmA[]" class="form-control">' +
-                '<option>AM</option>' +
-                '<option>PM</option>' +
-                '</select>'+
-                '</td>' +
-                '<td><select name="hourB[]" class="form-control append">' +
-                hr +
-                '</select>'+
-                '<select name="minB[]" class="form-control">' +
-                mn +
-                '</select>'+
-                '<select name="ampmB[]" class="form-control">' +
-                '<option>AM</option>' +
-                '<option>PM</option>' +
-                '</select>'+
-                '</td>' +
-                '<td><input type="text" name="trans[]" class="form-control"></td>'+
-                '<td><input type="text" name="transAllow[]" class="form-control"></td>'+
-                '<td><input type="text" name="dailyAllow[]" class="form-control"></td>'+
-                '<td><input type="text" name="perDiem[]" class="form-control"></td>'+
-                '<td><input type="text" name="total[]" class="form-control"></td>'+
-                '</tr>');
-    }
-
-    function subTotal(){
-        var values = {};
-        var total = $('input[name="total[]"]');
-        var c = 0;
-        total.each(function(){
-            values[c] = total.val();
-            c++;
-        });
-        console.log(values);
-    }
 </script>
 @endsection
 
 
-
-@section('css')
-<link href="{{ asset('resources/plugin/daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet">
-@endsection
 

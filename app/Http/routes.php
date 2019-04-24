@@ -20,8 +20,8 @@ Route::post('document/accept', 'DocumentController@saveDocument'); //for manual 
 Route::get('document/accept/{id}', 'DocumentController@updateDocument'); //for button accepting
 
 
-Route::get('document/info/{route}', 'DocumentController@show');
-Route::get('document/info/{route}/{doc_type}', 'DocumentController@show');
+Route::get('document/info/{route}','DocumentController@show');
+Route::get('document/info/{route}/{doc_type}','DocumentController@show');
 Route::get('document/removepending/{id}','DocumentController@removePending');
 Route::get('document/removeOutgoing/{id}','DocumentController@removeOutgoing');
 Route::get('document/removeIncoming/{id}','DocumentController@removeIncoming');
@@ -81,11 +81,14 @@ Route::post('form/tev', 'TevController@store');
 Route::get('form/bills','BillsController@index');
 Route::post('form/bills','BillsController@store');
 
-Route::get('pdf/v1/{size}', function($size){
-    $display = view("pdf.pdf",['size'=>$size]);
+Route::get('pdf/v1/{size}/{orientation}', function($size,$orientation){
+    $display = view("pdf.pdf",[
+        'size'=>$size,
+        'orientation'=>$orientation
+    ]);
     $pdf = App::make('dompdf.wrapper');
     $pdf->loadHTML($display);
-    return $pdf->setPaper($size, 'portrait')->stream();
+    return $pdf->setPaper($size, $orientation)->stream();
 });
 
 //PRINT LOGS
@@ -129,6 +132,7 @@ Route::post('prr_supply_update','PurchaseRequestController@prr_supply_update');
 Route::get('prr_supply_history','PurchaseRequestController@prr_supply_history');
 Route::get('prr_supply_append','PurchaseRequestController@prr_supply_append');
 Route::post('prr_supply_remove','PurchaseRequestController@prr_supply_remove');
+Route::get('prr_supply_info/{route_no}','PurchaseRequestController@prr_supply_info');
 //PURCHASE REQUEST/REGULAR MEAL
 Route::get('prr_meal_form','PurchaseRequestController@prr_meal_form');
 Route::post('prr_meal_post','PurchaseRequestController@prr_meal_post');

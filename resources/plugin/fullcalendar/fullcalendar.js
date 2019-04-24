@@ -1993,7 +1993,7 @@ var DragListener = Class.extend({
 		}
 
 		if (this.isDragging) {
-			this.drag(ev); // report a drag, even if this mousemove initiated the drag
+			this.drag(ev); // pis_report a drag, even if this mousemove initiated the drag
 		}
 	},
 
@@ -2011,7 +2011,7 @@ var DragListener = Class.extend({
 			this.isDragging = true;
 			this.trigger('dragStart', ev);
 
-			// report the initial cell the mouse is over
+			// pis_report the initial cell the mouse is over
 			// especially important if no min-distance and drag starts immediately
 			cell = this.getCell(ev); // this might be different from this.origCell if the min-distance is large
 			if (cell) {
@@ -2880,7 +2880,7 @@ var Grid = fc.Grid = RowRenderer.extend({
 					view.trigger('dayClick', _this.getCellDayEl(dayClickCell), dayClickCell.start, ev);
 				}
 				if (selectionRange) {
-					// the selection will already have been rendered. just report it
+					// the selection will already have been rendered. just pis_report it
 					view.reportSelection(selectionRange, ev);
 				}
 				enableCursor();

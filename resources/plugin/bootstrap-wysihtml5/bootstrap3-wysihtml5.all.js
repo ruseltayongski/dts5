@@ -2654,7 +2654,7 @@ var wysihtml5 = {
                 // the element rather than immediately before or after it
                 workingNode.innerHTML = "&#feff;";
 
-                // insertBefore is supposed to work like appendChild if the second parameter is null. However, a bug report
+                // insertBefore is supposed to work like appendChild if the second parameter is null. However, a bug pis_report
                 // for IERange suggests that it can crash the browser: http://code.google.com/p/ierange/issues/detail?id=12
                 if (boundaryNode) {
                     boundaryParent.insertBefore(workingNode, boundaryNode);
@@ -4352,7 +4352,7 @@ wysihtml5.browser = (function() {
     /**
      * Checks whether a document supports a certain queryCommand
      * In particular, Opera needs a reference to a document that has a contentEditable in it's dom tree
-     * in oder to report correct results
+     * in oder to pis_report correct results
      *
      * @param {Object} doc Document object on which to check for a query command
      * @param {String} command The query command to check for

@@ -54,8 +54,8 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" tabindex="-1" role="dialog" id="document_form">
-    <div id="my_modal" class="modal-dialog modal-lg" role="document">
+<div class="modal fade"  role="dialog" id="document_form">
+    <div id="my_modal" class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -105,28 +105,37 @@
                 <h4><i class="fa fa-file-pdf-o"></i> Select Paper Size</h4>
             </div>
             <div class="modal-body text-center">
-                <div class="col-xs-4">
-                    <a href="{{ asset('pdf/v1/letter') }}" class="text-success" target="_blank">
-                        <i class="fa fa-file-pdf-o fa-5x"></i><br>
-                        Letter
-                    </a>
+                <div class="row">
+                    <div class="col-xs-12">
+                        Portrait: <input type="radio" name="paperOrientation" value="portrait" id="paperOrientation" checked>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        Landscape: <input type="radio" name="paperOrientation" value="landscape" id="paperOrientation">
+                        <br><br>
+                    </div>
                 </div>
-                <div class="col-xs-4">
-                    <a href="{{ asset('pdf/v1/a4') }}" class="text-info" target="_blank">
-                        <i class="fa fa-file-pdf-o fa-5x"></i><br>
-                        A4
-                    </a>
-                </div>
-                <div class="col-xs-4">
-                    <a href="{{ asset('pdf/v1/legal') }}" class="text-warning" target="_blank">
-                        <i class="fa fa-file-pdf-o fa-5x"></i><br>
-                        Legal
-                    </a>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <a href="#" class="text-success" onclick="paperSizeAndOrientation('<?php echo asset('pdf/v1/letter'); ?>')">
+                            <i class="fa fa-file-pdf-o fa-5x"></i><br>
+                            Letter
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="#" class="text-info" onclick="paperSizeAndOrientation('<?php echo asset('pdf/v1/a4'); ?>')">
+                            <i class="fa fa-file-pdf-o fa-5x"></i><br>
+                            A4
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="#" class="text-warning" onclick="paperSizeAndOrientation('<?php echo asset('pdf/v1/legal'); ?>')">
+                            <i class="fa fa-file-pdf-o fa-5x"></i><br>
+                            Legal
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="clearfix"></div>
             <br />
-
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -284,8 +293,7 @@ $incoming = Tracking_Details::select(
         ->get();
 ?>
 
-
-<div class="modal fade" tabindex="-1" role="dialog" id="pr_paperSize" style="z-index:999991;">
+<div class="modal fade" tabindex="-1" role="dialog" id="pr_paperSize" style="z-index:99999;">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">

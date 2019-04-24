@@ -69,28 +69,159 @@ class PurchaseRequestController extends Controller
 
     public function prr_supply_form()
     {
-        $section = Section::all();
-        foreach($section as $row){
-            $user = Users::where('id','=',$row->head)->first();
-            $section_head[] = $user;
-        }
-        $division = Division::all();
-        foreach($division as $row){
-            $user = Users::where('id','=',$row->head)->first();
-            $division_head[] = $user;
-        }
-        return view('prr_supply.prr_supply_form',['section_head' => $section_head, 'division_head' => $division_head]);
+        $requestedBy = Users::select(DB::raw("CONCAT(req.fname,' ',req.mname,' ',req.lname) as fullname"),"req.id")
+            ->leftJoin("Section as sec","sec.id","=","users.section")
+            ->leftJoin("Users as req","req.id","=","sec.head")
+            ->where("users.id","=",Auth::user()->id)
+            ->first();
+
+        $recommendingApproval = Users::select(DB::raw("CONCAT(rec.fname,' ',rec.mname,' ',rec.lname) as fullname"),"rec.id")
+            ->leftJoin("Division as div","div.id","=","users.division")
+            ->leftJoin("Users as rec","rec.id","=","div.head")
+            ->where("users.id","=",Auth::user()->id)
+            ->first();
+
+        $headSection = Section::select(DB::raw("CONCAT(u.fname,' ',u.mname,' ',u.lname) as fullname"),"u.id")
+            ->leftJoin("users as u","u.id","=","section.head")
+            ->where("u.id","!=",$requestedBy->id)
+            ->get();
+
+        $headDivision = Division::select(DB::raw("CONCAT(u.fname,' ',u.mname,' ',u.lname) as fullname"),"u.id")
+            ->leftJoin("users as u","u.id","=","division.head")
+            ->where("u.id","!=",$recommendingApproval->id)
+            ->get();
+
+        return view('prr_supply.prr_supply_form',[
+                'headSection' => $headSection,
+                'headDivision' => $headDivision,
+                "requestedBy" => $requestedBy,
+                'recommendingApproval' => $recommendingApproval
+            ]
+        );
     }
 
-    public function getDesignation($id)
+    public function prr_supply_info($route_no)
     {
-        $designation_id = Users::find($id)->designation;
-        return Designation::where('id','=',$designation_id)->first()->description;
+        Session::put('route_no',$route_no);
+        $tracking = Tracking::
+                select('tracking_master.*','users.*','division.description as div_description','section.description as sec_description')
+                ->leftJoin('users','tracking_master.prepared_by','=','users.id')
+                ->leftJoin('division','division.id','=','users.division')
+                ->leftJoin('section','section.id','=','users.section')
+                ->where('route_no',$route_no)
+                ->first();
+
+        $requestedBy = Users::select(DB::raw("CONCAT(req.fname,' ',req.mname,' ',req.lname) as fullname"),"req.id")
+            ->leftJoin("Section as sec","sec.id","=","users.section")
+            ->leftJoin("Users as req","req.id","=","sec.head")
+            ->where("users.id","=",$tracking->prepared_by)
+            ->first();
+
+        $recommendingApproval = Users::select(DB::raw("CONCAT(rec.fname,' ',rec.mname,' ',rec.lname) as fullname"),"rec.id")
+            ->leftJoin("Division as div","div.id","=","users.division")
+            ->leftJoin("Users as rec","rec.id","=","div.head")
+            ->where("users.id","=",$tracking->division_head)
+            ->first();
+
+        $headSection = Section::select(DB::raw("CONCAT(u.fname,' ',u.mname,' ',u.lname) as fullname"),"u.id")
+            ->leftJoin("users as u","u.id","=","section.head")
+            ->where("u.id","!=",$requestedBy->id)
+            ->get();
+
+        $headDivision = Division::select(DB::raw("CONCAT(u.fname,' ',u.mname,' ',u.lname) as fullname"),"u.id")
+            ->leftJoin("users as u","u.id","=","division.head")
+            ->where("u.id","!=",$recommendingApproval->id)
+            ->get();
+
+        $prr_logs = prr_supply_logs::where('route_no',$route_no)
+            ->where('status',1)
+            ->first()
+            ->prr_logs_key;
+
+        $item = prr_supply::where('route_no','=',$route_no)
+            ->where('status',1)
+            ->where('prr_logs_key',$prr_logs)
+            ->get();
+
+        $routed = Tracking_Details::where('route_no',$route_no)
+            ->count();
+
+        $paperSize = view('prr_supply.paperSize');
+        return view('prr_supply.prr_supply_info',[
+            'route_no' => $route_no,
+            'headSection' => $headSection,
+            'headDivision' => $headDivision,
+            "requestedBy" => $requestedBy,
+            'recommendingApproval' => $recommendingApproval,
+            'tracking' => $tracking,
+            'routed' => $routed,
+            'prr_logs' => $prr_logs,
+            'item' => $item,
+            'paperSize' => $paperSize
+        ]);
+    }
+
+    public function prr_supply_update(Request $request)
+    {
+        $route_no = $request->get('route_no');
+        //UPDATE PRR SUPPLY TABLE
+        prr_supply::where("route_no",$route_no)
+            ->update(['status' => 0]); //delete the previous item
+        //UPDATE STATUS IN PRR SUPPLY LOGS
+        prr_supply_logs::where("route_no",$route_no)
+            ->update(['status' => 0]); //delete the previous item logs
+
+        //ADD PRR_LOGS
+        $updated_date = date('Y-m-d H:i:s');
+        $prr_logs_key = "logs".date('Y-') . $request->get('prepared_by') . date('mdHis');
+
+        $prr_logs = new prr_supply_logs();
+        $prr_logs->prr_logs_key = $prr_logs_key;
+        $prr_logs->route_no = $route_no;
+        $prr_logs->updated_date = $updated_date;
+        $prr_logs->updated_by = Auth::user()->id; //mas maayo na user na ge create mabutang sa logs
+        $prr_logs->status = 1;
+        $prr_logs->save();
+
+        //ADD ANOTHER IN PRR TABLE
+        $count = 0;
+        foreach($request->get('qty') as $pr){
+            if($request->get('issue')[$count] && $request->get('description')[$count] && $request->get('unit_cost')[$count] && $request->get('estimated_cost')[$count]) {
+                $pr = new prr_supply();
+                $pr->route_no = $route_no;
+                $pr->prr_logs_key = $prr_logs_key;
+                $pr->qty = $request->get('qty')[$count];
+                $pr->issue = $request->get("issue")[$count];
+                $pr->description = $request->get("description")[$count];
+                $pr->specification = $request->get("specification")[$count];
+                $pr->unit_cost = $request->get("unit_cost")[$count];
+                $pr->estimated_cost = $request->get("estimated_cost")[$count];
+                $pr->status = 1;
+                $pr->save();
+            }
+            $count++;
+        }
+
+        //UPDATE TRACKING MASTER
+        $prepared_date = $request->get('pr_date');
+        $prepared_date =  substr($prepared_date,6,4).'-'.substr($prepared_date,0,2).'-'.substr($prepared_date,3,2).' '.date('H:i:s');
+        Tracking::where('route_no',$route_no)->update([
+            "prepared_date" => $prepared_date,
+            "purpose" => $request->get('purpose'),
+            "source_fund" => $request->get('charge_to'),
+            "requested_by" => $request->get('requested_by'),
+            "cash_advance_of" => $request->get('cash_advance_of'),
+            "pr_date" => $request->get('pr_date'),
+        ]);
+
+        System::logDefault('Updated',$route_no);
+        Session::put('updated',true);
+        return redirect()->back();
     }
 
     public function prr_supply_post(Request $request)
     {
-        $prepared_date = $request->get("prepared_date");
+        $prepared_date = $request->get('pr_date');
         $prepared_date =  substr($prepared_date,6,4).'-'.substr($prepared_date,0,2).'-'.substr($prepared_date,3,2).' '.date('H:i:s');
         $route_no = date('Y-') . $request->user()->id . date('mdHis');
         Session::put('route_no', $route_no);
@@ -130,25 +261,36 @@ class PurchaseRequestController extends Controller
         $tracking->route_no = $route_no;
         $tracking->doc_type = $request->get('doc_type');
         $tracking->prepared_date = $prepared_date;
-        $tracking->prepared_by = $request->get('prepared_by');
+        $tracking->prepared_by = Auth::user()->id;
         $tracking->division_head = $request->get('division_head');
         $tracking->amount = $request->get('amount');
         $tracking->purpose = $request->get('purpose');
         $tracking->source_fund = $request->get('charge_to');
         $tracking->requested_by = $request->get('requested_by');
+        $tracking->cash_advance_of = $request->get('cash_advance_of');
+        $tracking->pr_date = $prepared_date;
         $tracking->save();
 
         //ADD TRACKING DETAILS
         $q = new Tracking_Details();
         $q->route_no = $route_no;
         $q->date_in = $prepared_date;
-        $q->received_by = $request->get('prepared_by');
-        $q->delivered_by = $request->get('prepared_by');
+        $q->received_by = Auth::user()->id;
+        $q->delivered_by = Auth::user()->id;
         $q->action = $request->get('purpose');
         $q->save();
 
         Session::put('added',true);
         return redirect("/document");
+    }
+
+    public function getDesignation($id)
+    {
+        $designation = Users::leftJoin("Designation","designation.id","=","users.designation")
+            ->where("users.id","=",$id)
+            ->first()
+            ->description;
+        return $designation;
     }
 
     public function prr_supply_pdf($paperSize = null)
@@ -212,63 +354,6 @@ class PurchaseRequestController extends Controller
             $division_head[] = $user;
         }
         return view('prr_supply.prr_supply_page',['section_head' => $section_head, 'division_head' => $division_head,'item' => $item,'tracking' => $tracking]);
-    }
-
-    public function prr_supply_update(Request $request)
-    {
-        $route_no = Session::get('route_no');
-
-        //UPDATE PRR SUPPLY TABLE
-        prr_supply::where("route_no",$route_no)
-                            ->update(['status' => 0]);
-        //UPDATE STATUS IN PRR SUPPLY LOGS
-        prr_supply_logs::where("route_no",$route_no)
-                ->update(['status' => 0]);
-
-        //ADD PRR_LOGS
-        $updated_date = date('Y-m-d H:i:s');
-        $prr_logs_key = "logs".date('Y-') . $request->get('prepared_by') . date('mdHis');
-
-        $prr_logs = new prr_supply_logs();
-        $prr_logs->prr_logs_key = $prr_logs_key;
-        $prr_logs->route_no = $route_no;
-        $prr_logs->updated_date = $updated_date;
-        $prr_logs->updated_by = Auth::user()->id;
-        $prr_logs->status = 1;
-        $prr_logs->save();
-
-        //ADD ANOTHER IN PRR TABLE
-        $count = 0;
-        foreach($request->get('qty') as $pr){
-            if($request->get('issue')[$count] && $request->get('description')[$count] && $request->get('unit_cost')[$count] && $request->get('estimated_cost')[$count]) {
-                $pr = new prr_supply();
-                $pr->route_no = $route_no;
-                $pr->prr_logs_key = $prr_logs_key;
-                $pr->qty = $request->get('qty')[$count];
-                $pr->issue = $request->get("issue")[$count];
-                $pr->description = $request->get("description")[$count];
-                $pr->specification = $request->get("specification")[$count];
-                $pr->unit_cost = $request->get("unit_cost")[$count];
-                $pr->estimated_cost = $request->get("estimated_cost")[$count];
-                $pr->status = 1;
-                $pr->save();
-            }
-            $count++;
-        }
-
-        //UPDATE TRACKING MASTER
-        $prepared_date = $request->get('prepared_date');
-        $prepared_date =  substr($prepared_date,6,4).'-'.substr($prepared_date,0,2).'-'.substr($prepared_date,3,2).' '.date('H:i:s');
-        Tracking::where('route_no',$route_no)->update([
-            "prepared_date" => $prepared_date,
-            "purpose" => $request->get('purpose'),
-            "source_fund" => $request->get('charge_to'),
-            "requested_by" => $request->get('requested_by')
-        ]);
-
-        System::logDefault('Updated',$route_no);
-        Session::put('updated',true);
-        return redirect("/prr_supply_page");
     }
 
     public function prr_supply_history()

@@ -138,9 +138,9 @@ $user = User::find($tracking->prepared_by);
                                     </thead>
                                     <tbody class="input_fields_wrap">
                                     <?php
-                                            foreach($item as $row):
-                                            $total += $row->estimated_cost;
-                                            $count++;
+                                        foreach($item as $row):
+                                        $total += $row->estimated_cost;
+                                        $count++;
                                     ?>
                                     <tr id="{{ $count }}">
                                         <input type="hidden" value="{{ $row->id }}" name="pr_id">
@@ -175,15 +175,6 @@ $user = User::find($tracking->prepared_by);
                                     </tr>
                                     </tbody>
                                     <tfoot>
-                                    <!-- <tr>
-                                        <td id="border-top"></td>
-                                        <td id="border-top"></td>
-                                        <td id="border-top"></td>
-                                        <td id="border-top"><br><br> Prepared By:<br><br><u>{{ $user->fname.' '.$user->mname.' '.$user->lname }}</u><br>{{ Designation::find($user->designation)->description }}</td>
-                                        <td id="border-top"></td>
-                                        <td id="border-top"></td>
-                                        <td id="border-top"></td>
-                                    </tr> -->
                                     <tr>
                                         <td class="align" colspan="6"><b>TOTAL</b></td>
                                         <td class="align-top">

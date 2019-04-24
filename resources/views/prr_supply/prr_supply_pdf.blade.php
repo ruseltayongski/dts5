@@ -8,7 +8,7 @@ use App\Designation;
 <html>
 <title>Purchase Request</title>
 <head>
-    <link href="{{ asset('resources/assets/css/print.css') }}" rel="stylesheet">
+    <link href="{{ realpath(__DIR__ . '/../../..').'/resources/assets/css/print.css' }}" rel="stylesheet">
     <style>
         html {
             margin: 30px;
@@ -54,6 +54,7 @@ use App\Designation;
         }
         .table1 td {
             border:1px solid #000;
+            padding: 5px;
         }
         .footer {
             width: 100%;
@@ -71,7 +72,7 @@ use App\Designation;
         }
         .new-times-roman{
             font-family: "Times New Roman", Times, serif;
-            font-size: 11.5pt;
+            font-size: 9pt;
         }
     </style>
 </head>
@@ -84,21 +85,23 @@ use App\Designation;
 </div>
     <body>
         <div class="new-times-roman">
-            <table class="letter-head" cellpadding="0" cellspacing="0">
+            <table cellpadding="0" cellspacing="0" class="table1">
                 <tr>
-                    <td id="border" class="align"><img src="{{ asset('resources/img/doh.png') }}" width="100"></td>
-                    <td width="90%" id="border">
-                        <div class="align small-text" style="margin-top:-10px;font-size:10.5pt;">
+                    <td class="align" id="border"><img src="{{ realpath(__DIR__ . '/../../..').'/resources/img/doh.png' }}" width="100"></td>
+                    <td width="100%" id="border">
+                        <div class="align small-text">
                             Republic of the Philippines<br>
-                            <strong>DEPARTMENT OF HEALTH REGIONAL OFFICE NO. VII</strong><br>
-                            Osmeña Boulevard, Cebu City, 6000 Philippines<br>
+                            DEPARTMENT OF HEALTH<br>
+                            <strong>CENTRAL VISAYAS CENTER for HEALTH DEVELOPMENT</strong><br>
+                            Osmeña Boulevard,Sambag II,Cebu City, 6000 Philippines<br>
                             Regional Director’s Office Tel. No. (032) 253-6355 Fax No. (032) 254-0109<br>
                             Official Website: http://www.ro7.doh.gov.ph Email Address: dohro7@gmail.com<br>
                         </div>
                     </td>
-                    <td id="border" class="align"><img src="{{ asset('resources/img/ro7.png') }}" width="100"></td>
+                    <td class="align" id="border"><img src="{{ realpath(__DIR__ . '/../../..').'/resources/img/f1.jpg' }}" width="100"></td>
                 </tr>
             </table>
+            <br>
             <table class="table1" cellpadding="0" cellspacing="0">
                 <tr>
                     <td colspan="7" class="align">
@@ -136,27 +139,17 @@ use App\Designation;
                         <td id="border-bottom" class="align-top">{{ $item_no }}</td>
                         <td id="border-bottom" class="align-top">{{ $row->qty }}</td>
                         <td id="border-bottom" class="align-top">{{ $row->issue }}</td>
-                        <td id="border-bottom" class="align-top">
-                                    <span class="small-text">
-                                        <?php
-                                        $total += $row->estimated_cost;
-                                        $count = 0;
-                                        $item_no++;
-                                        echo "<strong>".$row->description."</strong>"."<br>";
-                                        /*if(strlen($row->specification) <= 35){
-                                            echo "<br>".$row->specification."<br>";
-                                        } else {
-                                            for($i=0;$i<=strlen($row->specification);$i++){
-                                                if($i % 35 == 0){
-                                                    echo "<br>".substr($row->specification,$count,35);
-                                                    $count = $count + 35;
-                                                }
-                                            }
-                                        }*/
-                                        echo "<br>".$row->specification;
-                                        ?>
-                                    </span>
+                        <td id="border-bottom">
+                            <div>
+                                <?php
+                                $total += $row->estimated_cost;
+                                $count = 0;
+                                $item_no++;
+                                echo "<strong>".$row->description."</strong>".$row->specification;
+                                ?>
+                            </div>
                         </td>
+
                         <td id="border-bottom"></td>
                         <td id="border-bottom" class="align-top">
                             <strong><span style="font-family: DejaVu Sans;">&#x20b1; </span> {{ number_format($row->unit_cost,2) }}</strong>
@@ -167,56 +160,31 @@ use App\Designation;
                     </tr>
                 @endforeach
                 </tbody>
-                <!-- <tr>
-                    <td id="border-top"></td>
-                    <td id="border-top"></td>
-                    <td id="border-top"></td>
-                    <td id="border-top" width="35%"><br><br> Prepared By:<br><br><u>{{ $user->fname.' '.$user->mname.' '.$user->lname }}</u><br>{{ \App\Designation::find(Auth::user()->designation)->description }}</th>
-                    <td id="border-top"></td>
-                    <td id="border-top"></td>
-                    <td id="border-top"></td>
-                </tr> -->
                 <tr>
                     <td class="align" colspan="6"><b>TOTAL</b></td>
                     <td class="align-top"><strong style="color: red;"><span style="font-family: DejaVu Sans;">&#x20b1; </span> {{ number_format($total,2) }}</strong></td>
                 </tr>
             </table>
-            <table class="letter-head" cellpadding="0" cellspacing="0">
+            <table class="letter-head" cellpadding="0" style="" cellspacing="0">
                 <tr>
-                    <td colspan="7" class="align"><b style="margin-right:5%">CERTIFICATION</b></td>
+                    <td colspan="7" class="align"><b style="margin-right:5%;">CERTIFICATION</b></td>
                 </tr>
                 <tr>
-                    <td id="border-bottom" colspan="7">This is to certify that diligent efforts have been exerted to ensure that the price/s indicated above (in relation to the specification) is/are within the prevailing market price/s.
-                        <br><br>
-                        Requested By:
-                    </td>
-                </tr>
-                <tr>
-                    <td id="border-top" colspan="7" class="align">
-                        <?php
-                            if($tracking->requested_by){
-                                $requested_by = \App\Users::find($tracking->requested_by)->fname.' '.App\Users::find($tracking->requested_by)->mname.' '.App\Users::find($tracking->requested_by)->lname;
-                                $requested_designation = \App\Designation::find(Users::find($tracking->requested_by)->designation)->description;
-                            } else {
-                                $requested_by = '';
-                                $requested_designation = '';
-                            }
-                        ?>
-                        <u><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $requested_by }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></u><br>{{ $requested_designation }}
-                    </td>
+                    <td id="border-bottom" colspan="7">This is to certify that diligent efforts have been exerted to ensure that the price/s indicated above (in relation to the specification) is/are within the prevailing market price/s.</td>
                 </tr>
                 <tr>
                     <td colspan="7" id="border-bottom">Purpose: <b>{{ $tracking->purpose }}</b></td>
                 </tr>
                 <tr>
-                    <td colspan="7" id="border-top">Chargeable to: <b>{{ $tracking->source_fund }}</b></td>
+                    <td colspan="4" width="57.9%">Chargeable to: <b>{{ $tracking->source_fund }}</b></td>
+                    <td colspan="3">Cash Advance of: {{ $tracking->cash_advance_of }}</td>
                 </tr>
             </table>
             <table class="table1" cellpadding="0" cellspacing="0">
                 <tr>
                     <td id="border-bottom" width="15%"></td>
                     <td id="border-bottom" width="40%">&nbsp;Recommending Approval:</td>
-                    <td id="border-bottom" width="40%">&nbsp;Approved By:</td>
+                    <td id="border-bottom" width="40%">&nbsp;&nbsp;&nbsp;Approved By:</td>
                 </tr>
                 <tr>
                     <td id="border-top border-bottom">&nbsp;Signature:</td>
