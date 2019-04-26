@@ -193,7 +193,7 @@ $total = 0;
                        data-trigger="focus"
                        data-placement="top"
                        data-backdrop="static"
-                       title="<b>Select Paper Size</b>"
+                       title="DOMPDF: <input type='radio' value='dompdf' name='pdf' check> FPDF: <input type='radio' value='fpdf' name='pdf' check>"
                        data-content="{{ $paperSize }}"><i class="fa fa-download"></i> Generate-PDF
                     </a>
                     <button class="btn btn-info" type="button" onclick="update_history()">

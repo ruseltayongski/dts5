@@ -161,7 +161,7 @@ use App\Designation;
                 @endforeach
                 </tbody>
                 <tr>
-                    <td class="align" colspan="6"><b>TOTAL</b></td>
+                    <td colspan="6" style="float: right"><b>Grand Total</b></td>
                     <td class="align-top"><strong style="color: red;"><span style="font-family: DejaVu Sans;">&#x20b1; </span> {{ number_format($total,2) }}</strong></td>
                 </tr>
             </table>

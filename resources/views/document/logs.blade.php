@@ -201,7 +201,7 @@ $code = Session::get('doc_type_code');
                                     echo Section::find($section_id)->description;
                                 ?>
                                 <br />
-                                    <button data-toggle="modal" data-target="#releaseTo" data-route_no="{{ $out->route_no }}" onclick="changeRoute($(this), '<?php echo $out->id ?>')" type="button" class="btn btn-info btn-xs"><i class="fa fa-send"></i> Change</button>
+                                    <button data-toggle="modal" data-target="#releaseTo" data-id="{{ $out->id }}" data-route_no="{{ $out->route_no }}" onclick="changeRoute($(this), '<?php echo $out->id ?>')" type="button" class="btn btn-info btn-xs"><i class="fa fa-send"></i> Change</button>
                                 <a href="{{ asset('document/report/'.$out->id .'/cancel') }}" class="btn btn-xs btn-danger"><i class="fa fa-times"></i> Cancel</a>
                             @else
                                 <?php $user = Users::find($out->received_by);?>
@@ -237,7 +237,7 @@ $code = Session::get('doc_type_code');
                                             [ Cycle End ]
                                         </div>
                                     @endif
-                                    <button data-toggle="modal" data-target="#releaseTo" data-route_no="{{ $doc->route_no }}" onclick="putRoute($(this))" type="button" class="btn btn-info btn-sm"><i class="fa fa-send"></i> Release To</button>
+                                    <button data-toggle="modal" data-target="#releaseTo" data-id="{{ $doc->tracking_id }}" data-route_no="{{ $doc->route_no }}" onclick="putRoute($(this))" type="button" class="btn btn-info btn-sm"><i class="fa fa-send"></i> Release To</button>
                                 </td>
                             @endif
                         @endif
@@ -253,12 +253,14 @@ $code = Session::get('doc_type_code');
             </div>
         @endif
     </div>
-
+    <input type="hidden" id="getsection" value="{{ asset('getsections/') }}">
     @include('modal.release_modal')
+
 @endsection
-@section('plugin')
+    @section('plugin')
 
     <script>
+        console.log("rusel");
         $('.filter-division').show();
         $('#reservation').daterangepicker();
         $('.filter-division').on('change',function(){
@@ -266,7 +268,7 @@ $code = Session::get('doc_type_code');
             var id = $(this).val();
             var url = "<?php echo asset('getsections/');?>";
             $('.loading').show();
-            $('.filter_section').html('<option value="">Select section...</option>')
+            $('.filter_section').html('<option value="">Select section...</option>');
             $.ajax({
                 url: url+'/'+id,
                 type: "GET",
@@ -321,8 +323,6 @@ $code = Session::get('doc_type_code');
                 $('.error').removeClass('hide');
             }
         }
-    </script>
-    <script>
         function searchDocument(){
             $('.loading').show();
             setTimeout(function(){
@@ -332,7 +332,9 @@ $code = Session::get('doc_type_code');
     </script>
 @endsection
 
+
 @section('css')
 
 @endsection
+
 

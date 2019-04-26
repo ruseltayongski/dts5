@@ -53,7 +53,7 @@ use App\Http\Controllers\ReleaseController as Rel;
             color: #00a7d0;
         }
     </style>
-    <link rel="stylesheet" href="<?php echo asset('resources/plugin/dataTable/css/dataTables.bootstrap.min.css');?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo asset('resources/plugin_old/dataTable/css/dataTables.bootstrap.min.css');?>" type="text/css" />
     <div class="col-sm-4 wrapper">
         <div class="panel panel-jim panel-incoming">
             <div class="panel-heading">
@@ -309,8 +309,8 @@ use App\Http\Controllers\ReleaseController as Rel;
 @endsection
 
 @section('js')
-    <script src="<?php echo asset('resources/plugin/dataTable/js/jquery.dataTables.min.js');?>"></script>
-    <script src="<?php echo asset('resources/plugin/dataTable/js/dataTables.bootstrap.min.js');?>"></script>
+    <script src="<?php echo asset('resources/plugin_old/dataTable/js/jquery.dataTables.min.js');?>"></script>
+    <script src="<?php echo asset('resources/plugin_old/dataTable/js/dataTables.bootstrap.min.js');?>"></script>
     @include('js.release_js')
     <script>
         $(".incomingPaginate").children().children().each(function(index){
