@@ -30,6 +30,22 @@ use App\Designation;
             border-collapse: collapse;
             border:1px solid #000;
         }
+        #no-border-right{
+            border-collapse: collapse;
+            border-right: none;
+        }
+        #no-border-left{
+            border-collapse: collapse;
+            border-left: none;
+        }
+        #no-border-bottom{
+            border-collapse: collapse;
+            border-bottom: none;
+        }
+        #no-border-top{
+            border-collapse: collapse;
+            border-top: none;
+        }
         #border-bottom{
             border-collapse: collapse;
             border-bottom: none;
@@ -54,7 +70,6 @@ use App\Designation;
         }
         .table1 td {
             border:1px solid #000;
-            padding: 5px;
         }
         .footer {
             width: 100%;
@@ -87,27 +102,23 @@ use App\Designation;
         <div class="new-times-roman">
             <table cellpadding="0" cellspacing="0" class="table1">
                 <tr>
-                    <td class="align" id="border"><img src="{{ realpath(__DIR__ . '/../../..').'/resources/img/doh.png' }}" width="100"></td>
-                    <td width="100%" id="border">
+                    <td id="no-border-right no-border-bottom"></td>
+                    <td id="no-border-left no-border-right no-border-bottom"></td>
+                   <td style="float: right" id="no-border-bottom no-border-left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Appendix 60</td>
+                </tr>
+                <tr>
+                    <td class="align" id="no-border-right no-border-top"><img src="{{ realpath(__DIR__ . '/../../..').'/resources/img/doh.png' }}" width="100"></td>
+                    <td width="100%" id="no-border-left no-border-right no-border-top">
                         <div class="align small-text">
-                            Republic of the Philippines<br>
-                            DEPARTMENT OF HEALTH<br>
-                            <strong>CENTRAL VISAYAS CENTER for HEALTH DEVELOPMENT</strong><br>
-                            Osmeña Boulevard,Sambag II,Cebu City, 6000 Philippines<br>
-                            Regional Director’s Office Tel. No. (032) 253-6355 Fax No. (032) 254-0109<br>
-                            Official Website: http://www.ro7.doh.gov.ph Email Address: dohro7@gmail.com<br>
+                            <strong style="font-size: 20pt;font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif">PURCHASE REQUEST</strong><br>
+                            DOH - Center for Health Development VII<br>
+                            (Agency)<br>
                         </div>
                     </td>
-                    <td class="align" id="border"><img src="{{ realpath(__DIR__ . '/../../..').'/resources/img/f1.jpg' }}" width="100"></td>
+                    <td class="align" id="no-border-left no-border-top"><img src="{{ realpath(__DIR__ . '/../../..').'/resources/img/f1.jpg' }}" width="100"></td>
                 </tr>
             </table>
-            <br>
             <table class="table1" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td colspan="7" class="align">
-                        <strong>PURCHASE REQUEST</strong>
-                    </td>
-                </tr>
                 <tr>
                     <td colspan="2">Department:</td>
                     <td rowspan="3" colspan="2">{{ $division->description }}<br> {{ $section->description }}</td>
@@ -182,17 +193,28 @@ use App\Designation;
             </table>
             <table class="table1" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td id="border-bottom" width="15%"></td>
-                    <td id="border-bottom" width="40%">&nbsp;Recommending Approval:</td>
-                    <td id="border-bottom" width="40%">&nbsp;&nbsp;&nbsp;Approved By:</td>
+                    <td id="border-bottom" width="10%"></td>
+                    <td id="border-bottom" width="28%">&nbsp;Requested By:</td>
+                    <td id="border-bottom" width="30%">&nbsp;Recommending Approval:</td>
+                    <td id="border-bottom" width="32%">&nbsp;&nbsp;&nbsp;Approved By:</td>
                 </tr>
                 <tr>
                     <td id="border-top border-bottom">&nbsp;Signature:</td>
                     <td id="border-top border-bottom"></td>
                     <td id="border-top border-bottom"></td>
+                    <td id="border-top border-bottom"></td>
                 </tr>
                 <tr>
-                    <td id="border-top border-bottom">&nbsp;Printed Name:</td>
+                    <td id="border-top border-bottom">&nbsp;Printed Name</td>
+                    <td id="border-top border-bottom" class="align">
+                        <u><b>
+                            <?php
+                            $requested = Users::find($tracking->requested_by);
+                            $requested_by = $requested->fname.' '.$requested->mname.' '.$requested->lname;
+                            echo $requested_by;
+                            ?>
+                        </b></u>
+                    </td>
                     <td id="border-top border-bottom" class="align">
                         <u><b>
                             <?php
@@ -222,14 +244,20 @@ use App\Designation;
                     <td id="border-top" >&nbsp;Designation:</td>
                     <td id="border-top" class="align">
                         <?php
-                            $division_designation = \App\Designation::find(Users::find($tracking->division_head)->designation)->description;
-                            switch($tracking->division_head){
-                                case 225:
-                                    echo "<span style='font-size: 9.5pt'>".$division_designation."<span>";
+                            $requested_by_designation = \App\Designation::find(Users::find($tracking->requested_by)->designation)->description;
+                            echo $requested_by_designation;
+                        ?>
+                    </td>
+                    <td id="border-top" class="align">
+                        <?php
+                        $division_designation = \App\Designation::find(Users::find($tracking->division_head)->designation)->description;
+                        switch($tracking->division_head){
+                            case 225:
+                                echo "<span style='font-size: 9.5pt'>".$division_designation."<span>";
                                 break;
-                                default:
-                                    echo $division_designation;
-                            }
+                            default:
+                                echo $division_designation;
+                        }
                         ?>
                     </td>
                     <td id="border-top" class="align">Director IV</td>

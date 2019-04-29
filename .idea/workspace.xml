@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b8cbfcd3-2119-4b6b-8308-a1f0848cbc80" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/script.js" afterPath="$PROJECT_DIR$/resources/assets/js/script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/document/logs.blade.php" afterPath="$PROJECT_DIR$/resources/views/document/logs.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/document/pending.blade.php" afterPath="$PROJECT_DIR$/resources/views/document/pending.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_info.blade.php" afterPath="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_info.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_pdf.blade.php" afterPath="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_pdf.blade.php" />
     </list>
     <ignored path="dts.iws" />
@@ -30,7 +26,7 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
+            <state relative-caret-position="1139">
               <caret line="68" column="59" lean-forward="false" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="59" />
               <folding />
             </state>
@@ -40,18 +36,18 @@
       <file leaf-file-name="documents.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/report/documents.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-223">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReleaseController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReleaseController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReleaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="112" column="28" lean-forward="false" selection-start-line="112" selection-start-column="28" selection-end-line="112" selection-end-column="28" />
+            <state relative-caret-position="398">
+              <caret line="114" column="5" lean-forward="false" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
               <folding>
                 <marker date="1556269424701" expanded="true" signature="3508:3595" ph="SELECT id FR... tracking_details" />
               </folding>
@@ -59,14 +55,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="release_modal.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/modal/release_modal.blade.php">
+      <file leaf-file-name="prr_supply_pdf.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_pdf.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="71" lean-forward="false" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="71" />
+            <state relative-caret-position="234">
+              <caret line="198" column="52" lean-forward="false" selection-start-line="198" selection-start-column="52" selection-end-line="198" selection-end-column="52" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#textarea#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#2888#2894#0#HTML" expanded="true" />
+                <element signature="e#2894#2900#0#HTML" expanded="true" />
+                <element signature="e#2900#2906#0#HTML" expanded="true" />
+                <element signature="e#2906#2912#0#HTML" expanded="true" />
+                <element signature="e#2912#2918#0#HTML" expanded="true" />
+                <element signature="e#2918#2924#0#HTML" expanded="true" />
+                <element signature="e#2924#2930#0#HTML" expanded="true" />
+                <element signature="e#2930#2936#0#HTML" expanded="true" />
+                <element signature="e#2936#2942#0#HTML" expanded="true" />
+                <element signature="e#2942#2948#0#HTML" expanded="true" />
+                <element signature="e#2948#2954#0#HTML" expanded="true" />
+                <element signature="e#2954#2960#0#HTML" expanded="true" />
+                <element signature="n#style#0;n#strong#0;n#div#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#4;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#8098#8104#0#HTML" expanded="true" />
+                <element signature="e#8178#8184#0#HTML" expanded="true" />
+                <element signature="e#8273#8279#0#HTML" expanded="true" />
+                <element signature="e#8699#8705#0#HTML" expanded="true" />
+                <element signature="e#10762#10768#0#HTML" expanded="true" />
+                <marker date="1556501051630" expanded="true" signature="10022:10038" ph="..." />
+                <marker date="1556501051630" expanded="true" signature="11497:11513" ph="..." />
               </folding>
             </state>
           </provider>
@@ -75,7 +91,7 @@
       <file leaf-file-name="DocumentController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="17680">
               <caret line="1057" column="55" lean-forward="false" selection-start-line="1057" selection-start-column="44" selection-end-line="1057" selection-end-column="55" />
               <folding>
                 <marker date="1544495064346" expanded="true" signature="2704:2749" ph="select * fro... office_order" />
@@ -90,7 +106,7 @@
       <file leaf-file-name="logs.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/document/logs.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
+            <state relative-caret-position="3978">
               <caret line="239" column="118" lean-forward="false" selection-start-line="239" selection-start-column="118" selection-end-line="239" selection-end-column="118" />
               <folding />
             </state>
@@ -100,8 +116,8 @@
       <file leaf-file-name="pending.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/document/pending.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="313" column="4" lean-forward="true" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="29" />
+            <state relative-caret-position="5287">
+              <caret line="313" column="4" lean-forward="false" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -110,7 +126,7 @@
       <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
+            <state relative-caret-position="4114">
               <caret line="244" column="49" lean-forward="false" selection-start-line="244" selection-start-column="43" selection-end-line="244" selection-end-column="49" />
               <folding />
             </state>
@@ -120,7 +136,7 @@
       <file leaf-file-name="release_js.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/js/release_js.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
+            <state relative-caret-position="5236">
               <caret line="308" column="42" lean-forward="false" selection-start-line="308" selection-start-column="42" selection-end-line="308" selection-end-column="43" />
               <folding />
             </state>
@@ -130,7 +146,7 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/assets/js/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
+            <state relative-caret-position="7412">
               <caret line="436" column="33" lean-forward="false" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
               <folding />
             </state>
@@ -141,8 +157,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>daterangep</find>
-      <find>asset</find>
       <find>report</find>
       <find>function report</find>
       <find>changeRoute</find>
@@ -171,6 +185,8 @@
       <find>document/logs</find>
       <find>logsDocument</find>
       <find>reportCancen</find>
+      <find>float</find>
+      <find>printed</find>
     </findStrings>
     <replaceStrings>
       <replace>plugin_old</replace>
@@ -226,7 +242,6 @@
         <option value="$PROJECT_DIR$/FPDF/prrSupply/display.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PurchaseRequestController.php" />
         <option value="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_form.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_pdf.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_info.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/js/release_js.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/modal/release_modal.blade.php" />
@@ -234,6 +249,7 @@
         <option value="$PROJECT_DIR$/resources/assets/js/script.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ReleaseController.php" />
         <option value="$PROJECT_DIR$/resources/views/document/logs.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/prr_supply/prr_supply_pdf.blade.php" />
       </list>
     </option>
   </component>
@@ -325,13 +341,6 @@
               <item name="dts" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="document" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dts" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -353,6 +362,13 @@
               <item name="dts" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="prr_supply" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dts" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="report" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
@@ -363,7 +379,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pis" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
@@ -523,27 +539,28 @@
       <workItem from="1556151735353" duration="1179000" />
       <workItem from="1556153880314" duration="6000" />
       <workItem from="1556155374805" duration="5494000" />
-      <workItem from="1556239829910" duration="13435000" />
+      <workItem from="1556239829910" duration="13652000" />
+      <workItem from="1556499161731" duration="1926000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="519173000" />
+    <option name="totallyTimeSpent" value="521316000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1924307" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1945629" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290461" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25376344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25376344" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -831,13 +848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_pdf.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2873">
-          <caret line="170" column="21" lean-forward="false" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_info.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -871,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="871">
           <caret line="342" column="57" lean-forward="false" selection-start-line="342" selection-start-column="40" selection-end-line="342" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -879,16 +888,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="71" lean-forward="false" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="71" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
+        <state relative-caret-position="4114">
           <caret line="244" column="49" lean-forward="false" selection-start-line="244" selection-start-column="43" selection-end-line="244" selection-end-column="49" />
           <folding />
         </state>
@@ -896,7 +902,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/js/release_js.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
+        <state relative-caret-position="5236">
           <caret line="308" column="42" lean-forward="false" selection-start-line="308" selection-start-column="42" selection-end-line="308" selection-end-column="43" />
           <folding />
         </state>
@@ -904,7 +910,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
+        <state relative-caret-position="1139">
           <caret line="68" column="59" lean-forward="false" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="59" />
           <folding />
         </state>
@@ -912,7 +918,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/report/documents.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-223">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -920,7 +926,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DocumentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="17680">
           <caret line="1057" column="55" lean-forward="false" selection-start-line="1057" selection-start-column="44" selection-end-line="1057" selection-end-column="55" />
           <folding>
             <marker date="1544495064346" expanded="true" signature="2704:2749" ph="select * fro... office_order" />
@@ -933,15 +939,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/document/pending.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="313" column="4" lean-forward="true" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="29" />
+        <state relative-caret-position="5287">
+          <caret line="313" column="4" lean-forward="false" selection-start-line="313" selection-start-column="4" selection-end-line="313" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
+        <state relative-caret-position="7412">
           <caret line="436" column="33" lean-forward="false" selection-start-line="436" selection-start-column="33" selection-end-line="436" selection-end-column="33" />
           <folding />
         </state>
@@ -949,7 +955,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/document/logs.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
+        <state relative-caret-position="3978">
           <caret line="239" column="118" lean-forward="false" selection-start-line="239" selection-start-column="118" selection-end-line="239" selection-end-column="118" />
           <folding />
         </state>
@@ -957,10 +963,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ReleaseController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="112" column="28" lean-forward="false" selection-start-line="112" selection-start-column="28" selection-end-line="112" selection-end-column="28" />
+        <state relative-caret-position="398">
+          <caret line="114" column="5" lean-forward="false" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
           <folding>
             <marker date="1556269424701" expanded="true" signature="3508:3595" ph="SELECT id FR... tracking_details" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/prr_supply/prr_supply_pdf.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="198" column="52" lean-forward="false" selection-start-line="198" selection-start-column="52" selection-end-line="198" selection-end-column="52" />
+          <folding>
+            <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#2888#2894#0#HTML" expanded="true" />
+            <element signature="e#2894#2900#0#HTML" expanded="true" />
+            <element signature="e#2900#2906#0#HTML" expanded="true" />
+            <element signature="e#2906#2912#0#HTML" expanded="true" />
+            <element signature="e#2912#2918#0#HTML" expanded="true" />
+            <element signature="e#2918#2924#0#HTML" expanded="true" />
+            <element signature="e#2924#2930#0#HTML" expanded="true" />
+            <element signature="e#2930#2936#0#HTML" expanded="true" />
+            <element signature="e#2936#2942#0#HTML" expanded="true" />
+            <element signature="e#2942#2948#0#HTML" expanded="true" />
+            <element signature="e#2948#2954#0#HTML" expanded="true" />
+            <element signature="e#2954#2960#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#td#1;n#tr#1;n#table#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#4;n#table#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#8098#8104#0#HTML" expanded="true" />
+            <element signature="e#8178#8184#0#HTML" expanded="true" />
+            <element signature="e#8273#8279#0#HTML" expanded="true" />
+            <element signature="e#8699#8705#0#HTML" expanded="true" />
+            <element signature="e#10762#10768#0#HTML" expanded="true" />
+            <marker date="1556501051630" expanded="true" signature="10022:10038" ph="..." />
+            <marker date="1556501051630" expanded="true" signature="11497:11513" ph="..." />
           </folding>
         </state>
       </provider>
