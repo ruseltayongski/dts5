@@ -195,7 +195,7 @@ use App\Designation;
                 <tr>
                     <td id="border-bottom" width="10%"></td>
                     <td id="border-bottom" width="28%">&nbsp;Requested By:</td>
-                    <td id="border-bottom" width="30%">&nbsp;Recommending Approval:</td>
+                    <td id="border-bottom" width="32%">&nbsp;Recommending Approval:</td>
                     <td id="border-bottom" width="32%">&nbsp;&nbsp;&nbsp;Approved By:</td>
                 </tr>
                 <tr>
@@ -224,7 +224,7 @@ use App\Designation;
                                         echo $division_name.', CPA,MBA,CEO VI';
                                     break;*/
                                     case 72:
-                                        echo substr($division_name,4).', MD, MPH';
+                                        echo substr($division_name,4).', MD, MPH, FPS';
                                     break;
                                     case 225:
                                         echo "<span style='font-size: 10pt;'>".substr($division_name,4).", MD, RPT, RN, FPSMS, MBA-HM"."</span>";
